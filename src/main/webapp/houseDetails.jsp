@@ -9,7 +9,6 @@
 
 <%
     House house = (House) request.getAttribute("house");
-    String h = (String) request.getAttribute("h");
     if (house != null) {
 %>
 
