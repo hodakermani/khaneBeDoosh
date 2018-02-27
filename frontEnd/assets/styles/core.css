@@ -15,3 +15,45 @@ body {
 a:hover {
     cursor: pointer;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    text-align: right;
+    display: none;
+    position: absolute;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px 64px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown-content div.balance > span {
+    color: lightslategrey;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.dropdown-content > a {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 100;
+    background-color: #3AD0CA;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 5px 15px;
+    margin: auto;
+    display:  block;
+    width: fit-content;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
