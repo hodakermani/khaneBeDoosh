@@ -24,3 +24,11 @@
     url('../fonts/Shabnam-Light.ttf') format('truetype');
     font-weight: 300;
 }
+
+footer .font {
+    font-size: 14px;
+    font-weight: 100;
+    text-align: right;
+    margin-right: 20px;
+    color: rebeccapurple;
+}
