@@ -1,0 +1,21 @@
+body {
+    height: 100%; background: lightblue; text-align: center; position: relative;
+}
+
+.container-fluid {
+    /*direction: rtl;*/
+    font-family: Shabnam, sans-serif;
+    position: relative;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+a:hover {
+    cursor: pointer;
+}
