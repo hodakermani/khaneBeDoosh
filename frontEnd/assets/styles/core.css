@@ -12,10 +12,6 @@ body {
     text-align: center;
 }
 
-.row {
-    padding-top: 20px;
-}
-
 a:hover {
     cursor: pointer;
 }

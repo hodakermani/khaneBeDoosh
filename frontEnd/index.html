@@ -31,12 +31,9 @@
         </div>
     </div>
 
-
     <div class="main-content row">
-        <div class="col-xl-2"></div>
-        <div class="col-xl-8">
-
-
+        <div class="col-xl-2 col-sm-2"></div>
+        <div class="col-xl-8 col-sm-8">
             <div class="search-container">
                 <!--for labels-->
                 <div class="labels row">
@@ -46,25 +43,39 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-4">
-                        <select class="form-control">
-                            <!--add a default named "noee melk" for this select-->
-                            <option>نوع ملک</option>
-                            <option>خرید</option>
-                            <option>رهن/اجاره</option>
+                        <select class="form-control" name="buildingType">
+                            <option value="" selected disabled>نوع ملک</option>
+                            <option>آپارتمان</option>
+                            <option>ویلایی</option>
                         </select>
                     </div>
                     <div class="col-xl-4">
-                        <input class="form-control" aria-describedby="inputGroup-sizing-default" placeholder="حداکثر قیمت">
+                        <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxPrice" placeholder="حداکثر قیمت">
                     </div>
                     <div class="col-xl-4">
-                        <input class="form-control" aria-describedby="inputGroup-sizing-default" placeholder="حداکثر متراژ">
+                        <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxArea" placeholder="حداکثر متراژ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <input class="form-check-input" type="radio" id="deal-type1" checked>
+                        <label class="form-check-label" for="deal-type1">
+                            رهن و اجاره
+                        </label>
+                        <input class="form-check-input" type="radio" id="deal-type2" checked>
+                        <label class="form-check-label" for="deal-type2">
+                            خرید
+                        </label>
+                    </div>
+                    <div class="col-xl-6">
+                        <a href="./searchHouse.html" class="search-btn">جستجو</a>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <!--add house-->
-            </div>
+            <a class="add-house" href="./addHouse.html">
+                <span>صاحب خانه هستید؟ خانه خود را ثبت کنید</span>
+            </a>
 
             <div>
                 <!--vasati-->
