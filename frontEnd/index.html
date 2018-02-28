@@ -69,13 +69,13 @@
                 <div class="row">
                     <div class="deal-type col-xl-6">
                         <label class="checkbox-inline">
-                            <input type="radio" name="favoriteColors" checked>
+                            <input type="radio" name="favoriteColors" ng-model="notification.checked">
                             رهن و اجاره
                         </label>
-                        <!--TODO-->
+                        <!--TODO: fix the space and also the ng-model!!!-->
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <label class="checkbox-inline">
-                            <input type="radio" name="favoriteColors">
+                            <input type="radio" name="favoriteColors" ng-model="notification.checked">
                             خرید
                         </label>
                     </div>
@@ -89,8 +89,22 @@
                 <span>صاحب خانه هستید؟ خانه خود را ثبت کنید</span>
             </a>
 
-            <div>
-                <!--vasati-->
+            <div class="row advantage-container">
+                <div class="col-xl-4 item">
+                    <img src="assets/images/icons/726499.svg">
+                    <span>گسترده</span>
+                    <span>در منطقه مورد علاقه خود صاحب خانه شوید</span>
+                </div>
+                <div class="col-xl-4 item">
+                    <img src="assets/images/icons/726488.svg">
+                    <span>مطمئن</span>
+                    <span>با خیال راحت به دنبال خانه بگردید</span>
+                </div>
+                <div class="col-xl-4 item">
+                    <img src="assets/images/icons/726446.svg">
+                    <span>آسان</span>
+                    <span>به سادگی صاحب خانه شوید</span>
+                </div>
             </div>
 
             <div>
@@ -102,9 +116,15 @@
         <div class="col-xl-2"></div>
     </div>
 
-    <span>تمامی حقوق مادی و معنوی</span>
-    <footer>
-
+    <footer class="row">
+        <div class="col-xl-9 text">
+            <span>تمامی حقوق مادی و معنوی این وب‌سایت متعلق به نفیسه سجادی و هدی کرمانی می‌باشد</span>
+        </div>
+        <div class="col-xl-3 icons">
+            <img src="./assets/images/icons/twitter.png">
+            <img src="./assets/images/icons/telegram.png">
+            <img src="./assets/images/icons/instagram.png">
+        </div>
     </footer>
 </div>
 </body>

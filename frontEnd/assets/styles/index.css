@@ -101,3 +101,25 @@
     text-align: right;
     color: white;
 }
+
+/*TODO: delete this after wards*/
+.container-fluid div.advantage-container {
+    margin-bottom: 100px;
+}
+
+.container-fluid div.advantage-container div.item {
+    background-color: white;
+    padding: 30px;
+    /*margin: 20px;*/
+    /*width: 50%;*/
+    text-align: center;
+    border-radius: 10px;
+}
+
+.container-fluid div.advantage-container div.item img {
+    width: 100px;
+}
+
+.container-fluid div.advantage-container div.item span {
+    display: block;
+}
