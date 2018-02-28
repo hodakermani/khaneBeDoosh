@@ -1,11 +1,12 @@
 body {
-    height: 100%; background: lightblue; text-align: center; position: relative;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    font-family: Shabnam, sans-serif !important;
 }
 
 .container-fluid {
     /*direction: rtl;*/
-    font-family: Shabnam, sans-serif !important;
-    position: relative;
 }
 
 .text-align-center {

@@ -6,10 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    /*background-position-y: 50%;*/
-    /*background-image: url("../images/banner/3.jpg");*/
     background-size: 100% 100%;
-    /*background-size: contain;*/
     width: 100%;
     height: 85%;
     z-index: -1;
@@ -107,8 +104,6 @@ imageAnimation {
     width: fit-content;
 }
 
-
-
 .container-fluid .header-container a#user-btn > i {
     font-size: 22px;
     position: relative;
@@ -186,7 +181,7 @@ imageAnimation {
 }
 
 .container-fluid div.advantage-container div.item > div > img {
-    width: 100px;
+    width: 90px;
 }
 
 .container-fluid div.advantage-container div.item > div > span {
@@ -238,4 +233,8 @@ imageAnimation {
     font-weight: 600;
 }
 
-/*TODO: what is the diff of the "light" and "light condensed" shadow?*/
+@media screen and (max-width: 540px) {
+    body {
+        background-color: purple;
+    }
+}
