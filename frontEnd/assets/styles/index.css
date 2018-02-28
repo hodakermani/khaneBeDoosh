@@ -63,6 +63,7 @@
     width: 100%;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
     padding: 35px;
 }
@@ -98,6 +99,7 @@
     border-radius: 10px;
     display: block;
     background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
     padding: 10px;
     color: white;
@@ -143,7 +145,6 @@
     font-size: 20px;
 }
 
-/*TODO: remove me afterwards*/
 .container-fluid div.why {
     margin-bottom: 150px;
     direction: rtl;
@@ -165,6 +166,7 @@
 
 .container-fluid div.why div.items div.item {
     padding-bottom: 10px;
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     font-size: 20px;
 }
 
@@ -178,3 +180,5 @@
     font-size: 30px;
     font-weight: 600;
 }
+
+/*TODO: what is the diff of the "light" and "light condensed" shadow?*/

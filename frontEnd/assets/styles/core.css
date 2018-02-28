@@ -12,8 +12,18 @@ body {
     text-align: center;
 }
 
+a {
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+}
+
 a:hover {
     cursor: pointer;
+    box-shadow:0px 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/*TODO: this rule is for when <a> is clicked*/
+a:visited {
+    box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);
 }
 
 .dropdown {
@@ -28,7 +38,7 @@ a:hover {
     border-radius: 5px;
     background-color: white;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     padding: 10px 16px;
     z-index: 1;
 }
