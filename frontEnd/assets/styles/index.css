@@ -173,6 +173,7 @@ imageAnimation {
     width: 100%;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
     padding: 35px;
 }
@@ -208,6 +209,7 @@ imageAnimation {
     border-radius: 10px;
     display: block;
     background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
     padding: 10px;
     color: white;
@@ -221,24 +223,72 @@ imageAnimation {
     color: white;
 }
 
-/*TODO: delete this after wards*/
 .container-fluid div.advantage-container {
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 }
 
 .container-fluid div.advantage-container div.item {
+    padding: 20px;
+    text-align: center;
+}
+
+.container-fluid div.advantage-container div.item > div {
     background-color: white;
     padding: 30px;
-    /*margin: 20px;*/
-    /*width: 50%;*/
-    text-align: center;
     border-radius: 10px;
 }
 
-.container-fluid div.advantage-container div.item img {
+.container-fluid div.advantage-container div.item > div > img {
     width: 100px;
 }
 
-.container-fluid div.advantage-container div.item span {
+.container-fluid div.advantage-container div.item > div > span {
     display: block;
 }
+
+.container-fluid div.advantage-container div.item > div > span.title {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.container-fluid div.advantage-container div.item > div > span.description {
+    font-size: 20px;
+}
+
+.container-fluid div.why {
+    margin-bottom: 150px;
+    direction: rtl;
+    text-align: right;
+    position: relative;
+}
+
+.container-fluid div.why img {
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    margin-top: -110px;
+}
+
+.container-fluid div.why div.items {
+    padding: 20px;
+}
+
+.container-fluid div.why div.items div.item {
+    padding-bottom: 10px;
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+}
+
+.container-fluid div.why div.items div.item > i {
+    padding-left: 10px;
+    color: #524B9A;
+}
+
+.container-fluid div.why div.title {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/*TODO: what is the diff of the "light" and "light condensed" shadow?*/
