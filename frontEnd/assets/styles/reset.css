@@ -49,3 +49,10 @@ table {
 a, a:visited, a:hover, a:active {
     text-decoration: none !important;
 }
+
+.row {
+    margin:0 !important;
+}
+.container-fluid {
+    padding:0 !important;
+}

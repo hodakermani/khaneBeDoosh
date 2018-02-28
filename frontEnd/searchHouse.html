@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="./assets/styles/core.css" />
+    <link rel="stylesheet" href="./assets/styles/font.css" />
+    <link rel="stylesheet" href="./assets/styles/searchHouse.css" />
+    <link rel="stylesheet" href="./assets/styles/index.css" />
+    <link rel="stylesheet" href="./assets/styles/reset.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <div class="header-container">
+        <div class="row">
+            <div class="col-xl-6 col-sm-6">
+                <div class="dropdown user-btn">
+                    <a id="user-btn" href="">
+                        <span>ناحیه کاربری</span>
+                        <i class="fa fa-smile-o"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <p>بهنام همایون</p>
+                        <div class="balance">
+                            <span>اعتبار</span>
+                            <!--TODO-->
+                            <span>&nbsp;&nbsp;</span>
+                            <span>۲۰۰۰۰ تومان</span>
+                        </div>
+                        <a href="./addBalance.html">افزایش اعتبار</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-6 header-logo">
+                <img src="./assets/images/logo.png">
+                <span>خانه به دوش</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-result-row">
+        <span>نتایج جستجو</span>
+    </div>
+
+    <div class="main-content row">
+        <div class="col-xl-2 col-sm-2"></div>
+        <div class="col-xl-8 col-sm-8">
+
+            <div class="search-info">
+                <span>برای مشاهده اطلاعات بیشتر درباره هر ملک روی آن کلیک کنید</span>
+            </div>
+
+            <div class="search-result row">
+                <div class="col-xl-6 col-sm-12">
+                    <div class="item">
+                        <img src="assets/images/houses/1.jpeg">
+                        <div class="row">
+                            <div class="col-6">
+                                <span>۵۰۰۰ متر مربع</span>
+                            </div>
+                            <div class="col-6">
+                                <i class="fa fa-map-marker"></i>
+                                <span>شایر</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <span>رهن ۲۰۰۰۰۰۰۰۰</span>‌<span>تومان</span>
+                            </div>
+                            <div class="col-6">
+                                <span>اجاره ۱۵۰۰۰۰۰۰۰</span>‌<span>تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="item"></div>
+                </div>
+            </div>
+
+            <div class="search-info">
+                <span>جستجوی مجدد</span>
+            </div>
+
+            <div class="search-container">
+                <!--for labels-->
+                <div class="labels row">
+                    <div class="col-xl-4"></div>
+                    <div class="col-xl-4 price-label"><span>تومان</span></div>
+                    <div class="col-xl-4 area-label"><span>متر مربع</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 form-item">
+                        <!--TODO: impelement guids-->
+                        <select class="form-control" name="buildingType">
+                            <option value="" selected disabled>نوع ملک</option>
+                            <option>آپارتمان</option>
+                            <option>ویلایی</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 form-item">
+                        <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxPrice" placeholder="حداکثر قیمت">
+                    </div>
+                    <div class="col-xl-4 form-item">
+                        <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxArea" placeholder="حداکثر متراژ">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="deal-type col-xl-6">
+                        <label class="checkbox-inline">
+                            <input type="radio" name="favoriteColors" checked>
+                            رهن و اجاره
+                        </label>
+                        <!--TODO: fix the space and also the ng-model!!!-->
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <label class="checkbox-inline">
+                            <input type="radio" name="favoriteColors">
+                            خرید
+                        </label>
+                    </div>
+                    <div class="col-xl-6 col-sm-12">
+                        <a href="./searchHouse.html" class="search-btn">جستجو</a>
+                    </div>
+                </div>
+            </div>
+
+            <a class="add-house" href="./addHouse.html">
+                <span>صاحب خانه هستید؟ خانه خود را ثبت کنید</span>
+            </a>
+
+        </div>
+        <div class="col-xl-2"></div>
+    </div>
+</div>
+
+<footer class="row">
+    <div class="col-xl-9 col-sm-12 text">
+        <span>تمامی حقوق مادی و معنوی این وب‌سایت متعلق به نفیسه سجادی و هدی کرمانی می‌باشد</span>
+    </div>
+    <div class="col-xl-3 col-sm-12 icons">
+        <div>
+            <img src="./assets/images/icons/twitter.png">
+            <img src="./assets/images/icons/telegram.png">
+            <img src="./assets/images/icons/instagram.png">
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
