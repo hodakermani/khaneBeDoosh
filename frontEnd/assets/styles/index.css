@@ -218,7 +218,6 @@ imageAnimation {
 
 .container-fluid div.why div.items div.item {
     padding-bottom: 10px;
-    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     font-size: 20px;
 }
 
@@ -233,8 +232,50 @@ imageAnimation {
     font-weight: 600;
 }
 
-@media screen and (max-width: 540px) {
-    body {
-        background-color: purple;
+@media screen and (max-width: 1199px) {
+    .container-fluid div.main-content div.search-container .search-btn {
+        width: 100%;
+    }
+
+    .container-fluid div.main-content div.search-container div.labels {
+        height: 0;
+    }
+    .container-fluid div.main-content div.search-container .form-item:first-child {
+        padding-bottom: 40px;
+    }
+    .container-fluid div.main-content div.search-container .form-item:nth-child(2) {
+        padding-bottom: 40px;
+    }
+    .container-fluid div.main-content div.search-container div.labels .price-label {
+        position: relative;
+        top: 60px;
+    }
+    .container-fluid div.main-content div.search-container div.labels .area-label {
+        position: relative;
+        top: 116px;
+    }
+
+    .container-fluid div.why div.items div.item {
+        font-size: 14px;
+    }
+
+    .container-fluid div.main-content a.add-house {
+        font-size: 100%;
+    }
+
+    .container-fluid div.why {
+        margin-bottom: 0;
+    }
+
+    .container-fluid div.why div.title {
+        text-align: center;
+    }
+
+    .container-fluid div.why div.items div.item {
+        font-size: 80%;
+    }
+
+    .container-fluid div.why img {
+        display: none;
     }
 }

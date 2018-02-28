@@ -1,6 +1,5 @@
 body {
     height: 100%;
-    text-align: center;
     position: relative;
     font-family: Shabnam, sans-serif !important;
 }
@@ -101,8 +100,25 @@ footer div.icons img[src*="twitter.png"] {
 }
 
 @media screen and (max-width: 540px) {
-    footer div.icons img {
-        display: block;
-        margin: auto;
+    footer {
+        padding: 10px !important;
+    }
+
+    footer div.text {
+        font-size: 50%;
+        padding-bottom: 10px;
+    }
+
+    footer div.icons > div {
+        position: relative;
+        left: 50%;
+        margin-left: -160px;
+    }
+
+    footer div.icons img,
+    footer div.icons img[src*="twitter.png"] {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
     }
 }

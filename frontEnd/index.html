@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link rel="stylesheet" href="./assets/styles/core.css" />
     <link rel="stylesheet" href="./assets/styles/font.css" />
     <link rel="stylesheet" href="./assets/styles/index.css" />
@@ -54,11 +56,11 @@
                 <!--for labels-->
                 <div class="labels row">
                     <div class="col-xl-4"></div>
-                    <div class="col-xl-4"><span>تومان</span></div>
-                    <div class="col-xl-4"><span>متر مربع</span></div>
+                    <div class="col-xl-4 price-label"><span>تومان</span></div>
+                    <div class="col-xl-4 area-label"><span>متر مربع</span></div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4">
+                    <div class="col-xl-4 form-item">
                         <!--TODO: impelement guids-->
                         <select class="form-control" name="buildingType">
                             <option value="" selected disabled>نوع ملک</option>
@@ -66,10 +68,10 @@
                             <option>ویلایی</option>
                         </select>
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-xl-4 form-item">
                         <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxPrice" placeholder="حداکثر قیمت">
                     </div>
-                    <div class="col-xl-4">
+                    <div class="col-xl-4 form-item">
                         <input class="form-control" aria-describedby="inputGroup-sizing-default" name="maxArea" placeholder="حداکثر متراژ">
                     </div>
                 </div>
@@ -125,7 +127,7 @@
                     <span>چرا خانه به دوش؟</span>
                 </div>
                 <div class="row">
-                    <div class="col-xl-7">
+                    <div class="col-xl-7 col-sm-7">
                         <div class="items">
                             <div class="item">
                                 <i class="fa fa-check-circle"></i>
@@ -157,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5">
+                    <div class="col-xl-5 col-sm-5">
                         <img src="assets/images/why-khanebedoosh.jpg">
                     </div>
                 </div>
@@ -170,13 +172,15 @@
 </div>
 
 <footer class="row">
-    <div class="col-xl-9 text">
+    <div class="col-xl-9 col-sm-12 text">
         <span>تمامی حقوق مادی و معنوی این وب‌سایت متعلق به نفیسه سجادی و هدی کرمانی می‌باشد</span>
     </div>
-    <div class="col-xl-3 icons">
-        <img src="./assets/images/icons/twitter.png">
-        <img src="./assets/images/icons/telegram.png">
-        <img src="./assets/images/icons/instagram.png">
+    <div class="col-xl-3 col-sm-12 icons">
+        <div>
+            <img src="./assets/images/icons/twitter.png">
+            <img src="./assets/images/icons/telegram.png">
+            <img src="./assets/images/icons/instagram.png">
+        </div>
     </div>
 </footer>
 
