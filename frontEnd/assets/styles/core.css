@@ -1,7 +1,15 @@
+html {
+    height: 100%;
+}
+
 body {
     height: 100%;
     position: relative;
     font-family: Shabnam, sans-serif !important;
+}
+
+.container-fluid {
+    height: 100%;
 }
 
 .text-align-center {
