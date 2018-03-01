@@ -1,23 +1,32 @@
-.body {
-    height: 100%;
-}
 .container-fluid div.main-content{
     width: 100%;
     direction: rtl;
     padding: 35px;
 }
 
+.container-fluid .main-content .row .deal-type {
+    margin-top: 50px;
+    direction: rtl;
+    text-align: right;
+}
+
+.container-fluid .main-content .row .deal-type span.space {
+    margin: 0px 35px;
+}
+
 .container-fluid .main-content div.labels {
     color: lightgrey;
     font-size: 14px;
     font-weight: 100;
-    padding-bottom: 8px;
-    padding-left: 5px;
 }
 
-.container-fluid .main-content .row .balance {
-    padding-top: 3px;
-    text-align: right;
+.container-fluid .main-content .row .form-item {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.container-fluid .main-content .extra-margine {
+    margin: 16px 0px;
 }
 
 .container-fluid .main-content .row .add-house-btn {
@@ -27,7 +36,7 @@
     font-size: 20px;
     font-weight: 100;
     border-radius: 10px;
-    margin: 20px auto 70px auto;
+    margin: 40px auto 70px auto;
     display:  block;
     float: left;
     padding: 7px;
