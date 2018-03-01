@@ -37,29 +37,42 @@ a:visited {
     position: absolute;
     border-radius: 5px;
     background-color: white;
-    min-width: 160px;
+    min-width: 210px;
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
-    padding: 10px 16px;
+    padding: 20px 16px;
     z-index: 1;
 }
 
-.dropdown-content div.balance > span {
+.dropdown-content div.row {
+    margin: -10% -8% !important;
+}
+
+.dropdown-content div.row div.col-xl-6 {
     color: lightslategrey;
     font-size: 14px;
     font-weight: 200;
 }
 
+.dropdown-content div.row div.col-xl-6#name {
+    text-align: right;
+}
+
+.dropdown-content div.row div.col-xl-6#value {
+    direction: rtl;
+    text-align: right;
+}
+
 .dropdown-content > a {
     text-align: center;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 100;
     background-color: #3AD0CA;
     border-radius: 10px;
     padding: 5px 15px;
-    margin: auto;
+    margin: 20% 10% 0% 10%;
     display:  block;
-    width: fit-content;
+    width: auto;
 }
 
 .dropdown-content > a:hover {

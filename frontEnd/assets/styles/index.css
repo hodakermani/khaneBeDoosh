@@ -2,61 +2,45 @@
     padding-top: 20px;
 }
 
-.container-fluid div.crossfade > figure {
-    animation: imageAnimation 22s linear infinite 0s;
-    backface-visibility: hidden;
-    background-size: cover;
-    background-position: center center;
-    color: transparent;
-    height: 90%;
-    left: 0px;
-    opacity: 0;
-    position: fixed;
-    top: 0px;
-    width: 100%;
+.container-fluid div.slider {
+    position: relative;
     z-index: -1;
 }
-
-.container-fluid div.crossfade > figure:nth-child(1) {
-    background-image: url('../images/banner/1.jpg');
+.container-fluid div.slider .slide1,.slide2,.slide3,.slide4 {
+    position: fixed;
+    width: 100%;
+    height: 90%;
 }
+.container-fluid div.slider .slide1 {
+    /*background-attachment: scroll !important;*/
+    background: url(../images/banner/1.jpg) no-repeat center;
+    background-size: cover;
+    animation:fade 10s infinite;
+    -webkit-animation:fade 10s infinite;
 
-.container-fluid div.crossfade > figure:nth-child(2) {
-    animation-delay: 6s;
-    background-image: url('../images/banner/2.jpg');
 }
-
-.container-fluid div.crossfade > figure:nth-child(3) {
-    animation-delay: 12s;
-    background-image: url('../images/banner/3.jpg');
+.container-fluid div.slider .slide2 {
+    /*background-attachment: scroll !important;*/
+    background: url(../images/banner/2.jpg) no-repeat center;
+    background-size: cover;
+    animation:fade2 10s infinite;
+    -webkit-animation:fade2 10s infinite;
 }
-
-.container-fluid div.crossfade > figure:nth-child(4) {
-    animation-delay: 18s;
-    transform: translateY(-55%);
+.container-fluid div.slider .slide3 {
+    /*background-attachment: scroll !important;*/
+    background: url(../images/banner/3.jpg) no-repeat center;
+    background-size: cover;
+    animation:fade3 10s infinite;
+    -webkit-animation:fade3 10s infinite;
+}
+.container-fluid div.slider .slide4 {
+    /*background-attachment: scroll !important;*/
+    background: url(../images/banner/4.jpg) no-repeat center;
+    background-size: cover;
     height: 200%;
-    background-image: url('../images/banner/4.jpg');
-}
-
-@keyframes
-imageAnimation {
-    0% {
-        animation-timing-function: ease-in;
-        opacity: 0;
-    }
-    8% {
-        animation-timing-function: ease-out;
-        opacity: 1;
-    }
-    17% {
-        opacity: 1
-    }
-    25% {
-        opacity: 0
-    }
-    100% {
-        opacity: 0
-    }
+    transform: translateY(-55%);
+    animation:fade4 10s infinite;
+    -webkit-animation:fade4 10s infinite;
 }
 
 .header-container {
@@ -91,7 +75,7 @@ imageAnimation {
     border-radius: 10px;
     padding: 5px 15px;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display:  block;
     width: fit-content;
 }
@@ -162,7 +146,7 @@ imageAnimation {
 }
 
 .container-fluid div.advantage-container div.item {
-    padding: 20px;
+    padding: 15px;
     text-align: center;
 }
 
@@ -270,4 +254,66 @@ imageAnimation {
     .container-fluid div.why img {
         display: none;
     }
+}
+
+@keyframes fade
+{
+    0%   {opacity:1}
+    25% { opacity: 0}
+    50% { opacity: 0 }
+    75% { opacity: 0 }
+    100% { opacity: 1}
+}
+@keyframes fade2
+{
+    0%   {opacity:0}
+    25% { opacity: 1}
+    50% { opacity: 0 }
+    75% { opacity: 0 }
+    100% { opacity: 0}
+}
+@keyframes fade3
+{
+    0%   {opacity:0}
+    25% { opacity: 0}
+    50% { opacity: 1 }
+    75% { opacity: 0 }
+    100% { opacity: 0}
+}
+@keyframes fade4
+{
+    0%   {opacity:0}
+    25% { opacity: 0}
+    50% { opacity: 0 }
+    75% { opacity: 1 }
+    100% { opacity: 0}
+}
+
+@-webkit-keyframes fade {
+    0%   {opacity:1}
+    25% { opacity: 0}
+    50% { opacity: 0 }
+    75% { opacity: 0 }
+    100% { opacity: 1}
+}
+@-webkit-keyframes fade2 {
+    0%   {opacity:0}
+    25% { opacity: 1}
+    50% { opacity: 0 }
+    75% { opacity: 0 }
+    100% { opacity: 0}
+}
+@-webkit-keyframes fade3 {
+    0%   {opacity:0}
+    25% { opacity: 0}
+    50% { opacity: 1 }
+    75% { opacity: 0 }
+    100% { opacity: 0}
+}
+@-webkit-keyframes fade4 {
+    0%   {opacity: 0}
+    25% { opacity: 0}
+    50% { opacity: 0 }
+    75% { opacity: 1 }
+    100% { opacity: 0}
 }
