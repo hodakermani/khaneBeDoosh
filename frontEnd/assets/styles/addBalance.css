@@ -36,6 +36,18 @@
     float: right;
     font-size: 28px;
     font-weight: 700;
-    padding: 45px 100px;
+    padding: 45px 125px;
     color: #44D0C9;
+}
+
+.container-fluid .main-content .add-balance .current-balance {
+    border-color: #524B9A;
+    border-style: solid;
+    border-width: medium;
+}
+
+.container-fluid .main-content .add-balance .request-balance {
+    border-color: cadetblue;
+    border-style: solid;
+    border-width: medium;
 }
