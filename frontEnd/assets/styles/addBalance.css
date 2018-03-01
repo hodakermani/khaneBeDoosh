@@ -1,0 +1,41 @@
+.container-fluid .header-container {
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+    padding: 0 100px;
+    margin-bottom: 0 !important;
+}
+
+.container-fluid .header-container .header-logo > img {
+    float: right;
+    margin-left: 20px;
+    width: 60px;
+    height: 60px;
+}
+
+.container-fluid .header-container .header-logo > span {
+    float: right;
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    top: 12px;
+    color: #44D0C9;
+}
+
+.container-fluid .header-container > div.row > div > div.dropdown.user-btn > a#user-btn {
+    border: none;
+    color: #524B9A;
+    background-color: white;
+}
+
+.container-fluid .add-balance-row {
+    width: 100%;
+    height: 130px;
+    background-image: url("../images/patterns/geometry2.png");
+}
+
+.container-fluid .add-balance-row > span {
+    float: right;
+    font-size: 28px;
+    font-weight: 700;
+    padding: 45px 100px;
+    color: #44D0C9;
+}
