@@ -34,3 +34,32 @@
     padding: 7px;
     width: 80%;
 }
+
+@media screen and (max-width: 1199px) {
+
+    .container-fluid div.main-content{
+        direction: rtl;
+        padding: 15px;
+    }
+
+    .container-fluid .main-content .row .balance {
+        padding-top: 3px;
+        font-size: 14px;
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .container-fluid .main-content .row .add-house-btn {
+        width: 100%;
+    }
+
+    .container-fluid .main-content div.labels {
+         position: relative;
+         top: 85px;
+     }
+
+    .container-fluid .main-content div.form-item {
+        position: relative;
+        padding-top: 15px;
+    }
+}
