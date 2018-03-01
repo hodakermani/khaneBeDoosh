@@ -8,75 +8,18 @@ body {
     text-align: center;
 }
 
-a {
-    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
-}
+/*a {*/
+    /*box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);*/
+/*}*/
 
 a:hover {
     cursor: pointer;
-    box-shadow:0px 10px 40px rgba(0, 0, 0, 0.2);
+    /*box-shadow:0px 10px 40px rgba(0, 0, 0, 0.2);*/
 }
 
 /*TODO: this rule is for when <a> is clicked*/
 a:visited {
-    box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    text-align: right;
-    display: none;
-    position: absolute;
-    border-radius: 5px;
-    background-color: white;
-    min-width: 210px;
-    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
-    padding: 20px 16px;
-    z-index: 1;
-}
-
-.dropdown-content div.row {
-    margin: -10% -8% !important;
-}
-
-.dropdown-content div.row div.balance {
-    color: lightslategrey;
-    font-size: 14px;
-    font-weight: 200;
-}
-
-.dropdown-content div.row div.balance#name {
-    text-align: right;
-}
-
-.dropdown-content div.row div.balance#value {
-    direction: rtl;
-    text-align: right;
-}
-
-.dropdown-content > a {
-    text-align: center;
-    color: white;
-    font-size: 16px;
-    font-weight: 100;
-    background-color: #3AD0CA;
-    border-radius: 10px;
-    padding: 5px 15px;
-    margin: 20% 10% 0% 10%;
-    display:  block;
-    width: auto;
-}
-
-.dropdown-content > a:hover {
-    color: white;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
+    /*box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);*/
 }
 
 footer {
