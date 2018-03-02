@@ -28,6 +28,14 @@ body {
     background-color: #F2505E;
 }
 
+.text-purple {
+    color: #514992;
+}
+
+.background-purple {
+    background-color: #514992;
+}
+
 /*a {*/
     /*box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);*/
 /*}*/

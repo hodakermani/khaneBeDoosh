@@ -11,19 +11,19 @@
 
 .container-fluid .main-content .search-result {
     margin-bottom: 50px !important;
+    direction: rtl;
 }
 
 .container-fluid .main-content .search-result.row > div:first-child {
-    padding-left: 0;
+    padding-right: 0;
 }
 
 .container-fluid .main-content .search-result.row > div:last-child {
-    padding-right: 0;
+    padding-left: 0;
 }
 
 .container-fluid .main-content .search-result .item {
     border-radius: 10px;
-    border: 2px solid red;
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
 }
@@ -56,6 +56,7 @@
 
 .container-fluid .main-content .search-result .item .info-container {
     padding: 10px 20px;
+    font-size: 18px;
 }
 
 .container-fluid .main-content .search-result .item .info-container > .row:first-child {
@@ -63,13 +64,17 @@
 }
 
 .container-fluid .main-content .search-result .item .info-container span.toman {
-    padding-right: 12px;
+    padding-right: 8px;
     color: #9D9D9D;
     font-size: 14px;
 }
 
 .container-fluid .main-content .search-result .item .info-container span.contract-type {
-    padding-left: 12px;
+    padding-left: 8px;
+}
+
+.container-fluid .main-content .search-result .item .info-container .location {
+    padding-right: 8px;
 }
 
 .container-fluid div.main-content a.add-house {
@@ -79,6 +84,10 @@
 @media screen and (max-width: 1199px) {
     .container-fluid .main-content .search-info span {
         font-size: 100%;
+    }
+
+    .container-fluid .main-content .search-result > div:nth-child(2) {
+        margin-top: 45px;
     }
 
     .container-fluid .main-content .search-result.row > div {
