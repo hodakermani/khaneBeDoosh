@@ -1,4 +1,4 @@
-.container-fluid div.main-content{
+.container-fluid div.main-content {
     width: 100%;
     direction: rtl;
     padding: 35px;
@@ -23,6 +23,11 @@
 .container-fluid .main-content .row .form-item {
     padding-bottom: 8px;
     padding-top: 8px;
+}
+
+.container-fluid .main-content .row .form-item select {
+    border: 1px solid #ced4da;
+    background-color: white;
 }
 
 .container-fluid .main-content .extra-margine {

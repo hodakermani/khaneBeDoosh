@@ -170,6 +170,8 @@
     background-color: white;
     padding: 30px;
     border-radius: 10px;
+    min-height: 275px;
+    max-height: 250px;
 }
 
 .container-fluid div.advantage-container div.item > div > img {

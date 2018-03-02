@@ -32,6 +32,12 @@ body {
     color: #514992;
 }
 
+.toman {
+    padding-right: 8px;
+    color: #9D9D9D;
+    font-size: 14px;
+}
+
 .background-purple {
     background-color: #514992;
 }
@@ -48,6 +54,11 @@ a:hover {
 /*TODO: this rule is for when <a> is clicked*/
 a:visited {
     /*box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);*/
+}
+
+select {
+    height: 100%;
+    width: 100%;
 }
 
 footer {

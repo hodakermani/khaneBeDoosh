@@ -63,12 +63,6 @@
     border-bottom: 1px solid black;
 }
 
-.container-fluid .main-content .search-result .item .info-container span.toman {
-    padding-right: 8px;
-    color: #9D9D9D;
-    font-size: 14px;
-}
-
 .container-fluid .main-content .search-result .item .info-container span.contract-type {
     padding-left: 8px;
 }
