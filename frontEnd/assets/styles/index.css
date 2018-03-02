@@ -285,3 +285,10 @@
     75% { opacity: 1 }
     100% { opacity: 0}
 }
+
+@media screen and (max-width: 1199px) {
+    .container-fluid div.advantage-container div.item {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

@@ -16,6 +16,18 @@ body {
     text-align: center;
 }
 
+.text-align-right {
+    text-align: right;
+}
+
+.text-pink {
+    color: #F2505E;
+}
+
+.background-pink {
+    background-color: #F2505E;
+}
+
 /*a {*/
     /*box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);*/
 /*}*/

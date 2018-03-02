@@ -150,11 +150,10 @@
     }
 
     .container-fluid .title-row > span {
-        display: block;
-        top: 5px;
         font-size: 22px;
-        font-weight: 600;
-        color: #44D0C9;
+        line-height: 80px;
+        text-align: center;
+        padding-right: 0px;
     }
 
     .header-container div.user-btn-header {
