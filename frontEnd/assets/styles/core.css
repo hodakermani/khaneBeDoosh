@@ -56,6 +56,20 @@ a:visited {
     /*box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);*/
 }
 
+a#shadowing {
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+}
+
+a#shadowing:hover {
+    cursor: pointer;
+    box-shadow:0px 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/*TODO: this rule is for when <a> is clicked*/
+a#shadowing:visited {
+    box-shadow:0px 0px 40px rgba(0, 0, 0, 0.15);
+}
+
 select {
     height: 100%;
     width: 100%;
