@@ -57,6 +57,7 @@ a:visited {
 }
 
 a#shadowing {
+    transition: all 1s;
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
 }
 

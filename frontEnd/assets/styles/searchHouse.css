@@ -24,8 +24,14 @@
 
 .container-fluid .main-content .search-result .item {
     border-radius: 10px;
+    transition: all 1s;
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
+}
+
+.container-fluid .main-content .search-result .item:hover {
+    cursor: pointer;
+    box-shadow:0px 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .container-fluid .main-content .search-result .item .row {

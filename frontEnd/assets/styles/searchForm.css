@@ -63,6 +63,7 @@
 
     .container-fluid div.main-content div.search-container div.labels {
         height: 0;
+        margin-bottom: 5px !important;
     }
     .container-fluid div.main-content div.search-container .form-item:first-child {
         padding-bottom: 40px;
