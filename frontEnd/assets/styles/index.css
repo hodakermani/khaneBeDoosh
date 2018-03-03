@@ -70,7 +70,8 @@
 
 .header-container div.user-btn-home {
     position: relative;
-    margin: auto;
+    left: 50%;
+    margin-left: -91px;
     padding: 10px;
 }
 
