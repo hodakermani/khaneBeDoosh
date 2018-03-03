@@ -7,7 +7,10 @@
     z-index: -1;
 }
 
-.container-fluid div.slider .slide1,.slide2,.slide3,.slide4 {
+.container-fluid div.slider .slide1,
+.container-fluid div.slider .slide2,
+.container-fluid div.slider .slide3,
+.container-fluid div.slider .slide4 {
     position: fixed;
     width: 100%;
     height: 90%;
