@@ -6,8 +6,15 @@
     top: 0;
     z-index: 1000;
     background-color: rgba(255,255,255,0.8);
-    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-right: 10px !important;
     box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
+}
+
+.container-fluid .header-container .header-row {
+    padding-top: 10px;
+    height: 80px;
 }
 
 .container-fluid .header-container .header-logo > img {
@@ -28,7 +35,7 @@
 
 .header-container div.user-btn-header {
     float: left;
-    margin-top: -10px;
+    margin-top: -15px;
     padding: 10px;
 }
 
@@ -36,9 +43,10 @@
     color: #524B9A;
     font-size: 20px;
     font-weight: 100;
-    top: 12px;
+    top: 20px;
     position: relative;
-    margin-bottom: 20px;
+    padding-bottom: 45px;
+    /*margin-bottom: 10px;*/
     display:  block;
     width: fit-content;
 }
@@ -64,7 +72,7 @@
     background-color: white;
     min-width: 210px;
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
-    margin-top: 60px;
+    margin-top: 90px;
     padding: 20px 16px;
     z-index: 1;
 }
@@ -110,7 +118,7 @@
 }
 
 .container-fluid .title-row {
-    margin-top: 90px;
+    margin-top: 80px;
     width: 100%;
     height: 130px;
     background-image: url("../images/patterns/geometry2.png");
