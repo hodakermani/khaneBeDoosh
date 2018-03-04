@@ -105,6 +105,10 @@ footer div.icons img[src*="twitter.png"] {
 }
 
 @media screen and (max-width: 540px) {
+    html, body {
+        overflow-x: hidden;
+    }
+
     footer {
         padding: 10px !important;
     }
