@@ -13,13 +13,11 @@
 
 .container-fluid div.main-content div.search-container div.labels {
     color: white;
-    font-size: 14px;
-    font-weight: 100;
     padding-bottom: 10px;
 }
 
-.container-fluid div.main-content div.search-container span.space {
-    margin: 0px 35px;
+.container-fluid div.main-content div.search-container div.labels:first-child {
+    padding-left: 15px;
 }
 
 .container-fluid div.main-content div.search-container .search-btn {
