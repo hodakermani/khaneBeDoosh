@@ -115,6 +115,7 @@
 
 .container-fluid div.advantage-container div.item:first-child {
     padding-left: 0px;
+    border-color: #524B9A;
 }
 
 .container-fluid div.advantage-container div.item:last-child {
@@ -127,6 +128,7 @@
     border-radius: 10px;
     min-height: 275px;
     max-height: 250px;
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
 }
 
 .container-fluid div.advantage-container div.item > div > img {
