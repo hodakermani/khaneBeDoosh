@@ -69,6 +69,9 @@ a#shadowing:visited {
 select {
     height: 100%;
     width: 100%;
+    -webkit-appearance: none !important;
+    padding: 7px 10px;
+    color: #757575 !important;
 }
 
 footer {
@@ -104,7 +107,7 @@ footer div.icons img[src*="twitter.png"] {
     height: 30px;
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 1199px) {
     html, body {
         overflow-x: hidden;
     }

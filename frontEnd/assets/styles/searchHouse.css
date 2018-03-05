@@ -62,11 +62,11 @@
 
 .container-fluid .main-content .search-result .item .info-container {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .container-fluid .main-content .search-result .item .info-container > .row:first-child {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #c1c1c1;
 }
 
 .container-fluid .main-content .search-result .item .info-container span.contract-type {
