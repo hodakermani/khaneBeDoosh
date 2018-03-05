@@ -257,4 +257,66 @@
     .container-fluid .slide-show > div {
         height: 850px !important;
     }
+
+    .container-fluid div.why {
+        margin-bottom: 0;
+    }
+
+    .container-fluid div.why div.items div.item {
+        font-size: 14px;
+    }
+
+    .container-fluid div.why div.title {
+        text-align: center;
+    }
+
+    .container-fluid div.why div.items div.item {
+        font-size: 80%;
+    }
+
+    .container-fluid div.why img {
+        display: none;
+    }
+
+    .container-fluid .header-container .logo {
+        padding-top: 100px;
+    }
+
+    .container-fluid .header-container .desktop-header {
+        display: none;
+    }
+
+    .container-fluid .header-container .mobile-header {
+        position: absolute;
+        top: 15px;
+        width: 100%;
+    }
+
+    .container-fluid .header-container .mobile-header .username,
+    .container-fluid .header-container .mobile-header .balance {
+        display: inline-block;
+    }
+
+    .container-fluid .header-container .mobile-header span {
+        color: white;
+    }
+
+    .container-fluid .header-container .mobile-header .username {
+        float: right;
+        margin-right: 30px;
+        padding: 5px 8px;
+    }
+
+    .container-fluid .header-container .mobile-header .balance {
+        background-color: #F2505E;
+        padding: 5px 8px;
+        border-radius: 5px;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (min-width: 1199px) {
+    .container-fluid .header-container .mobile-header {
+        display: none;
+    }
 }

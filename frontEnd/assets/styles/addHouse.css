@@ -10,15 +10,23 @@
     text-align: right;
 }
 
-.container-fluid .main-content div.labels {
-    color: lightgrey;
-    font-size: 14px;
-    font-weight: 100;
-}
-
 .container-fluid .main-content .row .form-item {
     padding-bottom: 8px;
     padding-top: 8px;
+}
+
+.container-fluid .main-content .add-house-form .row:first-child,
+.container-fluid .main-content .add-house-form .row:nth-child(2),
+.container-fluid .main-content .add-house-form .row:nth-child(3){
+    padding-bottom: 16px;
+}
+
+.container-fluid .main-content .row .form-item .input-label {
+    position: absolute;
+    bottom:50px;
+    left: 20px;
+    font-size: 12px;
+    color: lightgrey;
 }
 
 .container-fluid .main-content .row .form-item select {
@@ -62,13 +70,11 @@
         width: 100%;
     }
 
-    .container-fluid .main-content div.labels {
-        position: relative;
-        font-size: 10px;
-        top: 62px;
-    }
-
     .container-fluid .main-content div.form-item {
         position: relative;
+    }
+
+    .container-fluid .main-content .add-house-form .row .form-item:nth-child(2){
+        padding-top: 16px;
     }
 }

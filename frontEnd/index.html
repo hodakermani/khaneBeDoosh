@@ -26,7 +26,7 @@
     </div>
 
     <nav class="header-container">
-        <div class="row">
+        <div class="row desktop-header">
             <div class="col-xl-3 col-sm-6">
                 <div class="user-btn-home dropdown">
                     <a id="user-btn-home" href="">
@@ -36,15 +36,31 @@
                     <div class="dropdown-content">
                         <p>بهنام همایون</p>
                         <div class="row">
-                            <!--TODO : responsive-->
-                            <div class="col-xl-6 col-sm-6 balance" id="value">۲۰۰۰۰ تومان</div>
-                            <div class="col-xl-6 col-sm-6 balance" id="name">اعتبار</div>
+                            <div class="col-xl-6 col-sm-6 balance" id="value">
+                                <span>۲۰۰۰۰</span>
+                                <span>تومان</span>
+                            </div>
+                            <div class="col-xl-6 col-sm-6 balance" id="name">
+                                <span>اعتبار</span>
+                            </div>
                         </div>
-                        <a href="./addBalance.html" id="shadowing">افزایش اعتبار</a>
+                        <a href="./addBalance.html" class="shadowing">افزایش اعتبار</a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="mobile-header">
+            <a class="balance" href="./addBalance.html">
+                <span>اعتبار</span>
+                <span>۲۰۰۰</span>
+                <span>تومان</span>
+            </a>
+            <div class="username">
+                <span>بهنام همایون</span>
+            </div>
+        </div>
+
         <div class="logo">
             <img src="./assets/images/logo.png" alt="خانه به دوش">
             <p>خانه به دوش</p>
@@ -55,12 +71,6 @@
         <div class="col-xl-2 col-sm-12"></div>
         <div class="col-xl-8 col-sm-12">
             <div class="search-container">
-                <!--for labels-->
-                <div class="labels row">
-                    <div class="col-xl-4"></div>
-                    <div class="col-xl-4 price-label"><span>تومان</span></div>
-                    <div class="col-xl-4 area-label"><span>متر مربع</span></div>
-                </div>
                 <div class="row">
                     <div class="col-xl-4 form-item">
                         <select  name="buildingType">
@@ -71,25 +81,21 @@
                     </div>
                     <div class="col-xl-4 form-item">
                         <input class="form-control" name="maxPrice" placeholder="حداکثر قیمت">
+                        <span class="input-label price-label">تومان</span>
                     </div>
                     <div class="col-xl-4 form-item">
                         <input class="form-control" name="maxArea" placeholder="حداکثر متراژ">
+                        <span class="input-label">متر مربع</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="deal-type col-xl-6">
-                        <label class="checkbox-inline">
-                            <input type="radio" name="favoriteColors" checked>
-                            رهن و اجاره
-                        </label>
+                        <input type="radio" name="dealType" checked value="rent"><span>رهن و اجاره</span>
                         <span class="space"></span>
-                        <label class="checkbox-inline">
-                            <input type="radio" name="favoriteColors">
-                            خرید
-                        </label>
+                        <input type="radio" name="dealType" value="sell"><span>خرید</span>
                     </div>
                     <div class="col-xl-6 col-sm-12">
-                        <a href="./searchHouse.html" class="search-btn" id="shadowing">جستجو</a>
+                        <a href="./searchHouse.html" class="search-btn shadowing">جستجو</a>
                     </div>
                 </div>
             </div>
@@ -99,21 +105,21 @@
             </a>
 
             <div class="row advantage-container">
-                <div class="col-xl-4 item">
+                <div class="col-xl-4 col-sm-12 item">
                     <div>
                         <img src="assets/images/icons/726499.svg" alt="گسترده">
                         <span class="title">گسترده</span>
                         <span class="description">در منطقه مورد علاقه خود صاحب خانه شوید</span>
                     </div>
                 </div>
-                <div class="col-xl-4 item">
+                <div class="col-xl-4 col-sm-12 item">
                     <div>
                         <img src="assets/images/icons/726488.svg" alt="مطمن">
                         <span class="title">مطمئن</span>
                         <span class="description">با خیال راحت به دنبال خانه بگردید</span>
                     </div>
                 </div>
-                <div class="col-xl-4 item">
+                <div class="col-xl-4 col-sm-12 item">
                     <div>
                         <img src="assets/images/icons/726446.svg" alt="آسان">
                         <span class="title">آسان</span>

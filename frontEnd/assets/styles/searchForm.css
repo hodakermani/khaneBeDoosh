@@ -4,20 +4,19 @@
     background-color: rgba(0,0,0,0.4);
     box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
     direction: rtl;
-    padding: 35px;
+    padding: 45px 25px;
+}
+
+.container-fluid div.main-content div.search-container .form-item .input-label {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    bottom: 45px;
+    left: 20px;
 }
 
 .container-fluid div.main-content div.search-container .row:last-child {
     padding-top: 20px;
-}
-
-.container-fluid div.main-content div.search-container div.labels {
-    color: white;
-    padding-bottom: 10px;
-}
-
-.container-fluid div.main-content div.search-container div.labels:first-child {
-    padding-left: 15px;
 }
 
 .container-fluid div.main-content div.search-container .search-btn {
@@ -57,48 +56,22 @@
 @media screen and (max-width: 1199px) {
     .container-fluid div.main-content div.search-container .search-btn {
         width: 100%;
+        margin-top: 40px;
     }
 
-    .container-fluid div.main-content div.search-container div.labels {
-        height: 0;
-        margin-bottom: 5px !important;
-    }
     .container-fluid div.main-content div.search-container .form-item:first-child {
         padding-bottom: 40px;
     }
+
     .container-fluid div.main-content div.search-container .form-item:nth-child(2) {
         padding-bottom: 40px;
     }
-    .container-fluid div.main-content div.search-container div.labels .price-label {
-        position: relative;
-        top: 60px;
-    }
-    .container-fluid div.main-content div.search-container div.labels .area-label {
-        position: relative;
-        top: 116px;
-    }
 
-    .container-fluid div.why div.items div.item {
-        font-size: 14px;
+    .container-fluid div.main-content div.search-container .form-item .price-label{
+        bottom: 85px;
     }
 
     .container-fluid div.main-content a.add-house {
-        font-size: 100%;
-    }
-
-    .container-fluid div.why {
-        margin-bottom: 0;
-    }
-
-    .container-fluid div.why div.title {
-        text-align: center;
-    }
-
-    .container-fluid div.why div.items div.item {
-        font-size: 80%;
-    }
-
-    .container-fluid div.why img {
-        display: none;
+        font-size: 95%;
     }
 }

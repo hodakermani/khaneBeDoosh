@@ -25,15 +25,21 @@
                 <img src="./assets/images/logo.png" alt="خانه به دوش">
                 <span>خانه به دوش</span>
             </a>
-            <div class="col-xl-6">
+
+            <div class="col-xl-6 desktop-header">
                 <div class="dropdown user-btn-header">
                     <div class="dropdown-content">
                         <p>بهنام همایون</p>
                         <div class="row">
-                            <div class="col-xl-6 col-sm-6 balance" id="name">اعتبار</div>
-                            <div class="col-xl-6 col-sm-6 balance" id="value">۲۰۰۰۰ تومان</div>
+                            <div class="col-xl-6 col-sm-6 balance" id="name">
+                                <span>اعتبار</span>
+                            </div>
+                            <div class="col-xl-6 col-sm-6 balance" id="value">
+                                <span>۲۰۰۰۰</span>
+                                <span>تومان</span>
+                            </div>
                         </div>
-                        <a href="./addBalance.html" id="shadowing">افزایش اعتبار</a>
+                        <a href="./addBalance.html" class="shadowing">افزایش اعتبار</a>
                     </div>
                     <a id="user-btn-header" href="">
                         <i class="fa fa-smile-o"></i>
@@ -41,6 +47,18 @@
                     </a>
                 </div>
             </div>
+
+            <div class="mobile-header">
+                <div class="username">
+                    <span>بهنام همایون</span>
+                </div>
+                <a class="balance" href="./addBalance.html">
+                    <span>اعتبار</span>
+                    <span>۲۰۰۰</span>
+                    <span>تومان</span>
+                </a>
+            </div>
+
         </div>
     </nav>
 
@@ -50,26 +68,17 @@
 
     <div class="main-content row">
         <div class="col-xl-2 col-sm-2"></div>
-        <div class="col-xl-8 col-sm-8">
+        <div class="col-xl-8 col-sm-8 add-house-form">
 
             <div class="row">
-                <div class="col-xl-6 deal-type">
-                    <label class="checkbox-inline">
-                        <input type="radio" name="favoriteColors" checked>
-                        رهن و اجاره
-                    </label>
+                <div class="deal-type col-xl-6">
+                    <input type="radio" name="dealType" checked value="rent"><span>رهن و اجاره</span>
                     <span class="space"></span>
-                    <label class="checkbox-inline">
-                        <input type="radio" name="favoriteColors">
-                        خرید
-                    </label>
+                    <input type="radio" name="dealType" value="sell"><span>خرید</span>
                 </div>
                 <div class="col-xl-6"></div>
             </div>
-            <div class="labels row">
-                <div class="col-xl-8"></div>
-                <div class="col-xl-4 area-label"><span>متر مربع</span></div>
-            </div>
+
             <div class="row">
                 <div class="col-xl-6 form-item">
                     <select name="buildingType">
@@ -80,30 +89,27 @@
                 </div>
                 <div class="col-xl-6 form-item">
                     <input class="form-control" name="Area" placeholder="متراژ">
+                    <span class="input-label">متر مربع</span>
                 </div>
             </div>
-            <div class="labels row">
-                <div class="col-xl-8"></div>
-                <div class="col-xl-4 area-label"><span>تومان</span></div>
-            </div>
+
             <div class="row">
                 <div class="col-xl-6 form-item">
                     <input class="form-control" name="Address" placeholder="آدرس">
                 </div>
                 <div class="col-xl-6 form-item">
                     <input class="form-control" name="BasePrice" placeholder="قیمت رهن">
+                    <span class="input-label">تومان</span>
                 </div>
             </div>
-            <div class="labels row">
-                <div class="col-xl-8"></div>
-                <div class="col-xl-4 area-label"><span>تومان</span></div>
-            </div>
+
             <div class="row">
                 <div class="col-xl-6 form-item">
                     <input class="form-control" name="Phone" placeholder="شماره تماس">
                 </div>
                 <div class="col-xl-6 form-item">
                     <input class="form-control" name="RentPrice " placeholder="قیمت اجاره">
+                    <span class="input-label">تومان</span>
                 </div>
             </div>
             <div class="extra-margin"></div>
@@ -115,7 +121,7 @@
             <div class="row">
                 <div class="col-xl-6 col-sm-12"></div>
                 <div class="col-xl-6 col-sm-12">
-                    <a href="./index.html" class="add-house-btn" id="shadowing">ثبت ملک</a>
+                    <a href="./index.html" class="add-house-btn shadowing">ثبت ملک</a>
                 </div>
             </div>
 
