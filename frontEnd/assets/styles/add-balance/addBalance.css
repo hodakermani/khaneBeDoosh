@@ -45,9 +45,8 @@ footer {
 }
 
 @media screen and (max-width: 1199px) {
-
     .container-fluid div.main-content{
-        padding: 15px;
+        padding: 50px 15px 0 15px;
     }
 
     .container-fluid .main-content div.form-item {

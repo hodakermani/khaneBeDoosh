@@ -67,8 +67,14 @@
         padding-bottom: 40px;
     }
 
-    .container-fluid div.main-content div.search-container .form-item .price-label{
-        bottom: 85px;
+    .container-fluid div.main-content div.search-container .form-item .price-label {
+        bottom: 80px;
+        font-size: 12px;
+    }
+
+    .container-fluid div.main-content div.search-container .form-item .input-label:not(.price-label) {
+        font-size: 12px;
+        bottom: 41px;
     }
 
     .container-fluid div.main-content a.add-house {

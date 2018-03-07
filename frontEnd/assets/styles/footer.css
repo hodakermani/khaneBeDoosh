@@ -1,0 +1,56 @@
+footer {
+    position: relative;
+    direction: rtl;
+    text-align: right;
+    width: 100%;
+    margin: 0px !important;
+    bottom: 0px;
+    left: 0px;
+    background-color: #185956;
+    color: white;
+    padding: 25px 100px !important;
+}
+
+footer div.text {
+    position: relative;
+    top: 5px;
+}
+
+footer div.icons {
+    text-align: left;
+}
+
+footer div.icons img {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+footer div.icons img[src*="twitter.png"] {
+    height: 30px;
+}
+
+@media screen and (max-width: 1199px) {
+    footer {
+        padding: 10px !important;
+    }
+
+    footer div.text {
+        font-size: 50%;
+        padding-bottom: 10px;
+    }
+
+    footer div.icons > div {
+        position: relative;
+        left: 50%;
+        margin-left: -160px;
+    }
+
+    footer div.icons img,
+    footer div.icons img[src*="twitter.png"] {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+    }
+}
