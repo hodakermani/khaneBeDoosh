@@ -1,0 +1,100 @@
+.nav-bar {
+    margin-bottom: 50px;
+}
+
+.nav-bar div.row {
+    padding-top: 20px;
+}
+
+.nav-bar .logo > img {
+    display: block;
+    margin: auto;
+    width: 130px;
+}
+
+.nav-bar .logo > p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+}
+
+.nav-bar div.user-btn-home {
+    position: relative;
+    left: 50%;
+    margin-left: -91px;
+    padding: 10px;
+}
+
+.nav-bar a#user-btn-home {
+    text-align: center;
+    color: white;
+    border: 2px solid white;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 10px;
+    padding: 5px 15px;
+    position: relative;
+    margin-bottom: 20px;
+    display:  block;
+    width: fit-content;
+}
+
+.nav-bar a#user-btn-home > i {
+    font-size: 22px;
+    position: relative;
+    top: 2px;
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 1199px) {
+    .nav-bar .logo {
+        padding-top: 100px;
+    }
+
+    .nav-bar .logo > img {
+        width: 100px;
+    }
+
+    .nav-bar .logo > p {
+        font-size: 25px;
+    }
+
+    .nav-bar .desktop-header {
+        display: none;
+    }
+
+    .nav-bar .mobile-header {
+        position: absolute;
+        top: 15px;
+        width: 100%;
+    }
+
+    .nav-bar .mobile-header .username,
+    .nav-bar .mobile-header .balance {
+        display: inline-block;
+    }
+
+    .nav-bar .mobile-header span {
+        color: white;
+    }
+
+    .nav-bar .mobile-header .username {
+        float: right;
+        margin-right: 30px;
+        padding: 5px 8px;
+    }
+
+    .nav-bar .mobile-header .balance {
+        background-color: #F2505E;
+        padding: 5px 8px;
+        border-radius: 5px;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (min-width: 1199px) {
+    .nav-bar .mobile-header {
+        display: none;
+    }
+}

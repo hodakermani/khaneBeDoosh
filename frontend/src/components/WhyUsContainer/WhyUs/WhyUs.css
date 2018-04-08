@@ -1,0 +1,24 @@
+div.why div.items {
+    padding: 10px;
+}
+
+div.why div.items div.item {
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+div.why div.items div.item > i {
+    padding-left: 10px;
+    color: #524B9A;
+}
+
+@media screen and (max-width: 1199px) {
+
+    div.why div.items div.item {
+        font-size: 14px;
+    }
+
+    div.why div.items div.item {
+        font-size: 80%;
+    }
+}

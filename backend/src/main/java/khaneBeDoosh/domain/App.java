@@ -1,0 +1,142 @@
+package khaneBeDoosh.domain;
+
+import org.apache.log4j.Logger;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by nafise on 20/02/2018.
+ */
+public class App {
+
+    final static Logger logger = Logger.getLogger(App.class);
+
+    private static Map<String, User> users;
+    private static List<Viewed> views = new ArrayList<Viewed>();
+
+    static {
+        users = new HashMap<String, User>();
+        users.put("بهنام همایون", new Individual("بهنام همایون", "behnam", "bh1996"));
+        users.put("خانه به دوش", new RealState("خانه به دوش", "http://acm.ut.ac.ir/khaneBeDoosh/house"));
+    }
+
+    public static Map<String, User> getUsers() {
+        return users;
+    }
+
+    public static User getUser(String name) {
+        return users.get(name);
+    }
+
+    public static String addHouse(String name, House newHouse) {
+        logger.info("-- App : Add House");
+        Individual user = (Individual)App.getUser(name);
+
+        if (user == null) {
+            return "کاربر معتبری در سیستم موجود نمی‌باشد.";
+        }
+
+        logger.info("New house added to system.");
+        return  user.addHouse(newHouse);
+    }
+
+    // for real state user
+    public static List<House> searchHouse(String buildingType, Integer minArea, String dealType, Integer maxPrice)
+            throws IOException, JSONException {
+        logger.info("-- App : Search House");
+        List<House> allHouses = new ArrayList<House>();
+        for (Map.Entry<String, User> user:users.entrySet()) {
+            allHouses.addAll(user.getValue().getHouses());
+        }
+        return filterResult(allHouses, buildingType, minArea, dealType, maxPrice);
+    }
+
+    private static List<House> filterResult(List<House> all, String buildingType, Integer _minArea, String dealType, Integer _maxPrice) {
+        List<House> result = new ArrayList<House>();
+        House.BuildingType bt  = Utility.stringToBuildingType(buildingType);
+
+        logger.info("----------------------- SEARCHING FOR MATCHES -----------------------");
+
+        int _dealType = Utility.stringToDealType(dealType);
+
+        for (House house: all) {
+            if (_minArea <= house.getArea() && (bt == house.getBuildingType() || bt == Utility.stringToBuildingType("هیچی"))) {
+
+                if (_dealType == 0 && _dealType == house.getDealType()) {
+                    if (_maxPrice >= house.getPrice().getSellPrice()) {
+                        logger.info(result.size() + " : " + house.getId());
+                        result.add(house);
+                    }
+                }
+
+                else if (_dealType == 1 && _dealType == house.getDealType()) {
+                    if (_maxPrice >= house.getPrice().getRentPrice()) {
+                        logger.info(result.size() + " : " + house.getId());
+                        result.add(house);
+                    }
+                }
+
+                else if (_dealType == 2) {
+                    if ((house.getDealType() == 0 && _maxPrice >= house.getPrice().getSellPrice()) ||
+                            ( house.getDealType() == 1 && _maxPrice >= house.getPrice().getRentPrice())) {
+                        logger.info(result.size() + " : " + house.getId());
+                        result.add(house);
+                    }
+                }
+
+            }
+        }
+        logger.info("----------------------- RESULTS FOUND -----------------------");
+        return result;
+    }
+
+    public static House getHouseDetails(String id, String parentName) throws IOException, JSONException {
+        logger.info("-- App : View House Details");
+        House result = null;
+        User u = App.getUser(parentName);
+        if (u == null) {
+            return result;
+        }
+        if (u instanceof Individual) {
+            result =  u.getHouse(id);
+        }
+        else {
+            String url = ((RealState) u).getUrl();
+            result = House.getDetails(id, url, parentName);
+        }
+        if (result != null)
+            House.setEmptyFields(result);
+        return result;
+    }
+
+    public static boolean viewPhone(String name, String houseId, String ownerName) {
+        logger.info("-- App : View Phone");
+        Individual user = (Individual) App.getUser(name);
+
+        // check if user has viewed this house-details before
+        for (Viewed v: views) {
+            if (v.getHouseId().equals(houseId) && v.getOwnerId().equals(ownerName) && v.getViewerId().equals(name)) {
+                return true;
+            }
+        }
+
+        int userBalance = user.getBalance();
+        if (userBalance >= 1000) {
+            // house-owner should not pay to see phone number
+            if (!name.equals(ownerName)) {
+                user.setBalance(userBalance - 1000);
+                views.add(new Viewed(name, houseId, ownerName));
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+}

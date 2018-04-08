@@ -1,0 +1,67 @@
+.houseDetailForm .house-info .buildingType {
+    margin-bottom: 20px;
+}
+
+.houseDetailForm .house-info .buildingType span {
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.houseDetailForm .house-info .phone {
+    direction: ltr;
+    text-align: left;
+}
+
+.houseDetailForm .house-info > div.row,
+.houseDetailForm .house-info > div div.price {
+    padding: 10px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.houseDetailForm .house-info > div.row > div:first-child span,
+.houseDetailForm .house-info > div div.price > div:first-child span {
+    font-size: 12px;
+    color: #999999;
+}
+
+#house-img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#get-house-phone {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    margin: 10px 0;
+}
+
+.balance-not-requested {
+    display: block;
+    background-color: #44d2ca;
+}
+
+.balance-not-enough {
+    display: block;
+    background-color: #DEDC2F;
+}
+
+.balance-was-enough {
+    display: none;
+}
+
+#enough-balance {
+    animation: fade 0s infinite;
+    opacity: 0;
+}
+
+@media screen and (max-width: 1199px) {
+    #get-house-phone {
+        font-size: 12px;
+    }
+}

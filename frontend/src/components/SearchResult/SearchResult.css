@@ -1,0 +1,20 @@
+.searchResult .row .item {
+    margin-top: 30px !important;
+}
+
+.searchResult .search-info {
+    padding: 30px;
+}
+
+.searchResult .search-info span {
+    display: block;
+    text-align: center;
+    font-size: 23px;
+    color: #999999;
+}
+
+@media screen and (max-width: 1199px) {
+    .searchResult .search-info span {
+        font-size: 100%;
+    }
+}

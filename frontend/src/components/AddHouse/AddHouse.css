@@ -1,0 +1,25 @@
+.addHouse {
+
+}
+
+.addHouse .add-house {
+    margin-top: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+@media screen and (max-width: 1199px) {
+    .addHouse .add-house {
+        font-size: 95%;
+    }
+}

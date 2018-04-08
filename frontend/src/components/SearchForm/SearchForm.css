@@ -1,0 +1,76 @@
+.search-container {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.4);
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+    padding: 45px 25px;
+}
+
+.search-container .form-item .input-label {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    bottom: 45px;
+    left: 20px;
+}
+
+
+.search-container .form-error {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: -25px;
+}
+
+.search-container .row:last-child {
+    padding-top: 20px;
+}
+
+.search-container .search-btn {
+    background-color: #3AD0CA;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 10px;
+    margin: auto;
+    display:  block;
+    float: left;
+    padding: 7px;
+    width: 80%;
+}
+
+.search-container .deal-type {
+    text-align: right;
+    color: white;
+}
+
+span.space {
+    margin: 0px 35px;
+}
+
+@media screen and (max-width: 1199px) {
+    .search-container .search-btn {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .search-container .form-item:first-child {
+        padding-bottom: 40px;
+    }
+
+    .search-container .form-item:nth-child(2) {
+        padding-bottom: 40px;
+    }
+
+    .search-container .form-item .price-label {
+        bottom: 80px;
+        font-size: 12px;
+    }
+
+    .search-container .form-item .input-label:not(.price-label) {
+        font-size: 12px;
+        bottom: 41px;
+    }
+}

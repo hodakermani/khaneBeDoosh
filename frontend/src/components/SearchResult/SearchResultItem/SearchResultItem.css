@@ -1,0 +1,63 @@
+.searchResultItem {
+    margin-bottom: 30px;
+    border-radius: 10px;
+    transition: all 1s;
+    box-shadow:0px 2px 80px rgba(0, 0, 0, 0.1);
+    direction: rtl;
+}
+
+.searchResultItem:hover {
+    cursor: pointer;
+    box-shadow:0px 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.searchResultItem img {
+    width: 100%;
+}
+
+.searchResultItem .image-container {
+    overflow:  hidden;
+    max-height: 200px;
+    position: relative;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.searchResultItem .image-container .image-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    padding: 2px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.searchResultItem .info-container {
+    color: black;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.searchResultItem .info-container > .row:first-child {
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.searchResultItem .info-container span.contract-type {
+    padding-left: 8px;
+}
+
+.searchResultItem .info-container .location {
+
+    padding-right: 8px;
+}
+
+.searchResultItem a.add-house {
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1199px) {
+    .searchResult .info-container span {
+        font-size: 12px;
+    }
+}

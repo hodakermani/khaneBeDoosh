@@ -1,0 +1,9 @@
+.houseDetailPage {
+
+}
+
+.houseDetailPage .main-content {
+    direction: rtl;
+    text-align: right;
+    padding: 30px;
+}

@@ -1,0 +1,35 @@
+div.why {
+    margin-bottom: 80px;
+    direction: rtl;
+    text-align: right;
+    position: relative;
+}
+
+div.why img {
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 50%;
+    margin-top: -110px;
+}
+
+div.why div.title {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1199px) {
+
+    div.why {
+        margin-bottom: 0;
+    }
+
+    div.why div.title {
+        text-align: center;
+    }
+
+    div.why img {
+        display: none;
+    }
+}

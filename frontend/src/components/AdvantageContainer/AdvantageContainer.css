@@ -1,0 +1,19 @@
+.advantageContainer {
+    margin: 0 0 70px 0 !important;
+}
+
+.advantageContainer div.item:first-child {
+    padding-right: 0px;
+    border-color: #524B9A;
+}
+
+.advantageContainer div.item:last-child {
+    padding-left: 0px;
+}
+
+@media screen and (max-width: 1199px) {
+    .advantageContainer {
+        margin-bottom: 20px !important;
+    }
+}
+

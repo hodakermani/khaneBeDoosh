@@ -1,0 +1,20 @@
+.searchPage {
+
+}
+
+.searchPage .main-content .search-info {
+    padding: 30px;
+}
+
+.searchPage .main-content .search-info span {
+    display: block;
+    text-align: center;
+    font-size: 23px;
+    color: #999999;
+}
+
+@media screen and (max-width: 1199px) {
+    .searchPage .main-content .search-info span {
+        font-size: 100%;
+    }
+}

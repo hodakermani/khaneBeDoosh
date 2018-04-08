@@ -1,0 +1,75 @@
+.addBalanceForm {
+    width: 100%;
+    direction: rtl;
+    padding: 60px 35px;
+}
+
+.addBalanceForm .form-error {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    left: 15px;
+    top: 2px;
+    height: 20px;
+}
+
+.addBalanceForm div.labels {
+    color: lightgrey;
+    font-size: 14px;
+    font-weight: 100;
+    padding-bottom: 8px;
+    padding-left: 5px;
+}
+
+.addBalanceForm .row .balance {
+    padding-top: 3px;
+    text-align: right;
+}
+
+.addBalanceForm .row .add-house-btn {
+    background-color: #3AD0CA;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 10px;
+    margin: 20px auto 70px auto;
+    display:  block;
+    float: left;
+    padding: 7px;
+    width: 100%;
+}
+
+.addBalanceForm .form-item .price-label {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    color: lightgrey;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 1199px) {
+    .addBalanceForm {
+        padding: 50px 15px 0 15px;
+    }
+
+    .addBalanceForm div.form-item {
+        position: relative;
+        padding-top: 55px;
+    }
+
+    .addBalanceForm .row .balance {
+        width: auto;
+    }
+
+    .addBalanceForm .form-item .price-label {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+span.toman {
+    padding-right: 8px;
+    color: #9D9D9D;
+    font-size: 14px;
+}
