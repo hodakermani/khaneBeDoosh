@@ -3,6 +3,7 @@ package khaneBeDoosh.controller;
 import khaneBeDoosh.domain.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -79,6 +80,8 @@ public class HouseDetailCtrl {
             e.printStackTrace();
         } catch (IOException e) {
             msg = "عملیات موفقیت‌آمیز نبود!";
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

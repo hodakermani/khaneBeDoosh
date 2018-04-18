@@ -4,10 +4,13 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import khaneBeDoosh.data.*;
 
 /**
  * Created by nafise on 20/02/2018.
@@ -23,6 +26,14 @@ public class App {
         users = new HashMap<String, User>();
         users.put("بهنام همایون", new Individual("بهنام همایون", "behnam", "bh1996"));
         users.put("خانه به دوش", new RealState("خانه به دوش", "http://acm.ut.ac.ir/khaneBeDoosh/house"));
+        AppRepository.create();
+        try {
+            UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/house", "خانه به دوش");
+            UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static Map<String, User> getUsers() {
@@ -33,7 +44,7 @@ public class App {
         return users.get(name);
     }
 
-    public static String addHouse(String name, House newHouse) {
+    public static String addHouse(String name, House newHouse) throws SQLException {
         logger.info("-- App : Add House");
         Individual user = (Individual)App.getUser(name);
 
@@ -41,7 +52,10 @@ public class App {
             return "کاربر معتبری در سیستم موجود نمی‌باشد.";
         }
 
+        HouseRepository.addIndividualHouse(newHouse);
+
         logger.info("New house added to system.");
+
         return  user.addHouse(newHouse);
     }
 
@@ -114,23 +128,20 @@ public class App {
         return result;
     }
 
-    public static boolean viewPhone(String name, String houseId, String ownerName) {
+    public static boolean viewPhone(String name, String houseId, String ownerName) throws SQLException {
         logger.info("-- App : View Phone");
         Individual user = (Individual) App.getUser(name);
 
-        // check if user has viewed this house-details before
-        for (Viewed v: views) {
-            if (v.getHouseId().equals(houseId) && v.getOwnerId().equals(ownerName) && v.getViewerId().equals(name)) {
-                return true;
-            }
+        if (ViewedRepository.findByID(houseId, ownerName, name)) {
+            return true;
         }
 
-        int userBalance = user.getBalance();
+        int userBalance = UserRepository.getBalance(name);
         if (userBalance >= 1000) {
             // house-owner should not pay to see phone number
             if (!name.equals(ownerName)) {
-                user.setBalance(userBalance - 1000);
-                views.add(new Viewed(name, houseId, ownerName));
+                UserRepository.updateBalance(userBalance-1000, name);
+                ViewedRepository.addViewedHouse(houseId, ownerName, name);
             }
 
             return true;

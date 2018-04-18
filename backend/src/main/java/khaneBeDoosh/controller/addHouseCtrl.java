@@ -3,6 +3,7 @@ package khaneBeDoosh.controller;
 import khaneBeDoosh.domain.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.json.JSONException;
@@ -51,6 +52,8 @@ public class addHouseCtrl {
                     success = true;
                 } catch (NumberFormatException ex) {
                     msg = "قیمت وارد شده معتبر نمی‌باشد.";
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             } catch (NumberFormatException ex) {
                 msg = "متراژ وارد شده معتبر نمی‌باشد.";

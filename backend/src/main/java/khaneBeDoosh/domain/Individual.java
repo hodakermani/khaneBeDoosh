@@ -1,5 +1,9 @@
 package khaneBeDoosh.domain;
 
+import khaneBeDoosh.data.HouseRepository;
+
+import java.sql.SQLException;
+
 /**
  * Created by nafise on 20/02/2018.
  */
