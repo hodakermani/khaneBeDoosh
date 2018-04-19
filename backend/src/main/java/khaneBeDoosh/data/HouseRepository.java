@@ -158,11 +158,11 @@ public class HouseRepository {
     }
 
     public static House find(String parentName, String id) throws SQLException {
-        logger.info("Find House with id of " + id);
+        logger.info("Find House with id of " + id + " parentName = " + parentName);
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String sql = "SELECT * FROM House WHERE ParentName = ? AND ID = ?;";
+        String sql = "SELECT * FROM House WHERE ParentID = ? AND ID = ?;";
         PreparedStatement statement = con.prepareStatement(sql);
 
         statement.setString(1, parentName);
