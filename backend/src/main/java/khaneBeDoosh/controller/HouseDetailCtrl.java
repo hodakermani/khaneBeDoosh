@@ -26,6 +26,7 @@ public class HouseDetailCtrl {
         Boolean success = false;
         String msg = "";
         House house = null;
+        User user = App.getUser();
 
         try {
             house = App.getHouseDetails(id, parentName);
@@ -44,7 +45,7 @@ public class HouseDetailCtrl {
             e.printStackTrace();
         }
 
-        return new HouseDetail(counter.incrementAndGet(), success, msg, house, "دریافت شماره مالک/مشاور");
+        return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, "دریافت شماره مالک/مشاور");
     }
 
     @RequestMapping("/api/houseDetailsGetPhone")
@@ -56,6 +57,7 @@ public class HouseDetailCtrl {
         String btnMsg = "";
         House house = null;
         User user = App.getUser();
+
         try {
             house = App.getHouseDetails(id, parentName);
             if (house != null) {
@@ -76,6 +78,6 @@ public class HouseDetailCtrl {
             e.printStackTrace();
         }
 
-        return new HouseDetail(counter.incrementAndGet(), success, msg, house, btnMsg);
+        return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, btnMsg);
     }
 }

@@ -26,7 +26,7 @@ public class BalanceCtrl {
         Boolean success = true;
         String msg = "";
         User user = App.getUser();
-        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(user.getName()));
+        return new Balance(counter.incrementAndGet(), success, msg, user.getName(), UserRepository.getBalance(user.getName()));
     }
 
     @RequestMapping("/api/addBalance")
@@ -63,7 +63,7 @@ public class BalanceCtrl {
             }
         }
 
-        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(user.getName()));
+        return new Balance(counter.incrementAndGet(), success, msg, user.getName(), UserRepository.getBalance(user.getName()));
     }
 
 }

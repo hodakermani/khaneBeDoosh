@@ -39,7 +39,7 @@ public class House {
         this.phone = _phone;
         this.description = _description;
         this.price = _price;
-        this.expireTime = (expireTime == null || expireTime == "") ? String.valueOf(Integer.MAX_VALUE) : expireTime;
+        this.expireTime = (expireTime == null || expireTime == "") ? null : expireTime;
         this.imageURL = (_imageURL == null || _imageURL == "") ? "/images/no-pic.jpg" : _imageURL;
         this.parentName = _parentName;
     }

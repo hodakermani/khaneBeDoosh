@@ -22,10 +22,10 @@ public class App {
     static {
         AppRepository.create();
         try {
-            UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
-            HouseRepository.addRealStateHouses("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
             UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam");
             currUser = UserRepository.findUser("behnam", "bh1996");
+            UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
+            HouseRepository.addRealStateHouses("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (JSONException e) {
