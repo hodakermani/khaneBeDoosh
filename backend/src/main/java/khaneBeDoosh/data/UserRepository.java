@@ -1,6 +1,7 @@
 package khaneBeDoosh.data;
 
 import khaneBeDoosh.domain.App;
+import khaneBeDoosh.domain.Individual;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -99,12 +100,40 @@ public class UserRepository {
         con.close();
     }
 
+    public static Individual findUser(String username, String password) throws SQLException {
+        logger.info("find User with username " + username);
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM Individual WHERE Username = ? AND Password = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, username);
+        statement.setString(2,password);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            String _name = resultSet.getString("Name");
+            String _username = resultSet.getString("Username");
+            String _password = resultSet.getString("Password");
+            int _balance = resultSet.getInt("Balance");
+            Individual newUser = new Individual(_name, _username, _password, _balance);
+            con.close();
+            return newUser;
+        }
+
+        logger.info("User with username " + username + " Not Found");
+        con.close();
+        return null;
+    }
+
     public static int getBalance(String name) throws SQLException {
         logger.info("Get Balance of " + name);
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String sql = "SELECT * FROM Individual WHERE Name = ?;";
+        String sql = "SELECT Balance FROM Individual WHERE Name = ?;";
         PreparedStatement statement = con.prepareStatement(sql);
 
         statement.setString(1, name);
@@ -121,25 +150,6 @@ public class UserRepository {
         logger.info("User " + name + " Not Found");
         con.close();
         return 0;
-    }
-
-    public static Boolean updateBalance(int balance, String name) throws SQLException {
-
-        logger.info("Update Balance for " + name + " newbalance = " + balance);
-
-        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
-
-        String sql = "UPDATE Individual SET Balance = ? WHERE Name = ?";
-
-        PreparedStatement statement = con.prepareStatement(sql);
-
-        statement.setInt(1, balance);
-        statement.setString(2, name);
-        statement.executeUpdate();
-
-        con.close();
-
-        return true;
     }
 
     public static Boolean addBalance(int balance, String name) throws SQLException {
@@ -164,4 +174,23 @@ public class UserRepository {
         return true;
     }
 
+    public static boolean isIndividual(String parentId) throws SQLException {
+        logger.info("is user with id " + parentId + " an  individual");
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM Individual WHERE Name = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, parentId);
+        boolean response = false;
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+           response = true;
+        }
+
+        con.close();
+        return response;
+    }
 }

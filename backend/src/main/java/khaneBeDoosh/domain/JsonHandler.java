@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public class JsonHandler {
 
-    public static JSONArray reader(String url) throws IOException, JSONException {
+    public static JSONObject reader(String url) throws IOException, JSONException {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -30,7 +30,8 @@ public class JsonHandler {
         in.close();
 
         JSONObject myResponse = new JSONObject(response.toString());
-        return myResponse.getJSONArray("data");
+//        return myResponse.getJSONArray("data");
+        return myResponse;
     }
 
     public static JSONObject getHouseDetails(String id, String url) throws IOException, JSONException {

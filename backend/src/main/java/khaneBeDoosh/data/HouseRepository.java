@@ -1,9 +1,19 @@
 package khaneBeDoosh.data;
 
 import khaneBeDoosh.domain.House;
+import khaneBeDoosh.domain.JsonHandler;
+import khaneBeDoosh.domain.Price;
+import khaneBeDoosh.domain.RealState;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.sql.*;
+import java.util.*;
+import java.util.Date;
 
 /**
  * Created by nafise on 16/04/2018.
@@ -34,8 +44,8 @@ public class HouseRepository {
         stmt.close();
     }
 
-    public static void addIndividualHouse(House newHouse) throws SQLException {
-        logger.info("Add New Individual House");
+    public static void addHouse(House newHouse) throws SQLException {
+        logger.info("Add House");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
@@ -64,4 +74,136 @@ public class HouseRepository {
         con.close();
     }
 
+    public static List<House> findAll() throws SQLException {
+        logger.info("Get all houses");
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * from House";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        List<House> houses = new ArrayList<House>();
+
+        while (resultSet.next()) {
+
+            String _id = resultSet.getString("ID");
+            String _parentID = resultSet.getString("ParentID");
+            int _area = resultSet.getInt("Area");
+            String _buildingType = resultSet.getString("BuildingType");
+            String _imageUrl = resultSet.getString("ImageURL");
+            String _description = resultSet.getString("Description");
+            int _dealType = resultSet.getInt("DealType");
+            String _phone = resultSet.getString("Phone");
+            String _expireTime = resultSet.getString("ExpireTime");
+            String _address = resultSet.getString("Address");
+            int _sellPrice = resultSet.getInt("SellPrice");
+            int _basePrice = resultSet.getInt("BasePrice");
+            int _rentPrice = resultSet.getInt("RentPrice");
+
+
+            Price _price;
+            if (_dealType == 0)
+                _price = new Price(_sellPrice);
+            else
+                _price = new Price(_basePrice, _rentPrice);
+
+            House house = new House(_id, _area, _buildingType, _address, _dealType, _imageUrl, _phone, _description, _price, _expireTime, _parentID);
+            houses.add(house);
+        }
+
+        statement.close();
+        con.close();
+
+        return houses;
+    }
+
+
+    public static void addRealStateHouses(String URL, String name) throws IOException, JSONException, SQLException {
+        JSONObject response = JsonHandler.reader(URL);
+        JSONArray data = response.getJSONArray("data");
+        String expireTime = response.getString("expireTime");
+
+        for (int i = 0; i < data.length(); i++) {
+            JSONObject jsonobject = data.getJSONObject(i);
+
+            String id = jsonobject.getString("id");
+            JSONObject houseDetails = JsonHandler.getHouseDetails(id, URL);
+
+            int dealType = houseDetails.getInt("dealType");
+
+            JSONObject price = houseDetails.getJSONObject("price");
+
+            Price _price;
+            if (dealType == 0)
+                _price = new Price(price.getInt("sellPrice"));
+            else
+                _price = new Price(price.getInt("basePrice"), price.getInt("rentPrice"));
+
+            // add house
+            addHouse(new House(
+                    id,
+                    Integer.parseInt(houseDetails.getString("area")),
+                    houseDetails.getString("buildingType"),
+                    houseDetails.getString("address"),
+                    dealType,
+                    houseDetails.getString("imageURL"),
+                    houseDetails.getString("phone"),
+                    houseDetails.getString("description"),
+                    _price,
+                    expireTime,
+                    name));
+        }
+    }
+
+    public static House find(String parentName, String id) throws SQLException {
+        logger.info("Find House with id of " + id);
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM House WHERE ParentName = ? AND ID = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, parentName);
+        statement.setString(2, id);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+
+            int dealType = resultSet.getInt("DealType");
+            Price _price;
+            if (dealType == 0)
+                _price = new Price(resultSet.getInt("SellPrice"));
+            else
+                _price = new Price(resultSet.getInt("BasePrice"), resultSet.getInt("RentPrice"));
+
+
+            House house = new House(
+                    resultSet.getString("ID"),
+                    resultSet.getInt("Area"),
+                    resultSet.getString("BuildingType"),
+                    resultSet.getString("Address"),
+                    dealType,
+                    resultSet.getString("ImageURL"),
+                    resultSet.getString("Phone"),
+                    resultSet.getString("Description"),
+                    _price,
+                    resultSet.getString("ExpireTime"),
+                    resultSet.getString("ParentID")
+            );
+
+            logger.info("House Found");
+            con.close();
+            return house;
+        }
+
+        logger.info("House Not Found");
+        con.close();
+        return null;
+    }
+
+    public static void update(String parentName, String id) {
+    }
 }

@@ -26,7 +26,7 @@ public class House {
 
     protected String phone;
     protected String description;
-    protected Date expireTime;
+    protected String expireTime;
     protected Price price;
 
     public House() {
@@ -34,10 +34,10 @@ public class House {
     }
 
     // for real state
-    public House(String _id, String _area, String _buildingType, String _address, int _dealType,
-                 String _imageURL, String _phone, String _description, Price _price, Date expireTime, String _parentName) {
+    public House(String _id, int _area, String _buildingType, String _address, int _dealType,
+                 String _imageURL, String _phone, String _description, Price _price, String expireTime, String _parentName) {
         this.id = _id;
-        this.area = Utility.stringToInt(_area);
+        this.area = _area;
         this.buildingType = Utility.stringToBuildingType(_buildingType);
         this.address = _address;
         this.dealType = _dealType;
@@ -50,8 +50,8 @@ public class House {
     }
 
     // for individual
-    public House(Integer _area, String _buildingType, String _address, String _dealType, String _phone,
-                 String _description, Integer _basePrice, Integer _rentPrice, String _parentName) {
+    public House(int _area, String _buildingType, String _address, String _dealType, String _phone,
+                 String _description, int _basePrice, int _rentPrice, String _parentName) {
         this.id = UUID.randomUUID().toString();
         this.area = _area;
         this.buildingType = Utility.stringToBuildingType(_buildingType);
@@ -77,7 +77,7 @@ public class House {
             return null;
 
         String idx = jsonobject.getString("id");
-        String area = jsonobject.getString("area");
+        int area = Integer.parseInt(jsonobject.getString("area"));
         String buildingType = jsonobject.getString("buildingType");
         String address = jsonobject.getString("address");
         int dealType = jsonobject.getInt("dealType");
@@ -138,7 +138,7 @@ public class House {
         return description;
     }
 
-    public Date getExpireTime() {
+    public String getExpireTime() {
         return expireTime;
     }
 
@@ -160,7 +160,7 @@ public class House {
         this.description = description;
     }
 
-    public void setExpireTime(Date expireTime) {
+    public void setExpireTime(String expireTime) {
         this.expireTime = expireTime;
     }
 

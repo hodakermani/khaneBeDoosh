@@ -14,9 +14,9 @@ public class Individual extends User {
     private String username;
     private String password;
 
-    public Individual(String _name, String _username, String _password) {
+    public Individual(String _name, String _username, String _password, int _balance) {
         super(_name);
-        this.balance = 0;
+        this.balance = _balance;
         this.username = _username;
         this.password = _password;
     }

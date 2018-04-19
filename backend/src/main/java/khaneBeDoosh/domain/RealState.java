@@ -21,7 +21,7 @@ public class RealState extends User {
         this.url = _url;
     }
 
-    public void addHouse(String id, String area, String buildingType, String address, int dealType, String imageURL,
+    public void addHouse(String id, int area, String buildingType, String address, int dealType, String imageURL,
                          String phone, String description, JSONObject price, String expireTime) throws JSONException {
         Price p = new Price();
         if (dealType == 0) {
@@ -32,7 +32,7 @@ public class RealState extends User {
         }
         // TODO: change their format -> DATE  https://stackoverflow.com/questions/6510724/how-to-convert-java-string-to-date-object
         this.houses.add(new House(id, area, buildingType, address, dealType, imageURL, phone, description, p,
-                new Date(), this.name));
+                null, this.name));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class RealState extends User {
     }
 
     public void readHouses() throws IOException, JSONException {
-        JSONArray data = JsonHandler.reader(this.url);
-        this.houseParser(data);
+//        JSONArray data = JsonHandler.reader(this.url);
+//        this.houseParser(data);
     }
 
     /**
@@ -62,7 +62,7 @@ public class RealState extends User {
             JSONObject jsonobject = data.getJSONObject(i);
 
             String id = jsonobject.getString("id");
-            String area = jsonobject.getString("area");
+            int area = Integer.parseInt(jsonobject.getString("area"));
             String buildingType = jsonobject.getString("buildingType");
             int dealType = jsonobject.getInt("dealType");
             String imageURL = jsonobject.getString("imageURL");

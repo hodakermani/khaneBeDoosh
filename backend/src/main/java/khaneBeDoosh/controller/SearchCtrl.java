@@ -3,6 +3,7 @@ package khaneBeDoosh.controller;
 import khaneBeDoosh.domain.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class SearchCtrl {
     public SearchResult searchHouse(@RequestParam(value="buildingType", defaultValue="هیچی") String buildingType,
                                     @RequestParam(value="minArea", defaultValue="0") String minArea,
                                     @RequestParam(value="dealType", defaultValue="هیچی") String dealType,
-                                    @RequestParam(value="maxPrice", defaultValue="2147483647") String maxPrice) {
+                                    @RequestParam(value="maxPrice", defaultValue="2147483647") String maxPrice) throws SQLException {
 
         Boolean success = false;
         String msg = "";

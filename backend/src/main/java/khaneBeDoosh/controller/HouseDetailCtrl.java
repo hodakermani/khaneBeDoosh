@@ -22,7 +22,7 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetails")
     public HouseDetail houseDetail(@RequestParam(value="id", defaultValue="") String id,
-                               @RequestParam(value="parentName", defaultValue="خانه به دوش") String parentName) {
+                               @RequestParam(value="parentName", defaultValue="خانه به دوش") String parentName) throws SQLException {
         Boolean success = false;
         String msg = "";
         House house = new House();

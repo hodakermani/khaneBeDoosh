@@ -1,5 +1,6 @@
 package khaneBeDoosh.domain;
 
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 
@@ -24,13 +25,18 @@ public class App {
 
     static {
         users = new HashMap<String, User>();
-        users.put("بهنام همایون", new Individual("بهنام همایون", "behnam", "bh1996"));
+        users.put("بهنام همایون", new Individual("بهنام همایون", "behnam", "bh1996", 0));
         users.put("خانه به دوش", new RealState("خانه به دوش", "http://acm.ut.ac.ir/khaneBeDoosh/house"));
         AppRepository.create();
         try {
-            UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/house", "خانه به دوش");
+            UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
+            HouseRepository.addRealStateHouses("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
             UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam");
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -52,7 +58,7 @@ public class App {
             return "کاربر معتبری در سیستم موجود نمی‌باشد.";
         }
 
-        HouseRepository.addIndividualHouse(newHouse);
+        HouseRepository.addHouse(newHouse);
 
         logger.info("New house added to system.");
 
@@ -61,12 +67,9 @@ public class App {
 
     // for real state user
     public static List<House> searchHouse(String buildingType, Integer minArea, String dealType, Integer maxPrice)
-            throws IOException, JSONException {
+            throws IOException, JSONException, SQLException {
         logger.info("-- App : Search House");
-        List<House> allHouses = new ArrayList<House>();
-        for (Map.Entry<String, User> user:users.entrySet()) {
-            allHouses.addAll(user.getValue().getHouses());
-        }
+        List<House> allHouses = HouseRepository.findAll();
         return filterResult(allHouses, buildingType, minArea, dealType, maxPrice);
     }
 
@@ -109,23 +112,41 @@ public class App {
         return result;
     }
 
-    public static House getHouseDetails(String id, String parentName) throws IOException, JSONException {
+    public static House getHouseDetails(String id, String parentName) throws IOException, JSONException, SQLException {
+
         logger.info("-- App : View House Details");
+
+        boolean isIndividual = UserRepository.isIndividual(parentName);
+
         House result = null;
-        User u = App.getUser(parentName);
-        if (u == null) {
-            return result;
+        if (isIndividual == true) {
+            result = HouseRepository.find(parentName, id);
+        } else {
+            result = House.getDetails(id, parentName, parentName);
+            HouseRepository.update(res);
         }
-        if (u instanceof Individual) {
-            result =  u.getHouse(id);
-        }
-        else {
-            String url = ((RealState) u).getUrl();
-            result = House.getDetails(id, url, parentName);
-        }
-        if (result != null)
-            House.setEmptyFields(result);
         return result;
+
+
+
+
+
+
+//        House result = null;
+//        User u = App.getUser(parentName);
+//        if (u == null) {
+//            return result;
+//        }
+//        if (u instanceof Individual) {
+//            result =  u.getHouse(id);
+//        }
+//        else {
+//            String url = ((RealState) u).getUrl();
+//            result = House.getDetails(id, url, parentName);
+//        }
+//        if (result != null)
+//            House.setEmptyFields(result);
+//        return result;
     }
 
     public static boolean viewPhone(String name, String houseId, String ownerName) throws SQLException {
@@ -140,7 +161,7 @@ public class App {
         if (userBalance >= 1000) {
             // house-owner should not pay to see phone number
             if (!name.equals(ownerName)) {
-                UserRepository.updateBalance(userBalance-1000, name);
+                UserRepository.addBalance(-1000, name);
                 ViewedRepository.addViewedHouse(houseId, ownerName, name);
             }
 
