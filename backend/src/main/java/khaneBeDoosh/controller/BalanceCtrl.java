@@ -25,8 +25,8 @@ public class BalanceCtrl {
     public Balance getBalance(@RequestParam(value="name", defaultValue="بهنام همایون") String name) throws SQLException {
         Boolean success = true;
         String msg = "";
-        Individual user = (Individual) App.getUser("بهنام همایون");
-        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(name));
+        User user = App.getUser();
+        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(user.getName()));
     }
 
     @RequestMapping("/api/addBalance")
@@ -34,7 +34,7 @@ public class BalanceCtrl {
                               @RequestParam(value="balance", defaultValue="") String balance) throws SQLException {
         Boolean success = false;
         String msg = "";
-        Individual user = (Individual) App.getUser("بهنام همایون");
+        User user = App.getUser();
 
         if (balance != null && balance != "" && balance instanceof String) {
             try {
@@ -42,7 +42,7 @@ public class BalanceCtrl {
                 if (requestedBalance > 0) {
                     success = Bank.addBalance(balance);
                     if (success) {
-                        UserRepository.addBalance((requestedBalance > 0) ? requestedBalance : 0, "بهنام همایون");
+                        UserRepository.addBalance((requestedBalance > 0) ? requestedBalance : 0, user.getName());
                         success = true;
                         msg = "عملیات افزایش اعتبار با موفقیت انجام شد.";
                     } else {
@@ -63,7 +63,7 @@ public class BalanceCtrl {
             }
         }
 
-        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(name));
+        return new Balance(counter.incrementAndGet(), success, msg, UserRepository.getBalance(user.getName()));
     }
 
 }

@@ -1,15 +1,12 @@
 package khaneBeDoosh.domain;
 
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import khaneBeDoosh.data.*;
 
@@ -20,14 +17,9 @@ public class App {
 
     final static Logger logger = Logger.getLogger(App.class);
 
-    private static Map<String, User> users;
     private static User currUser;
-    private static List<Viewed> views = new ArrayList<Viewed>();
 
     static {
-        users = new HashMap<String, User>();
-        users.put("بهنام همایون", new Individual("بهنام همایون", "behnam", "bh1996", 0));
-        users.put("خانه به دوش", new RealState("خانه به دوش", "http://acm.ut.ac.ir/khaneBeDoosh/house"));
         AppRepository.create();
         try {
             UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
@@ -41,33 +33,20 @@ public class App {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static Map<String, User> getUsers() {
-        return users;
+    public static User getUser() {
+        return currUser;
     }
 
-    public static User getUser(String name) {
-        return users.get(name);
-    }
-
-    public static String addHouse(String name, House newHouse) throws SQLException {
+    public static String addHouse(House newHouse) throws SQLException {
         logger.info("-- App : Add House");
-        Individual user = (Individual)App.getUser(name);
-
-        if (user == null) {
-            return "کاربر معتبری در سیستم موجود نمی‌باشد.";
-        }
-
         HouseRepository.addHouse(newHouse);
-
         logger.info("New house added to system.");
-
-        return  user.addHouse(newHouse);
+        return "خانه با موفقیت به سیستم اضافه شد.";
     }
 
-    // for real state user
+    // TODO : filter in db
     public static List<House> searchHouse(String buildingType, Integer minArea, String dealType, Integer maxPrice)
             throws IOException, JSONException, SQLException {
         logger.info("-- App : Search House");
@@ -124,41 +103,20 @@ public class App {
         if (isIndividual == true) {
             result = HouseRepository.find(parentName, id);
         } else {
-            result = House.getDetails(id, parentName, parentName);
-            HouseRepository.update(result);
+            String url = UserRepository.findRealState(parentName);
+            if (url != null) {
+                result = House.getDetails(id, url, parentName);
+                HouseRepository.update(result);
+            }
         }
         return result;
-
-
-
-
-
-
-//        House result = null;
-//        User u = App.getUser(parentName);
-//        if (u == null) {
-//            return result;
-//        }
-//        if (u instanceof Individual) {
-//            result =  u.getHouse(id);
-//        }
-//        else {
-//            String url = ((RealState) u).getUrl();
-//            result = House.getDetails(id, url, parentName);
-//        }
-//        if (result != null)
-//            House.setEmptyFields(result);
-//        return result;
     }
 
     public static boolean viewPhone(String name, String houseId, String ownerName) throws SQLException {
         logger.info("-- App : View Phone");
-        Individual user = (Individual) App.getUser(name);
-
         if (ViewedRepository.findByID(houseId, ownerName, name)) {
             return true;
         }
-
         int userBalance = UserRepository.getBalance(name);
         if (userBalance >= 1000) {
             // house-owner should not pay to see phone number

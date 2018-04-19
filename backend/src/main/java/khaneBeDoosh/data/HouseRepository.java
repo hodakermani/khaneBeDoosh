@@ -209,9 +209,8 @@ public class HouseRepository {
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String sql = "UPDATE House SET Area = ? AND BuildingType = ? AND Address = ? AND ImageURL = ? AND Description = ?" +
-                "AND DealType = ? AND Phone = ? AND SellPrice = ? AND BasePrice = ? AND RentPrice = ? WHERE ID = ? AND ParentID = ?" +
-                "WHERE ID = ? AND ParentID = ?";
+        String sql = "UPDATE House SET Area = ?, BuildingType = ?, Address = ?, ImageURL = ?, Description = ?," +
+                "DealType = ?, Phone = ?, SellPrice = ?, BasePrice = ?, RentPrice = ? WHERE ID = ? AND ParentID = ?";
 
 
         PreparedStatement statement = con.prepareStatement(sql);
@@ -226,7 +225,7 @@ public class HouseRepository {
         statement.setInt(8, house.getPrice().getSellPrice());
         statement.setInt(9, house.getPrice().getBasePrice());
         statement.setInt(10, house.getPrice().getRentPrice());
-        statement.setString(11, house.getId());;
+        statement.setString(11, house.getId());
         statement.setString(12, house.getParentName());
         statement.executeUpdate();
 

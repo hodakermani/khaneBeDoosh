@@ -4,6 +4,7 @@ import khaneBeDoosh.domain.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.json.JSONException;
@@ -31,7 +32,7 @@ public class addHouseCtrl {
 
         Boolean success = false;
         String msg = "";
-        House house = new House();
+        House house = null;
 
         int _area = 0;
         int _basePrice = 0;
@@ -46,9 +47,19 @@ public class addHouseCtrl {
                     _basePrice = Integer.parseInt(basePrice);
                     if (rentPrice != null && rentPrice != "")
                         _rentPrice = Integer.parseInt(rentPrice);
-                    // required attribute
-                    House newHouse = new House(_area, buildingType, address, dealType, phone, description, _basePrice, _rentPrice, "بهنام همایون");
-                    msg = App.addHouse("بهنام همایون", newHouse);
+
+                    Price _price;
+                    int _dealType = 0;
+                    if (dealType.equals("خرید"))
+                        _price = new Price(_basePrice);
+                    else {
+                        _price = new Price(_basePrice, _rentPrice);
+                        _dealType = 1;
+                    }
+                    User user = App.getUser();
+                    House newHouse = new House(UUID.randomUUID().toString(), _area, buildingType, address,
+                                                _dealType, null, phone, description, _price, null, user.getName());
+                    msg = App.addHouse(newHouse);
                     success = true;
                 } catch (NumberFormatException ex) {
                     msg = "قیمت وارد شده معتبر نمی‌باشد.";
@@ -61,7 +72,6 @@ public class addHouseCtrl {
         } else {
             msg = "برای اضافه شدن خانه به سامانه لطفا اطلاعات (متراژ، قیمت و تلفن) را به صورت صحیح وارد کنید.";
         }
-
 
         return new Message(counter.incrementAndGet(), success, msg);
     }

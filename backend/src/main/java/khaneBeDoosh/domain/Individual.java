@@ -43,16 +43,4 @@ public class Individual extends User {
 
     public void setBalance(int balance) { this.balance = balance; }
 
-    public String addHouse(House newHouse) {
-
-        if (newHouse.getPrice() != null) {
-            if (newHouse.getArea() < 0 || newHouse.getPrice().getSellPrice() < 0 || newHouse.getPrice().getRentPrice() < 0) {
-                return "اطلاعات وارد شده معتبر نمی‌باشد، لطفا مجددا تلاش کنید.";
-            }
-            houses.add(newHouse);
-            return "خانه با موفقیت به سیستم اضافه شد.";
-        }
-        return "خانه به سیستم اضافه نشد.";
-    }
-
 }

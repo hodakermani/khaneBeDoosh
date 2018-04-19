@@ -128,6 +128,29 @@ public class UserRepository {
         return null;
     }
 
+    public static String findRealState(String name) throws SQLException {
+        logger.info("find URL with username " + name);
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM RealState WHERE Name = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, name);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            String URL = resultSet.getString("URL");
+            con.close();
+            return URL;
+        }
+
+        logger.info("RealState with username " + name + " Not Found");
+        con.close();
+        return null;
+    }
+
     public static int getBalance(String name) throws SQLException {
         logger.info("Get Balance of " + name);
 

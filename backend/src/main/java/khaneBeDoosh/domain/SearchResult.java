@@ -8,11 +8,11 @@ import java.util.List;
 public class SearchResult {
 
     private final long id;
-    private Boolean success;
+    private boolean success;
     private String msg;
     private List<House> houses;
 
-    public SearchResult(long id, Boolean success, String msg, List<House> houses) {
+    public SearchResult(long id, boolean success, String msg, List<House> houses) {
         this.id = id;
         this.success = success;
         this.msg = msg;
@@ -23,7 +23,7 @@ public class SearchResult {
         return id;
     }
 
-    public Boolean getSuccess() {
+    public boolean getSuccess() {
         return success;
     }
 

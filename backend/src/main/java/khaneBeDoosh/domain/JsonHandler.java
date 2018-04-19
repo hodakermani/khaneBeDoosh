@@ -1,5 +1,6 @@
 package khaneBeDoosh.domain;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,11 +17,12 @@ import java.net.URL;
  */
 public class JsonHandler {
 
+    final static Logger logger = Logger.getLogger(App.class);
+
     public static JSONObject reader(String url) throws IOException, JSONException {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
-        int responseCode = con.getResponseCode();
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
@@ -30,11 +32,12 @@ public class JsonHandler {
         in.close();
 
         JSONObject myResponse = new JSONObject(response.toString());
-//        return myResponse.getJSONArray("data");
         return myResponse;
     }
 
     public static JSONObject getHouseDetails(String id, String url) throws IOException, JSONException {
+        logger.info("URL = " + url);
+        logger.info("ID = " + id);
         URL obj = new URL(url+"/"+id);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");

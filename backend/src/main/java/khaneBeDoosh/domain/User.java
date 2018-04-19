@@ -12,26 +12,12 @@ import java.util.List;
 public class User {
 
     protected String name;
-    protected List<House> houses;
 
     public User(String _name) {
         this.name = _name;
-        houses = new ArrayList<House>();
-    }
-
-    public House getHouse(String id) {
-        for(House house: houses) {
-            if (house.getId().equals(id)) {
-                return house;
-            }
-        }
-        return null;
     }
 
     public String getName() {
         return name;
     }
-
-    public List<House> getHouses() throws IOException, JSONException { return houses; }
-
 }

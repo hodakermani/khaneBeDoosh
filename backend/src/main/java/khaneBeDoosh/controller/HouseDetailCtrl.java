@@ -22,10 +22,10 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetails")
     public HouseDetail houseDetail(@RequestParam(value="id", defaultValue="") String id,
-                               @RequestParam(value="parentName", defaultValue="خانه به دوش") String parentName) throws SQLException {
+                               @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName) throws SQLException {
         Boolean success = false;
         String msg = "";
-        House house = new House();
+        House house = null;
 
         try {
             house = App.getHouseDetails(id, parentName);
@@ -49,32 +49,23 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetailsGetPhone")
     public HouseDetail getPhone(@RequestParam(value="id", defaultValue="") String id,
-                                @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName,
-                                @RequestParam(value = "name", defaultValue = "بهنام همایون") String name) {
+                                @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName) {
 
         Boolean success = false;
         String msg = "";
-        Map<String, User> users = App.getUsers();
-        User user = users.get(name);
         String btnMsg = "";
-        House house = new House();
+        House house = null;
+        User user = App.getUser();
         try {
-            if (user != null) {
-                house = App.getHouseDetails(id, parentName);
-                if (house != null) {
-                    success = App.viewPhone(name, house.getId(), house.getParentName());
-                    msg = "در حال بررسی اعتبار می باشیم.";
-                    btnMsg = (success) ? "شما قادر به دیدن شماره مالک/مشاور هستید. " + house.getPhone() : "اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست";
-                }
-                else {
-                    msg = "خانه‌ای یافت نشد.";
-                }
-
-
+            house = App.getHouseDetails(id, parentName);
+            if (house != null) {
+                success = App.viewPhone(user.getName(), house.getId(), house.getParentName());
+                msg = "در حال بررسی اعتبار می باشیم.";
+                btnMsg = (success) ? "شما قادر به دیدن شماره مالک/مشاور هستید. " + house.getPhone() : "اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست";
             }
-            else
-                msg = "کاربر مورد نظر در سیستم موجود نمی‌باشد.";
-
+            else {
+                msg = "خانه‌ای یافت نشد.";
+            }
         } catch (JSONException e) {
             msg = "عملیات موفقیت‌آمیز نبود!";
             e.printStackTrace();
