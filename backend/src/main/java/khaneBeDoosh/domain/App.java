@@ -21,6 +21,7 @@ public class App {
     final static Logger logger = Logger.getLogger(App.class);
 
     private static Map<String, User> users;
+    private static User currUser;
     private static List<Viewed> views = new ArrayList<Viewed>();
 
     static {
@@ -32,6 +33,7 @@ public class App {
             UserRepository.addRealState("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
             HouseRepository.addRealStateHouses("http://acm.ut.ac.ir/khaneBeDoosh/v2/house", "خانه به دوش");
             UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam");
+            currUser = UserRepository.findUser("behnam", "bh1996");
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -123,7 +125,7 @@ public class App {
             result = HouseRepository.find(parentName, id);
         } else {
             result = House.getDetails(id, parentName, parentName);
-            HouseRepository.update(res);
+            HouseRepository.update(result);
         }
         return result;
 

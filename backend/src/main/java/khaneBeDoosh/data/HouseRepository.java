@@ -204,6 +204,32 @@ public class HouseRepository {
         return null;
     }
 
-    public static void update(String parentName, String id) {
+    public static void update(House house) throws SQLException {
+        logger.info("Update house with id " + house.getId());
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "UPDATE House SET Area = ? AND BuildingType = ? AND Address = ? AND ImageURL = ? AND Description = ?" +
+                "AND DealType = ? AND Phone = ? AND SellPrice = ? AND BasePrice = ? AND RentPrice = ? WHERE ID = ? AND ParentID = ?" +
+                "WHERE ID = ? AND ParentID = ?";
+
+
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setInt(1, house.getArea());
+        statement.setString(2, house.getBuildingType().name());
+        statement.setString(3, house.getAddress());
+        statement.setString(4, house.getImageURL());
+        statement.setString(5, house.getDescription());
+        statement.setInt(6, house.getDealType());
+        statement.setString(7, house.getPhone());
+        statement.setInt(8, house.getPrice().getSellPrice());
+        statement.setInt(9, house.getPrice().getBasePrice());
+        statement.setInt(10, house.getPrice().getRentPrice());
+        statement.setString(11, house.getId());;
+        statement.setString(12, house.getParentName());
+        statement.executeUpdate();
+
+        con.close();
     }
 }

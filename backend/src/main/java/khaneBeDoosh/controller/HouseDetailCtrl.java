@@ -49,7 +49,7 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetailsGetPhone")
     public HouseDetail getPhone(@RequestParam(value="id", defaultValue="") String id,
-                                @RequestParam(value="parentName", defaultValue="خانه به دوش") String parentName,
+                                @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName,
                                 @RequestParam(value = "name", defaultValue = "بهنام همایون") String name) {
 
         Boolean success = false;
