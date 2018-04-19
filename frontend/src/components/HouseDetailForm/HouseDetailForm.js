@@ -31,7 +31,8 @@ class HouseDetailForm extends Component {
             .then(response => response.json()).then((response) => {
             this.setState({
                 btnMsg: response.btnMsg,
-                phoneVisibility: response.success
+                phoneVisibility: response.success,
+                currUsername: response.username
             });
         });
     };
@@ -49,7 +50,7 @@ class HouseDetailForm extends Component {
         const content = this.props.house.phone;
         const notRequested = 'دریافت شماره مالک/مشاور';
         const notEnoughBalance = 'اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست';
-        const isUserHomayoon = this.props.parentName === "بهنام همایون";
+        const isCurrUser = this.props.parentName === this.state.currUsername;
 
         return (
             <div className="houseDetailForm row">
@@ -156,8 +157,8 @@ class HouseDetailForm extends Component {
                 <div className="col-xl-8 col-sm-12">
                     <img src={this.props.house.imageURL} id="house-img" alt="House" />
                     <a id="get-house-phone"
-                       className={(this.state.btnMsg === notRequested && !isUserHomayoon ? 'balance-not-requested' :
-                            this.state.btnMsg === notEnoughBalance && !isUserHomayoon ? 'balance-not-enough' :
+                       className={(this.state.btnMsg === notRequested && !isCurrUser ? 'balance-not-requested' :
+                            this.state.btnMsg === notEnoughBalance && !isCurrUser ? 'balance-not-enough' :
                            'balance-was-enough' )}
                        onClick={this.handleClick}>
                         {this.state.btnMsg}

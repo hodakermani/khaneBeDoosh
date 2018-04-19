@@ -32,6 +32,7 @@ class Navbar extends Component {
 
             this.setState({
                 balance: response.currentBalance,
+                name: response.name
             });
         });
     }
@@ -55,7 +56,7 @@ class Navbar extends Component {
                         <span>تومان</span>
                     </Link>
                     <div className="username">
-                        <span>بهنام همایون</span>
+                        <span>{this.state.name}</span>
                     </div>
                 </div>
 

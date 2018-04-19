@@ -23,6 +23,7 @@ class Dropdown extends Component {
 
             this.setState({
                 balance: response.currentBalance,
+                name: response.name
             });
         });
     }
@@ -44,7 +45,7 @@ class Dropdown extends Component {
                     <span>ناحیه کاربری</span>
                 </a>
                 <div className="dropdown-content">
-                    <p>بهنام همایون</p>
+                    <p>{this.state.name}</p>
                     <div className="row">
                         <div className="col-xl-6 col-sm-6 balance" id="name">
                             <span>اعتبار</span>

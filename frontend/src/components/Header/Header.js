@@ -32,6 +32,7 @@ class Header extends Component {
 
             this.setState({
                 balance: response.currentBalance,
+                name: response.name
             });
         });
     }
@@ -48,7 +49,7 @@ class Header extends Component {
                     <div className="col-xl-6 desktop-header">
                         <div className="dropdown user-btn-header">
                             <div className="dropdown-content">
-                                <p>بهنام همایون</p>
+                                <p>{this.state.name}</p>
                                 <div className="row">
                                     <div className="col-xl-6 col-sm-6 balance" id="name">
                                         <span>اعتبار</span>
@@ -70,7 +71,7 @@ class Header extends Component {
 
                     <div className="col-sm-6 mobile-header">
                         <div className="username">
-                            <span>بهنام همایون</span>
+                            <span>{this.state.name}</span>
                         </div>
                         <Link to={"addBalance"} className="balance">
                             <span>اعتبار</span>

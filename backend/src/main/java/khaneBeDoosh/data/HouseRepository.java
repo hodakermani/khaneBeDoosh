@@ -61,8 +61,7 @@ public class HouseRepository {
         statement.setString(6, newHouse.getDescription());
         statement.setInt(7, newHouse.getDealType());
         statement.setString(8, newHouse.getPhone());
-        // TODO : setDate
-        statement.setString(9, null);
+        statement.setString(9, newHouse.getExpireTime());
         statement.setString(10, newHouse.getAddress());
         statement.setInt(11, newHouse.getPrice().getSellPrice());
         statement.setInt(12, newHouse.getPrice().getBasePrice());
@@ -86,37 +85,64 @@ public class HouseRepository {
 
         List<House> houses = new ArrayList<House>();
 
+        Date currentDate = new Date();
+        long timestamp = currentDate.getTime();
+
+        logger.info("current time = " +timestamp);
+
         while (resultSet.next()) {
-
-            String _id = resultSet.getString("ID");
-            String _parentID = resultSet.getString("ParentID");
-            int _area = resultSet.getInt("Area");
-            String _buildingType = resultSet.getString("BuildingType");
-            String _imageUrl = resultSet.getString("ImageURL");
-            String _description = resultSet.getString("Description");
-            int _dealType = resultSet.getInt("DealType");
-            String _phone = resultSet.getString("Phone");
             String _expireTime = resultSet.getString("ExpireTime");
-            String _address = resultSet.getString("Address");
-            int _sellPrice = resultSet.getInt("SellPrice");
-            int _basePrice = resultSet.getInt("BasePrice");
-            int _rentPrice = resultSet.getInt("RentPrice");
+            if((_expireTime != null && Long.parseLong(_expireTime) > timestamp) || _expireTime == null) {
+
+                String _id = resultSet.getString("ID");
+                String _parentID = resultSet.getString("ParentID");
+                int _area = resultSet.getInt("Area");
+                String _buildingType = resultSet.getString("BuildingType");
+                String _imageUrl = resultSet.getString("ImageURL");
+                String _description = resultSet.getString("Description");
+                int _dealType = resultSet.getInt("DealType");
+                String _phone = resultSet.getString("Phone");
+
+                String _address = resultSet.getString("Address");
+                int _sellPrice = resultSet.getInt("SellPrice");
+                int _basePrice = resultSet.getInt("BasePrice");
+                int _rentPrice = resultSet.getInt("RentPrice");
 
 
-            Price _price;
-            if (_dealType == 0)
-                _price = new Price(_sellPrice);
-            else
-                _price = new Price(_basePrice, _rentPrice);
+                Price _price;
+                if (_dealType == 0)
+                    _price = new Price(_sellPrice);
+                else
+                    _price = new Price(_basePrice, _rentPrice);
 
-            House house = new House(_id, _area, _buildingType, _address, _dealType, _imageUrl, _phone, _description, _price, _expireTime, _parentID);
-            houses.add(house);
+                House house = new House(_id, _area, _buildingType, _address, _dealType, _imageUrl, _phone, _description, _price, _expireTime, _parentID);
+                houses.add(house);
+            }
+            else {
+                deleteHouse(resultSet);
+            }
         }
 
         statement.close();
         con.close();
 
         return houses;
+    }
+
+    // TODO
+    private static void deleteHouse(ResultSet resultSet) throws SQLException {
+
+        logger.info("Delete row with id = " + resultSet.getString("ID"));
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "DELETE FROM House WHERE ID = ? AND ParentID = ? ";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, resultSet.getString("ID"));
+        statement.setString(2, resultSet.getString("ParentID"));
+
+        con.close();
     }
 
 
