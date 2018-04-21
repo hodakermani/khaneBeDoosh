@@ -46,12 +46,13 @@ public class App {
         return "خانه با موفقیت به سیستم اضافه شد.";
     }
 
-    // TODO : filter in db
-    public static List<House> searchHouse(String buildingType, Integer minArea, String dealType, Integer maxPrice)
-            throws IOException, JSONException, SQLException {
+    public static List<House> searchHouse(String buildingType, int minArea, String dealType, int maxPrice)
+            throws SQLException {
         logger.info("-- App : Search House");
-        List<House> allHouses = HouseRepository.findAll();
-        return filterResult(allHouses, buildingType, minArea, dealType, maxPrice);
+        int _dealType = Utility.stringToDealType(dealType);
+        return HouseRepository.find(buildingType, minArea, _dealType, maxPrice);
+
+//        return filterResult(allHouses, buildingType, minArea, dealType, maxPrice);
     }
 
     private static List<House> filterResult(List<House> all, String buildingType, Integer _minArea, String dealType, Integer _maxPrice) {

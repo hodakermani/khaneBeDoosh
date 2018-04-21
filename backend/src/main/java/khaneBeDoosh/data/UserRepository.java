@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public class UserRepository {
 
-    final static Logger logger = Logger.getLogger(App.class);
+    final static Logger logger = Logger.getLogger(AppRepository.class.getName());
 
     public static void createTable(Connection c) throws SQLException {
         Statement stmt;
