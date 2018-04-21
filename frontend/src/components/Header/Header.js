@@ -41,7 +41,7 @@ class Header extends Component {
         return (
             <nav className="header-container">
                 <div className="row header-row">
-                    <Link to={"home"} className="col-xl-6 col-sm-6 header-logo">
+                    <Link to={"/home"} className="col-xl-6 col-sm-6 header-logo">
                         <img src="/images/logo.png" alt="خانه به دوش" />
                         <span>خانه به دوش</span>
                     </Link>
@@ -60,7 +60,7 @@ class Header extends Component {
                                         <span>تومان</span>
                                     </div>
                                 </div>
-                                <Link to={"addBalance"} className="shadowing">افزایش اعتبار</Link>
+                                <Link to={"/addBalance"} className="shadowing">افزایش اعتبار</Link>
                             </div>
                             <a id="user-btn-header" href="">
                                 <i className="fa fa-smile-o" />
@@ -73,7 +73,7 @@ class Header extends Component {
                         <div className="username">
                             <span>{this.state.name}</span>
                         </div>
-                        <Link to={"addBalance"} className="balance">
+                        <Link to={"/addBalance"} className="balance">
                             <span>اعتبار</span>
                             <span>&nbsp;</span>
                             <span>{this.translateNum(String(this.state.balance))}</span>

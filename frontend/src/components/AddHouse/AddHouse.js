@@ -8,7 +8,7 @@ import 'font-awesome/css/font-awesome.css';
 const AddHouse = (props) => {
     return (
         <div className="addHouse">
-            <Link to={"addHouse"} className="add-house">
+            <Link to={"/addHouse"} className="add-house">
                 <span>صاحب خانه هستید؟ خانه خود را ثبت کنید</span>
             </Link>
         </div>

@@ -56,7 +56,7 @@ class Dropdown extends Component {
                             <span>تومان</span>
                         </div>
                     </div>
-                    <Link to={"addBalance"} className="shadowing">افزایش اعتبار</Link>
+                    <Link to={"/addBalance"} className="shadowing">افزایش اعتبار</Link>
                 </div>
             </div>
         );

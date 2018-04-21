@@ -48,7 +48,7 @@ class Navbar extends Component {
                 </div>
 
                 <div className="mobile-header">
-                    <Link to={"addBalance"} className="balance">
+                    <Link to={"/addBalance"} className="balance">
                         <span>اعتبار</span>
                         <span>&nbsp;</span>
                         <span>{this.translateNum(String(this.state.balance))}</span>

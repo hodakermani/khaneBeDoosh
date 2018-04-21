@@ -13,11 +13,11 @@ class App extends Component {
     render() {
         return(
             <Router history={browserHistory}>
-                <Route path="addBalance" component={AddBalance} />
-                <Route path="addHouse" component={AddHouse} />
-                <Route path="houseDetail/:id/:parentName" component={HouseDetail} />
-                <Route path="search/:maxPrice/:minArea/:buildingType/:dealType" component={Search} />
-                <Route path="home" component={Home} />
+                <Route path="/addBalance" component={AddBalance} />
+                <Route path="/addHouse" component={AddHouse} />
+                <Route path="/houseDetail/:id/:parentName" component={HouseDetail} />
+                <Route path="/search/:maxPrice/:minArea/:buildingType/:dealType" component={Search} />
+                <Route path="/home" component={Home} />
             </Router>
         );
     }

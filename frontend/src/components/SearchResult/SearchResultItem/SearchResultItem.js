@@ -31,7 +31,7 @@ class SearchResultItem extends Component {
 
     render() {
         return (
-            <Link to={"houseDetail/" + this.state.house.id + "/" + this.state.house.parentName}>
+            <Link to={"/houseDetail/" + this.state.house.id + "/" + this.state.house.parentName}>
                 <div className="searchResultItem">
                     <div className="image-container">
                         <img src={this.props.house.imageURL} alt="خانه" />
