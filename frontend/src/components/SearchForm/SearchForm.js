@@ -81,8 +81,12 @@ class SearchForm extends Component {
                                checked={this.state.dealType === "خرید"}
                                onChange={this.handleChange} /><span>خرید</span>
                     </div>
-                    <div className="col-xl-6 col-sm-12">
-                        <Link to={"/search/" + this.state.maxPrice + "/" + this.state.minArea + "/" + this.state.buildingType + "/" + this.state.dealType} className="search-btn shadowing">جستجو</Link>
+                    <div className="col-xl-6 col-sm-12" >
+                        {
+                            <Link
+                                to={"/search/" + this.state.maxPrice + "/" + this.state.minArea + "/" + this.state.buildingType + "/" + this.state.dealType}
+                                className="search-btn shadowing">جستجو</Link>
+                        }
                     </div>
                 </div>
             </div>

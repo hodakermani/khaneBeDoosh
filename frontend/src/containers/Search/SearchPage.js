@@ -12,10 +12,39 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 
 export default class SearchPage extends Component {
-
+    constructor(props){
+        super(props);
+        this.fetch = this.fetch.bind(this);
+        this.state = {
+            houses:[]
+        };
+    }
     componentDidMount() {
-        console.log(this.props.params);
 
+    }
+    shouldComponentUpdate(){
+        console.log("UPDATE");
+        this.fetch();
+        return true;
+    }
+    fetch(){
+        let url = '/api/search?minArea=' + this.props.params.minArea +
+            '&buildingType=' + this.props.params.buildingType +
+            '&dealType=' + this.props.params.dealType +
+            '&maxPrice=' + this.props.params.maxPrice;
+        fetch(url)
+            .then((response) => response.json()).then((response) => {
+            console.log(response);
+            this.setState({
+                houses: response.houses,
+                result: (response.success) ? 1 : 0,
+            });
+
+            console.log("HOUSEs",this.state.houses);
+            console.log(this.state.houses.length);
+            console.log(this.props);
+        });
+        console.log(this.props.params);
     }
 
     render() {
@@ -28,6 +57,7 @@ export default class SearchPage extends Component {
                     <div className="col-xl-2 col-sm-12" />
                     <div className="col-xl-8 col-sm-12">
                         <SearchResult
+                            houses={this.state.houses}
                             minArea={this.props.params.minArea}
                             buildingType={this.props.params.buildingType}
                             dealType={this.props.params.dealType}
@@ -35,7 +65,7 @@ export default class SearchPage extends Component {
                         <div className="search-info">
                             <span>جستجوی مجدد</span>
                         </div>
-                        <SearchForm />
+                        <SearchForm inSearchResult="true" />
                         <AddHouse />
                     </div>
                     <div className="col-xl-2 col-sm-12" />

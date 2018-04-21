@@ -14,31 +14,19 @@ class SearchResult extends Component {
             houses : [],
             result: 2,
         };
+
     }
 
     componentDidMount() {
-        let url = '/api/search?minArea=' + this.props.minArea +
-                        '&buildingType=' + this.props.buildingType +
-                        '&dealType=' + this.props.dealType +
-                        '&maxPrice=' + this.props.maxPrice;
-        fetch(url)
-            .then((response) => response.json()).then((response) => {
-            console.log(response);
-            this.setState({
-                houses: response.houses,
-                result: (response.success) ? 1 : 0,
-            });
 
-            console.log(this.state.houses);
-            console.log(this.state.houses.length);
-            console.log(this.props);
-        });
     }
 
     render() {
+
         var col1 = [];
         var col2 = [];
-        this.state.houses.map((house,index) => {
+
+        this.props.houses.map((house,index) => {
             if(index%2 === 0) {
                 col1.push(<SearchResultItem key={index} house={house} />)
             }
@@ -72,7 +60,6 @@ class SearchResult extends Component {
                         {col2}
                     </div>
                 </div>
-
             </div>
         );
     }
