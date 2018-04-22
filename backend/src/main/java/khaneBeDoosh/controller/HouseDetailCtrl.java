@@ -22,7 +22,7 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetails")
     public HouseDetail houseDetail(@RequestParam(value="id", defaultValue="") String id,
-                               @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName) throws SQLException {
+                               @RequestParam(value="parentName", defaultValue="http://139.59.151.5:6664/khaneBeDoosh/v2/house") String parentName) throws SQLException {
         Boolean success = false;
         String msg = "";
         House house = null;
@@ -50,7 +50,7 @@ public class HouseDetailCtrl {
 
     @RequestMapping("/api/houseDetailsGetPhone")
     public HouseDetail getPhone(@RequestParam(value="id", defaultValue="") String id,
-                                @RequestParam(value="parentName", defaultValue="http://acm.ut.ac.ir/khaneBeDoosh/v2/house") String parentName) {
+                                @RequestParam(value="parentName", defaultValue="http://139.59.151.5:6664/khaneBeDoosh/v2/house") String parentName) {
 
         Boolean success = false;
         String msg = "";

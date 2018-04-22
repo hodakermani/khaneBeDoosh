@@ -54,7 +54,7 @@ class AddHouseForm extends Component {
         console.log('------ test');
         console.log(test + validatorName);
 
-        if (param.length === 7 || param.length === 11 && test === true) {
+        if ((param.length === 7 || param.length === 11) && test === true) {
             this.setState({[validatorName]: ""});
             return true;
         }

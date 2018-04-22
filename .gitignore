@@ -1,0 +1,13 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+frontend/node_modules
+
+.idea/workspace.xml
+backend/.idea/vcs.xml
+backend/.idea/workspace.xml
+backend/khaneBeDoosh.db
+backend/sqlite-jdbc-3.8.11.2.jar
+backend/src/.idea/
+backend/target/
+frontend/.idea/
