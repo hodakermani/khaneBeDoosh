@@ -20,7 +20,9 @@ export default class SearchPage extends Component {
         };
     }
     componentDidMount() {
-
+        console.log("UPDATE");
+        this.fetch();
+        return true;
     }
     shouldComponentUpdate(){
         console.log("UPDATE");
