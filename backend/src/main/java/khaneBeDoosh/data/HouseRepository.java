@@ -1,9 +1,6 @@
 package khaneBeDoosh.data;
 
-import khaneBeDoosh.domain.House;
-import khaneBeDoosh.domain.JsonHandler;
-import khaneBeDoosh.domain.Price;
-import khaneBeDoosh.domain.RealState;
+import khaneBeDoosh.domain.*;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,13 +70,42 @@ public class HouseRepository {
         con.close();
     }
 
-    public static List<House> findAll() throws SQLException {
+    public static List<House> find(String buildingType, int minArea, int dealType, int maxPrice) throws SQLException {
         logger.info("Get all houses");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String sql = "SELECT * from House";
+        String b1;
+        String b2;
+
+        if (buildingType.equals("هیچی")) {
+            b1 = "آپارتمان";
+            b2 = "ویلایی";
+        } else {
+            b1 = buildingType;
+            b2 = buildingType;
+        }
+
+        int d1;
+        int d2;
+        if (dealType == 2) {
+            d1 = 1;
+            d2 = 0;
+        } else {
+            d1 = dealType;
+            d2 = dealType;
+        }
+
+        String sql = "SELECT * from House WHERE Area >= ? AND SellPrice <= ? AND RentPrice <= ? AND (BuildingType = ? OR BuildingType = ?) AND (dealType = ? OR dealType = ?);";
         PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setInt(1, minArea);
+        statement.setInt(2, maxPrice);
+        statement.setInt(3, maxPrice);
+        statement.setString(4, b1);
+        statement.setString(5, b2);
+        statement.setInt(6, d1);
+        statement.setInt(7, d2);
 
         ResultSet resultSet = statement.executeQuery();
 
@@ -91,11 +117,13 @@ public class HouseRepository {
         logger.info("current time = " +timestamp);
 
         while (resultSet.next()) {
+
             String _expireTime = resultSet.getString("ExpireTime");
+            String _id = resultSet.getString("ID");
+            String _parentID = resultSet.getString("ParentID");
+
             if((_expireTime != null && Long.parseLong(_expireTime) > timestamp) || _expireTime == null) {
 
-                String _id = resultSet.getString("ID");
-                String _parentID = resultSet.getString("ParentID");
                 int _area = resultSet.getInt("Area");
                 String _buildingType = resultSet.getString("BuildingType");
                 String _imageUrl = resultSet.getString("ImageURL");
@@ -119,7 +147,7 @@ public class HouseRepository {
                 houses.add(house);
             }
             else {
-                deleteHouse(resultSet);
+                deleteHouse(_id, _parentID, con);
             }
         }
 
@@ -129,20 +157,17 @@ public class HouseRepository {
         return houses;
     }
 
-    // TODO
-    private static void deleteHouse(ResultSet resultSet) throws SQLException {
+    private static void deleteHouse(String _id, String _parentID, Connection con) throws SQLException {
+        logger.info("Delete house with id = " + _id + " parentID: " + _parentID);
 
-        logger.info("Delete row with id = " + resultSet.getString("ID"));
-
-        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
-
-        String sql = "DELETE FROM House WHERE ID = ? AND ParentID = ? ";
+        String sql = "DELETE FROM House WHERE ID = ? AND ParentID = ? ;";
         PreparedStatement statement = con.prepareStatement(sql);
 
-        statement.setString(1, resultSet.getString("ID"));
-        statement.setString(2, resultSet.getString("ParentID"));
+        statement.setString(1, _id);
+        statement.setString(2, _parentID);
 
-        con.close();
+        statement.execute();
+        statement.close();
     }
 
 

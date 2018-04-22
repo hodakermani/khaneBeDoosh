@@ -40,21 +40,13 @@ public class SearchCtrl {
             if(!maxPrice.equals("maxPrice"))
                 _maxPrice = Integer.parseInt(maxPrice);
 
-            try {
-                result = App.searchHouse(buildingType, _minArea, dealType, _maxPrice);
-                if(result != null) {
-                    success = true;
-                    msg = "جست و جو با موفقیت انجام گرفت.";
-                }
-                else {
-                    msg = "جست و جو نتیجه ای در بر نداشت.";
-                }
-            } catch (JSONException e) {
-                msg = "جست و جو با موفقیت انجام نگرفت.";
-                e.printStackTrace();
-            } catch (IOException e) {
-                msg = "جست و جو با موفقیت انجام نگرفت.";
-                e.printStackTrace();
+            result = App.searchHouse(buildingType, _minArea, dealType, _maxPrice);
+            if(result != null) {
+                success = true;
+                msg = "جست و جو با موفقیت انجام گرفت.";
+            }
+            else {
+                msg = "جست و جو نتیجه ای در بر نداشت.";
             }
 
         } catch (NumberFormatException e) {
