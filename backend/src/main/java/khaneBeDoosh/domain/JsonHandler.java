@@ -78,9 +78,15 @@ public class JsonHandler {
             for (int c; (c = in.read()) >= 0; )
                 sb.append((char) c);
             String response = sb.toString();
-            System.out.println(response);
-            JSONObject myResponse = new JSONObject(response.toString());
-            return myResponse.getBoolean("success");
+
+            logger.debug(response);
+
+            JSONObject myResponse = new JSONObject(response);
+            boolean success = (myResponse.getString("result")).equals("OK");
+
+            logger.info("----------------------- result for balance was :" + success);
+
+            return success;
         }
         return false;
     }

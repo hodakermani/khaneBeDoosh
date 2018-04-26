@@ -70,7 +70,7 @@ public class HouseRepository {
         con.close();
     }
 
-    public static List<House> find(String buildingType, int minArea, int dealType, int maxPrice) throws SQLException {
+    public static List<House> find(String buildingType, int minArea, int dealType, int maxPrice) throws SQLException, IOException, JSONException {
         logger.info("Get all houses");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
@@ -114,6 +114,8 @@ public class HouseRepository {
         Date currentDate = new Date();
         long timestamp = currentDate.getTime();
 
+        boolean needHouseUpdate = false;
+
         logger.info("current time = " +timestamp);
 
         while (resultSet.next()) {
@@ -148,11 +150,15 @@ public class HouseRepository {
             }
             else {
                 deleteHouse(_id, _parentID, con);
+                needHouseUpdate = true;
             }
         }
 
         statement.close();
         con.close();
+
+        if (needHouseUpdate)
+            addRealStateHouses("http://139.59.151.5:6664/khaneBeDoosh/v2/house", "خانه به دوش");
 
         return houses;
     }
@@ -173,6 +179,10 @@ public class HouseRepository {
 
     public static void addRealStateHouses(String URL, String name) throws IOException, JSONException, SQLException {
         JSONObject response = JsonHandler.reader(URL);
+
+        logger.debug("this is the real state houses");
+        logger.debug(response);
+
         JSONArray data = response.getJSONArray("data");
         String expireTime = response.getString("expireTime");
 
@@ -180,31 +190,22 @@ public class HouseRepository {
             JSONObject jsonobject = data.getJSONObject(i);
 
             String id = jsonobject.getString("id");
-            JSONObject houseDetails = JsonHandler.getHouseDetails(id, URL);
+            int area = jsonobject.getInt("area");
+            int dealType = jsonobject.getInt("dealType");
+            JSONObject _price = jsonobject.getJSONObject("price");
 
-            int dealType = houseDetails.getInt("dealType");
-
-            JSONObject price = houseDetails.getJSONObject("price");
-
-            Price _price;
+            Price price;
             if (dealType == 0)
-                _price = new Price(price.getInt("sellPrice"));
+                price = new Price(_price.getInt("sellPrice"));
             else
-                _price = new Price(price.getInt("basePrice"), price.getInt("rentPrice"));
+                price = new Price(_price.getInt("basePrice"), _price.getInt("rentPrice"));
+
+            String buildingType = jsonobject.getString("buildingType");
+            String address = jsonobject.getString("address");
+            String imageURL = jsonobject.getString("imageURL");
 
             // add house
-            addHouse(new House(
-                    id,
-                    Integer.parseInt(houseDetails.getString("area")),
-                    houseDetails.getString("buildingType"),
-                    houseDetails.getString("address"),
-                    dealType,
-                    houseDetails.getString("imageURL"),
-                    houseDetails.getString("phone"),
-                    houseDetails.getString("description"),
-                    _price,
-                    expireTime,
-                    name));
+            addHouse(new House(id, area, buildingType, address, dealType, imageURL, "", "", price, "1624719494863", name));
         }
     }
 

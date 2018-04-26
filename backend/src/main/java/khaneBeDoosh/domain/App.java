@@ -47,7 +47,7 @@ public class App {
     }
 
     public static List<House> searchHouse(String buildingType, int minArea, String dealType, int maxPrice)
-            throws SQLException {
+            throws SQLException, IOException, JSONException {
         logger.info("-- App : Search House");
         int _dealType = Utility.stringToDealType(dealType);
         return HouseRepository.find(buildingType, minArea, _dealType, maxPrice);

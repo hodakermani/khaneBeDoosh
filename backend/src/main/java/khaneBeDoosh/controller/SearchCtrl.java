@@ -26,7 +26,7 @@ public class SearchCtrl {
     public SearchResult searchHouse(@RequestParam(value="buildingType", defaultValue="هیچی") String buildingType,
                                     @RequestParam(value="minArea", defaultValue="0") String minArea,
                                     @RequestParam(value="dealType", defaultValue="هیچی") String dealType,
-                                    @RequestParam(value="maxPrice", defaultValue="2147483647") String maxPrice) throws SQLException {
+                                    @RequestParam(value="maxPrice", defaultValue="2147483647") String maxPrice) throws SQLException, IOException, JSONException {
 
         Boolean success = false;
         String msg = "";

@@ -24,7 +24,9 @@ class SearchForm extends Component {
         this.validator();
 
         console.log(this.state);
-        this.setState({[event.target.name]: event.target.value});
+
+        let value = this.setInitialValueForInputs(event.target.name, event.target.value);
+        this.setState({[event.target.name]: value});
     }
 
     numberValidator(param, validatorName) {
@@ -47,6 +49,26 @@ class SearchForm extends Component {
         const v1 = this.numberValidator(this.state.minArea, "minAreaValidator");
         const v2 = this.numberValidator(this.state.maxPrice, "maxPriceValidator");
         return v1 && v2;
+    }
+
+    /**
+     * If a user fills in an input field and then clears
+     * it, this function is responsible for setting the
+     * initial values for the input fields and the submitting
+     * the form.
+     */
+    setInitialValueForInputs(name, value) {
+
+        if (value !== "")
+            return value;
+
+        if (name === "maxPrice")
+            value = "maxPrice";
+        else if (name === "minArea")
+            value = 0;
+        else if (name === "buildingType" || name === "dealType")
+            value = "هیچی";
+        return value;
     }
 
     render() {
@@ -81,12 +103,8 @@ class SearchForm extends Component {
                                checked={this.state.dealType === "خرید"}
                                onChange={this.handleChange} /><span>خرید</span>
                     </div>
-                    <div className="col-xl-6 col-sm-12" >
-                        {
-                            <Link
-                                to={"/search/" + this.state.maxPrice + "/" + this.state.minArea + "/" + this.state.buildingType + "/" + this.state.dealType}
-                                className="search-btn shadowing">جستجو</Link>
-                        }
+                    <div className="col-xl-6 col-sm-12">
+                        <Link to={"/search/" + this.state.maxPrice + "/" + this.state.minArea + "/" + this.state.buildingType + "/" + this.state.dealType} className="search-btn shadowing">جستجو</Link>
                     </div>
                 </div>
             </div>

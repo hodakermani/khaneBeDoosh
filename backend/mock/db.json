@@ -1,0 +1,110 @@
+{
+  "houses" : {
+    "result": "OK",
+    "expireTime": 1624719494863,
+    "data": [
+      {
+        "id": "78278842-78eb-475f-a38a-a7001f86f644",
+        "area": 279,
+        "price": {
+          "rentPrice": 8084,
+          "basePrice": 95352
+        },
+        "dealType": 1,
+        "buildingType": "ویلایی",
+        "address": "احتشامیه",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/German_House.jpg/320px-German_House.jpg"
+      },
+      {
+        "id": "2f5807f7-813b-48c5-9f65-4f280e71f97a",
+        "area": 276,
+        "price": {
+          "sellPrice": 4689857
+        },
+        "dealType": 0,
+        "buildingType": "آپارتمان",
+        "address": "دروازه غار",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Faza_in_Kenya%27s_Coast_Province.JPEG/320px-Faza_in_Kenya%27s_Coast_Province.JPEG"
+      },
+      {
+        "id": "4c32c7b4-bc12-46f9-a180-ca143cc57929",
+        "area": 248,
+        "price": {
+          "sellPrice": 5905964
+        },
+        "dealType": 0,
+        "buildingType": "آپارتمان",
+        "address": "دروس",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Construction_maison_bambou.jpg"
+      },
+      {
+        "id": "6469ac15-60b1-452f-ba12-3fa18cad36bb",
+        "area": 261,
+        "price": {
+          "sellPrice": 6198649
+        },
+        "dealType": 0,
+        "buildingType": "ویلایی",
+        "address": "دروس",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/1156_Marken%2C_Netherlands_-_panoramio_%281%29.jpg/320px-1156_Marken%2C_Netherlands_-_panoramio_%281%29.jpg"
+      },
+      {
+        "id": "7ff84b36-8ed1-40d8-b603-434ec664df19",
+        "area": 100,
+        "price": {
+          "rentPrice": 10206,
+          "basePrice": 86124
+        },
+        "dealType": 1,
+        "buildingType": "آپارتمان",
+        "address": "پامنار",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/German_House.jpg/320px-German_House.jpg"
+      },
+      {
+        "id": "a9d1a6ea-2e1f-413d-9780-57d1cf14cbb8",
+        "area": 274,
+        "price": {
+          "sellPrice": 13829658
+        },
+        "dealType": 0,
+        "buildingType": "آپارتمان",
+        "address": "احتشامیه",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Banaue_Philippines_Batad-Rice-Terraces-03.jpg/320px-Banaue_Philippines_Batad-Rice-Terraces-03.jpg"
+      },
+      {
+        "id": "17ba25cc-87fd-437a-8447-8f92b5692e5a",
+        "area": 168,
+        "price": {
+          "sellPrice": 11291520
+        },
+        "dealType": 0,
+        "buildingType": "آپارتمان",
+        "address": "باغ شاطر",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Faza_in_Kenya%27s_Coast_Province.JPEG/320px-Faza_in_Kenya%27s_Coast_Province.JPEG"
+      },
+      {
+        "id": "043b8b68-983b-4fc1-9ef3-342ee5169a92",
+        "area": 56,
+        "price": {
+          "rentPrice": 7910,
+          "basePrice": 16475
+        },
+        "dealType": 1,
+        "buildingType": "ویلایی",
+        "address": "امامزاده یحیی",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/German_House.jpg/320px-German_House.jpg"
+      },
+      {
+        "id": "fc5cb2d0-73a0-4b0f-baa5-06c763256173",
+        "area": 233,
+        "price": {
+          "sellPrice": 6978370
+        },
+        "dealType": 0,
+        "buildingType": "ویلایی",
+        "address": "سنگلج",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Soweto_township.jpg/320px-Soweto_township.jpg"
+      }
+    ]
+  }
+}

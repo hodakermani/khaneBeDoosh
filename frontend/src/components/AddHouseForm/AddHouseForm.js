@@ -98,7 +98,7 @@ class AddHouseForm extends Component {
         let url = '';
         if(this.state.dealType === 'خرید') {
             url = '/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
-                +this.state.dealType +'&basePrice='+this.state.basePrice+'&rentPrice=0'+'&address='
+                +this.state.dealType +'&basePrice='+this.state.basePrice+'&rentPrice=0&address='
                 +this.state.address+'&phone='+this.state.phone+'&description='
                 +this.state.description;
         }
