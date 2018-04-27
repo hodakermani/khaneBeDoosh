@@ -160,7 +160,7 @@ public class HouseRepository {
         String timestamp = Long.toString(currentDate.getTime());
         logger.info("current time = " +timestamp);
 
-        String sql = "DELETE FROM House WHERE ExpireTime > ? ;";
+        String sql = "DELETE FROM House WHERE ExpireTime < ? ;";
 
         PreparedStatement statement = con.prepareStatement(sql);
         statement.setString(1, timestamp);

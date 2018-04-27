@@ -12,8 +12,7 @@ class Header extends Component {
         this.state = {
             balance: '',
         };
-        this.translateNum = this.translateNum.bind(this);
-        this.getBalance = this.getBalance.bind(this);
+        this.translateNum =  this.translateNum.bind(this);
     }
 
     translateNum(m) {
@@ -25,18 +24,20 @@ class Header extends Component {
         })
     }
 
-    getBalance() {
-        let url = '/api/getBalance';
-        fetch(url)
-            .then(response => response.json()).then((response) => {
-            console.log(response);
-
-            this.setState({
-                balance: response.currentBalance,
-                name: response.name
-            });
-        });
-    }
+    // componentWillMount() {
+    //     let url = '/api/getBalance';
+    //     setInterval(() => {
+    //         fetch(url)
+    //             .then(response => response.json()).then((response) => {
+    //             console.log(response);
+    //
+    //             this.setState({
+    //                 balance: response.currentBalance,
+    //                 name: response.name
+    //             });
+    //         });
+    //     }, 1000);
+    // }
 
     componentDidMount() {
         let url = '/api/getBalance';
@@ -52,12 +53,6 @@ class Header extends Component {
     }
 
     render() {
-
-        if (this.props.isBalanceUpdated === true) {
-            console.log("im updating balance here");
-            this.getBalance();
-        }
-
         return (
             <nav className="header-container">
                 <div className="row header-row">
