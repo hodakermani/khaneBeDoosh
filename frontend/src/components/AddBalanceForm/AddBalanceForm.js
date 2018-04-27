@@ -66,8 +66,12 @@ class AddBalanceForm extends Component {
             .then(response => response.json()).then((response) => {
             console.log(response);
 
-            if (response.success === true)
+            if (response.success === true) {
                 alert(response.msg);
+
+                // send to the parent that this was successful
+                this.props.updateBalance();
+            }
 
             this.setState({
                 balance: response.currentBalance,

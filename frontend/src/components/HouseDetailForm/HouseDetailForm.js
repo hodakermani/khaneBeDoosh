@@ -34,6 +34,7 @@ class HouseDetailForm extends Component {
                 phoneVisibility: response.success,
                 currUsername: response.username
             });
+            this.props.updateBalance();
         });
     };
 

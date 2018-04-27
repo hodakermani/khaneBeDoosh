@@ -29,7 +29,6 @@ class SearchResult extends Component {
                 result: (response.success) ? 1 : 0,
             });
 
-            console.log(this.state.houses);
             console.log(this.state.houses.length);
             console.log(this.props);
         });

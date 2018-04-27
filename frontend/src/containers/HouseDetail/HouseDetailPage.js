@@ -17,7 +17,9 @@ export default class HouseDetailPage extends Component {
             house : [],
             price : [],
             btnMsg : '',
+            isBalanceUpdated: false,
         };
+        this.updateBalance = this.updateBalance.bind(this);
     }
 
     componentDidMount() {
@@ -33,16 +35,24 @@ export default class HouseDetailPage extends Component {
         });
     }
 
+    updateBalance() {
+        this.setState({["isBalanceUpdated"]: true});
+        setTimeout(() => {
+            this.setState({["isBalanceUpdated"]: false});
+        }, 500);
+    }
+
     render() {
         return (
             <div className="houseDetailPage">
-                <Header />
+                <Header isBalanceUpdated={this.state.isBalanceUpdated} />
                 <PageTitle title="مشخصات کامل ملک"/>
 
                 <div className="main-content row">
                     <div className="col-xl-1 col-sm-12" />
                     <div className="col-xl-10 col-sm-12">
                         <HouseDetailForm
+                            updateBalance={this.updateBalance}
                             house={this.state.house}
                             price={this.state.price}
                             btnMsg={this.state.btnMsg}
