@@ -75,8 +75,16 @@ public class HouseRepository {
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String b1;
-        String b2;
+
+        // check expiration date of all houses and remove them if required
+        int numOfModifiedRows = deleteHouses();
+
+        // add houses again
+        if (numOfModifiedRows > 0)
+            addRealStateHouses("http://139.59.151.5:6664/khaneBeDoosh/v2/house", "خانه به دوش");
+
+        // perform the filter
+        String b1, b2;
 
         if (buildingType.equals("هیچی")) {
             b1 = "آپارتمان";
@@ -86,8 +94,7 @@ public class HouseRepository {
             b2 = buildingType;
         }
 
-        int d1;
-        int d2;
+        int d1, d2;
         if (dealType == 2) {
             d1 = 1;
             d2 = 0;
@@ -111,71 +118,62 @@ public class HouseRepository {
 
         List<House> houses = new ArrayList<House>();
 
-        Date currentDate = new Date();
-        long timestamp = currentDate.getTime();
-
-        boolean needHouseUpdate = false;
-
-        logger.info("current time = " +timestamp);
-
         while (resultSet.next()) {
 
-            String _expireTime = resultSet.getString("ExpireTime");
             String _id = resultSet.getString("ID");
             String _parentID = resultSet.getString("ParentID");
+            String _expireTime = resultSet.getString("ExpireTime");
+            int _area = resultSet.getInt("Area");
+            String _buildingType = resultSet.getString("BuildingType");
+            String _imageUrl = resultSet.getString("ImageURL");
+            String _description = resultSet.getString("Description");
+            int _dealType = resultSet.getInt("DealType");
+            String _phone = resultSet.getString("Phone");
+            String _address = resultSet.getString("Address");
+            int _sellPrice = resultSet.getInt("SellPrice");
+            int _basePrice = resultSet.getInt("BasePrice");
+            int _rentPrice = resultSet.getInt("RentPrice");
 
-            if((_expireTime != null && Long.parseLong(_expireTime) > timestamp) || _expireTime == null) {
+            Price _price;
+            if (_dealType == 0)
+                _price = new Price(_sellPrice);
+            else
+                _price = new Price(_basePrice, _rentPrice);
 
-                int _area = resultSet.getInt("Area");
-                String _buildingType = resultSet.getString("BuildingType");
-                String _imageUrl = resultSet.getString("ImageURL");
-                String _description = resultSet.getString("Description");
-                int _dealType = resultSet.getInt("DealType");
-                String _phone = resultSet.getString("Phone");
-
-                String _address = resultSet.getString("Address");
-                int _sellPrice = resultSet.getInt("SellPrice");
-                int _basePrice = resultSet.getInt("BasePrice");
-                int _rentPrice = resultSet.getInt("RentPrice");
-
-
-                Price _price;
-                if (_dealType == 0)
-                    _price = new Price(_sellPrice);
-                else
-                    _price = new Price(_basePrice, _rentPrice);
-
-                House house = new House(_id, _area, _buildingType, _address, _dealType, _imageUrl, _phone, _description, _price, _expireTime, _parentID);
-                houses.add(house);
-            }
-            else {
-                deleteHouse(_id, _parentID, con);
-                needHouseUpdate = true;
-            }
+            House house = new House(_id, _area, _buildingType, _address, _dealType, _imageUrl, _phone, _description, _price, _expireTime, _parentID);
+            houses.add(house);
         }
 
         statement.close();
         con.close();
 
-        if (needHouseUpdate)
-            addRealStateHouses("http://139.59.151.5:6664/khaneBeDoosh/v2/house", "خانه به دوش");
-
         return houses;
     }
 
-    private static void deleteHouse(String _id, String _parentID, Connection con) throws SQLException {
-        logger.info("Delete house with id = " + _id + " parentID: " + _parentID);
+    private static int deleteHouses() throws SQLException {
+        logger.info("*** Delete Houses ***");
 
-        String sql = "DELETE FROM House WHERE ID = ? AND ParentID = ? ;";
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        // Get the current date
+        Date currentDate = new Date();
+        String timestamp = Long.toString(currentDate.getTime());
+        logger.info("current time = " +timestamp);
+
+        String sql = "DELETE FROM House WHERE ExpireTime > ? ;";
+
         PreparedStatement statement = con.prepareStatement(sql);
+        statement.setString(1, timestamp);
 
-        statement.setString(1, _id);
-        statement.setString(2, _parentID);
+        int numOfModifiedRows = statement.executeUpdate();
+        logger.info("*** number of affected rows: " + numOfModifiedRows);
 
-        statement.execute();
+
         statement.close();
-    }
 
+        con.close();
+        return numOfModifiedRows;
+    }
 
     public static void addRealStateHouses(String URL, String name) throws IOException, JSONException, SQLException {
         JSONObject response = JsonHandler.reader(URL);
@@ -205,7 +203,7 @@ public class HouseRepository {
             String imageURL = jsonobject.getString("imageURL");
 
             // add house
-            addHouse(new House(id, area, buildingType, address, dealType, imageURL, "", "", price, "1624719494863", name));
+            addHouse(new House(id, area, buildingType, address, dealType, imageURL, "", "", price, expireTime, name));
         }
     }
 

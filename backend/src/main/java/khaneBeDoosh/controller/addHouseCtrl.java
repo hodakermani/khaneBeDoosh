@@ -58,7 +58,7 @@ public class addHouseCtrl {
                     }
                     User user = App.getUser();
                     House newHouse = new House(UUID.randomUUID().toString(), _area, buildingType, address,
-                                                _dealType, null, phone, description, _price, null, user.getName());
+                                                _dealType, null, phone, description, _price, "-1", user.getName());
                     msg = App.addHouse(newHouse);
                     success = true;
                 } catch (NumberFormatException ex) {
