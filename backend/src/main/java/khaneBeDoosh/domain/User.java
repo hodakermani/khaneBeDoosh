@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class User {
 
+    private boolean isAdmin = false;
+
     protected String name;
 
     public User(String _name) {
@@ -19,5 +21,9 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }

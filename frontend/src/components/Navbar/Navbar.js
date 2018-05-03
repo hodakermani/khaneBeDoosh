@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import Dropdown from '../Dropdown/Dropdown';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';

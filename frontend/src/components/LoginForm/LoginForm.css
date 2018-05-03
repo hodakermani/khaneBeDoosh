@@ -1,0 +1,87 @@
+.loginForm {
+    width: 100%;
+    direction: rtl;
+    position: relative;
+    top: 50%;
+}
+
+.loginForm .container {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 70px 40px 40px 40px;
+    width: 50%;
+    height: 100%;
+    border: 2px solid lightgray;
+    box-shadow: 2px 2px 20px lightgrey;
+    border-radius: 3px;
+}
+
+.loginForm .loginText {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.loginForm .in {
+    margin-bottom: 15px;
+    background-color: #ececec;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.loginForm .submit.btn {
+    border: 3px solid #2ed1cb;
+    color: #2ed1cb;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 25px;
+    display: block;
+    padding: 7px;
+    width: 40%;
+}
+
+.loginForm .submit.btn:hover {
+    background-color: #2ed1cb;
+    color: white;
+}
+
+.loginForm .logo {
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    display: block;
+    margin-left: -60px;
+    width: 120px;
+}
+
+@media screen and (max-width: 1199px) {
+    .loginForm .container {
+        padding: 50px 20px 20px 20px;
+        width: 100%;
+    }
+
+    .loginForm .loginText {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .loginForm .logo {
+        width: 80px;
+        top: -40px;
+        margin-left: -40px;
+    }
+
+    .loginForm .in {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+
+    .loginForm .submit.btn {
+        width: 100%;
+        font-size: 12px;
+    }
+}

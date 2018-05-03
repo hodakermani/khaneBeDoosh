@@ -132,4 +132,13 @@ public class App {
         return false;
     }
 
+    public static List<Viewed> getViewedHouse(String name) throws SQLException, IOException, JSONException {
+        List<Viewed> result = new ArrayList<Viewed>();
+        User user = UserRepository.findUser(name, "bh1996");
+        if (user.isAdmin())
+            result = ViewedRepository.findAll();
+        else
+            result = ViewedRepository.findByName(name);
+        return result;
+    }
 }
