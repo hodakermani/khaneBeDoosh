@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class addHouseCtrl {
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/api/addHouse")
+    @RequestMapping("/secure/api/addHouse")
     public Message addHouse(@RequestParam(value="buildingType", defaultValue="") String buildingType,
                             @RequestParam(value="area", defaultValue="") String area,
                             @RequestParam(value="dealType", defaultValue="") String dealType,

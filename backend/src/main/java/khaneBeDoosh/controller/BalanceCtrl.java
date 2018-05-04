@@ -21,7 +21,7 @@ public class BalanceCtrl {
 
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/api/getBalance")
+    @RequestMapping("/secure/api/getBalance")
     public Balance getBalance(@RequestParam(value="name", defaultValue="بهنام همایون") String name) throws SQLException {
         Boolean success = true;
         String msg = "";
@@ -29,7 +29,7 @@ public class BalanceCtrl {
         return new Balance(counter.incrementAndGet(), success, msg, user.getName(), UserRepository.getBalance(user.getName()));
     }
 
-    @RequestMapping("/api/addBalance")
+    @RequestMapping("/secure/api/addBalance")
     public Balance addBalance(@RequestParam(value="name", defaultValue="بهنام همایون") String name,
                               @RequestParam(value="balance", defaultValue="") String balance) throws SQLException {
         Boolean success = false;

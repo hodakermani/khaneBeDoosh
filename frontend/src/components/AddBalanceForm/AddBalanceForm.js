@@ -81,7 +81,7 @@ class AddBalanceForm extends Component {
                 'Authorization': header,
             }
         };
-        fetch(url)
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
 
