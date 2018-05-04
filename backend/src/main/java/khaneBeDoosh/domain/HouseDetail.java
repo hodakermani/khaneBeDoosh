@@ -1,8 +1,5 @@
 package khaneBeDoosh.domain;
 
-/**
- * Created by nafise on 06/04/2018.
- */
 public class HouseDetail {
 
     private final long id;

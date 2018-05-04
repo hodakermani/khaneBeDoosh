@@ -1,13 +1,6 @@
 package khaneBeDoosh.domain;
 
-/**
- * Created by nafise on 20/02/2018.
- */
 public class Utility {
-
-    public static int stringToInt(String s) {
-        return Integer.parseInt(s);
-    }
 
     public static House.BuildingType stringToBuildingType(String s) {
         if (s.equals("آپارتمان"))
@@ -27,11 +20,4 @@ public class Utility {
         else
             return 2;
     }
-
-    public static boolean isNotBlank(String s) {
-        if (s != null && s != "")
-            return true;
-        return false;
-    }
-
 }

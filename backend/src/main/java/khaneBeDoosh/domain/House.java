@@ -1,15 +1,9 @@
 package khaneBeDoosh.domain;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.Date;
-import java.util.UUID;
+import org.json.JSONObject;
+import org.json.JSONException;
 
-/**
- * Created by nafise on 20/02/2018.
- */
 public class House {
 
     protected String id;

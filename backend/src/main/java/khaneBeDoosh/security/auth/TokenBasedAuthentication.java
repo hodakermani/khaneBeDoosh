@@ -3,10 +3,6 @@ package khaneBeDoosh.security.auth;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 
-/**
- * Created by nafise on 14/04/2018.
- */
-
 public class TokenBasedAuthentication extends AbstractAuthenticationToken {
 
     private String token;

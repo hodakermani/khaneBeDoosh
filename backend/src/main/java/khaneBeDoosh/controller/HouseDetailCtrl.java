@@ -12,17 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by nafise on 06/04/2018.
- */
-
 @RestController
 public class HouseDetailCtrl {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/api/houseDetails")
     public HouseDetail houseDetail(@RequestParam(value="id", defaultValue="") String id,
-                               @RequestParam(value="parentName", defaultValue="http://139.59.151.5:6664/khaneBeDoosh/v2/house") String parentName) throws SQLException {
+                                   @RequestParam(value="parentName", defaultValue="http://139.59.151.5:6664/khaneBeDoosh/v2/house") String parentName) throws SQLException {
         Boolean success = false;
         String msg = "";
         House house = null;
@@ -77,7 +73,6 @@ public class HouseDetailCtrl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, btnMsg);
     }
 }

@@ -1,12 +1,8 @@
 package khaneBeDoosh.domain;
 
+import java.io.IOException;
 import org.json.JSONException;
 
-import java.io.IOException;
-
-/**
- * Created by nafise on 20/02/2018.
- */
 public class Bank {
 
     private static String url = "http://139.59.151.5:6664/bank/pay";

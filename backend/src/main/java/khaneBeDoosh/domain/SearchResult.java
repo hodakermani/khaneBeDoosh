@@ -2,9 +2,6 @@ package khaneBeDoosh.domain;
 
 import java.util.List;
 
-/**
- * Created by nafise on 06/04/2018.
- */
 public class SearchResult {
 
     private final long id;

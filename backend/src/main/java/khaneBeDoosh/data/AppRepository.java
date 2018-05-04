@@ -1,12 +1,8 @@
 package khaneBeDoosh.data;
 
 import java.sql.*;
-
 import org.apache.log4j.Logger;
 
-/**
- * Created by nafise on 14/04/2018.
- */
 public class AppRepository {
 
     private static Logger logger = Logger.getLogger(AppRepository.class.getName());

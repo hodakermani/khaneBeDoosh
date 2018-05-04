@@ -10,10 +10,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by nafise on 14/04/2018.
- */
-
 @Component
 public class TokenHelper {
 

@@ -1,20 +1,17 @@
 package khaneBeDoosh.data;
 
 import khaneBeDoosh.domain.*;
+
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONException;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
+import java.io.IOException;
 
-/**
- * Created by nafise on 16/04/2018.
- */
 public class HouseRepository {
 
     private static Logger logger = Logger.getLogger(AppRepository.class.getName());

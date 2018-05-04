@@ -1,11 +1,11 @@
 package khaneBeDoosh.security.auth;
 
 import khaneBeDoosh.data.UserRepository;
+import khaneBeDoosh.domain.App;
 import khaneBeDoosh.domain.Individual;
 import khaneBeDoosh.security.TokenHelper;
 
 import org.apache.log4j.Logger;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,11 +17,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-/**
- * Created by nafise on 14/04/2018.
- */
 
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
@@ -55,10 +50,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                         TokenBasedAuthentication authentication = new TokenBasedAuthentication(userDetails);
                         authentication.setToken(authToken);
                         SecurityContextHolder.getContext().setAuthentication(authentication);
+                        App.setLoginUser(user);
                     }
-//                    else {
-//                        throw new AccessDeniedException("token problem.");
-//                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

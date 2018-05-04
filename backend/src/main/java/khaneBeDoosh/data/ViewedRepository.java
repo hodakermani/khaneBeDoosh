@@ -1,19 +1,15 @@
 package khaneBeDoosh.data;
 
-import khaneBeDoosh.domain.House;
-import khaneBeDoosh.domain.Price;
 import khaneBeDoosh.domain.Viewed;
-import org.apache.log4j.Logger;
+
 import org.json.JSONException;
+import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.io.IOException;
 
-/**
- * Created by nafise on 16/04/2018.
- */
 public class ViewedRepository {
 
     private static Logger logger = Logger.getLogger(AppRepository.class.getName());
@@ -110,6 +106,7 @@ public class ViewedRepository {
         String sql = "SELECT * from Viewed WHERE IndividualID = ?;";
         PreparedStatement statement = con.prepareStatement(sql);
 
+        // TODO = in username e na name => convert!! :D
         statement.setString(1, name);
 
         ResultSet resultSet = statement.executeQuery();

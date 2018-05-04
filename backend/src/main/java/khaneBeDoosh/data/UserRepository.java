@@ -1,16 +1,12 @@
 package khaneBeDoosh.data;
 
 import khaneBeDoosh.domain.Individual;
-import khaneBeDoosh.domain.User;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by nafise on 14/04/2018.
- */
 public class UserRepository {
 
     final static Logger logger = Logger.getLogger(AppRepository.class.getName());
@@ -23,7 +19,8 @@ public class UserRepository {
                 " Password      VARCHAR(50)                     NOT NULL," +
                 " Name          VARCHAR(50)                     NOT NULL," +
                 " Phone         VARCHAR(50)                     NOT NULL," +
-                " Balance       INT             DEFAULT 0)";
+                " Balance       INT             DEFAULT 0," +
+                " isAdmin       INT             DEFAULT 0 )";
         stmt.executeUpdate(sql);
 
         sql = "CREATE TABLE RealState " +
@@ -70,12 +67,12 @@ public class UserRepository {
         con.close();
     }
 
-    public static void addIndividual(String name, String password, String username) throws SQLException {
+    public static void addIndividual(String name, String password, String username, int isAdmin) throws SQLException {
         logger.info("Add New Individual");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
-        String sql = "INSERT INTO Individual (Username, Password, Name, Phone, Balance) VALUES(?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO Individual (Username, Password, Name, Phone, Balance, IsAdmin) VALUES(?, ?, ?, ?, ?, ?);";
         PreparedStatement statement = con.prepareStatement(sql);
 
         statement.setString(1, username);
@@ -83,6 +80,7 @@ public class UserRepository {
         statement.setString(3, name);
         statement.setString(4, "");
         statement.setInt(5, 0);
+        statement.setInt(6, isAdmin);
 
         statement.executeUpdate();
         statement.close();
@@ -115,7 +113,8 @@ public class UserRepository {
 
         while (resultSet.next()) {
             Individual newUser = new Individual(resultSet.getString("Name"), resultSet.getString("Username"),
-                                                resultSet.getString("Password"), resultSet.getInt("Balance"));
+                                                resultSet.getString("Password"), resultSet.getInt("Balance"),
+                                                resultSet.getInt("isAdmin"));
             con.close();
             return newUser;
         }
@@ -140,7 +139,8 @@ public class UserRepository {
             String _username = resultSet.getString("Username");
             String _password = resultSet.getString("Password");
             int _balance = resultSet.getInt("Balance");
-            Individual newUser = new Individual(_name, _username, _password, _balance);
+            int _isAdmin = resultSet.getInt("isAdmin");
+            Individual newUser = new Individual(_name, _username, _password, _balance, _isAdmin);
             result.add(newUser);
         }
         con.close();
@@ -165,7 +165,8 @@ public class UserRepository {
             String _username = resultSet.getString("Username");
             String _password = resultSet.getString("Password");
             int _balance = resultSet.getInt("Balance");
-            Individual newUser = new Individual(_name, _username, _password, _balance);
+            int _isAdmin = resultSet.getInt("isAdmin");
+            Individual newUser = new Individual(_name, _username, _password, _balance, _isAdmin);
             con.close();
             return newUser;
         }

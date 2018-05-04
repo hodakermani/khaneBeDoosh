@@ -1,8 +1,5 @@
 package khaneBeDoosh.domain;
 
-/**
- * Created by nafise on 20/02/2018.
- */
 public class Price {
     private int sellPrice;
     private int basePrice;

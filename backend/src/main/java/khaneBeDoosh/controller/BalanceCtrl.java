@@ -12,17 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Created by nafise on 05/04/2018.
- */
-
 @RestController
 public class BalanceCtrl {
 
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/secure/api/getBalance")
-    public Balance getBalance(@RequestParam(value="name", defaultValue="بهنام همایون") String name) throws SQLException {
+    public Balance getBalance() throws SQLException {
         Boolean success = true;
         String msg = "";
         User user = App.getUser();
@@ -30,12 +26,10 @@ public class BalanceCtrl {
     }
 
     @RequestMapping("/secure/api/addBalance")
-    public Balance addBalance(@RequestParam(value="name", defaultValue="بهنام همایون") String name,
-                              @RequestParam(value="balance", defaultValue="") String balance) throws SQLException {
+    public Balance addBalance(@RequestParam(value="balance", defaultValue="") String balance) throws SQLException {
         Boolean success = false;
         String msg = "";
         User user = App.getUser();
-
         if (balance != null && balance != "" && balance instanceof String) {
             try {
                 int requestedBalance = Integer.parseInt(balance);
@@ -62,7 +56,6 @@ public class BalanceCtrl {
                 e.printStackTrace();
             }
         }
-
         return new Balance(counter.incrementAndGet(), success, msg, user.getName(), UserRepository.getBalance(user.getName()));
     }
 

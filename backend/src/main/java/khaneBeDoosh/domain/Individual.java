@@ -1,31 +1,28 @@
 package khaneBeDoosh.domain;
 
-import khaneBeDoosh.data.HouseRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.SQLException;
 import java.util.Collection;
 
-/**
- * Created by nafise on 20/02/2018.
- */
 public class Individual extends User implements UserDetails {
 
     private String phone;
     private int balance;
     private String username;
     private String password;
+    private int isAdmin;
 
     public Individual(){
         super("");
     }
 
-    public Individual(String _name, String _username, String _password, int _balance) {
+    public Individual(String _name, String _username, String _password, int _balance, int isAdmin) {
         super(_name);
         this.balance = _balance;
         this.username = _username;
         this.password = _password;
+        this.isAdmin = isAdmin;
     }
 
     public String getPhone() {
@@ -46,9 +43,7 @@ public class Individual extends User implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
+    public boolean isAccountNonLocked() { return false; }
 
     @Override
     public boolean isCredentialsNonExpired() {
@@ -75,4 +70,7 @@ public class Individual extends User implements UserDetails {
 
     public void setBalance(int balance) { this.balance = balance; }
 
+    public int getIsAdmin() {
+        return isAdmin;
+    }
 }

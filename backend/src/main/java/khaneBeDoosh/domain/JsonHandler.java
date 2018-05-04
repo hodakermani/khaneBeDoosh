@@ -1,20 +1,14 @@
 package khaneBeDoosh.domain;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.*;
 
-/**
- * Created by nafise on 20/02/2018.
- */
+import java.net.URL;
+import java.net.HttpURLConnection;
+
 public class JsonHandler {
 
     final static Logger logger = Logger.getLogger(App.class);

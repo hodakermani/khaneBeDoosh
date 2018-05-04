@@ -1,29 +1,26 @@
 package khaneBeDoosh.domain;
 
-import org.apache.log4j.Logger;
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import khaneBeDoosh.data.*;
 
-/**
- * Created by nafise on 20/02/2018.
- */
+import org.json.JSONException;
+import org.apache.log4j.Logger;
+
+import java.util.List;
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class App {
 
     final static Logger logger = Logger.getLogger(App.class);
 
-    private static User currUser;
+    private static User currUser = null;
 
     static {
         AppRepository.create();
         try {
-            UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam");
-            currUser = UserRepository.findUser("behnam", "bh1996");
+            UserRepository.addIndividual("بهنام همایون", "bh1996", "behnam", 0);
+            UserRepository.addIndividual("هدی کرمانی", "hoda1375", "hoda", 0);
+            UserRepository.addIndividual("ادمین", "admin", "admin", 1);
             UserRepository.addRealState("http://139.59.151.5:6664/khaneBeDoosh/v2/house", "خانه به دوش");
             HouseRepository.addRealStateHouses("http://139.59.151.5:6664/khaneBeDoosh/v2/house", "خانه به دوش");
         } catch (SQLException e) {
@@ -38,6 +35,8 @@ public class App {
     public static User getUser() {
         return currUser;
     }
+
+    public static void setUser(User user) { currUser = user; }
 
     public static String addHouse(House newHouse) throws SQLException {
         logger.info("-- App : Add House");
@@ -79,29 +78,34 @@ public class App {
         }
         int userBalance = UserRepository.getBalance(name);
         if (userBalance >= 1000) {
-            // house-owner should not pay to see phone number
             if (!name.equals(ownerName)) {
                 UserRepository.addBalance(-1000, name);
                 ViewedRepository.addViewedHouse(houseId, ownerName, name);
             }
-
             return true;
         }
-
         return false;
     }
 
-    public static List<Viewed> getViewedHouse(String name) throws SQLException, IOException, JSONException {
-        List<Viewed> result = new ArrayList<Viewed>();
-        User user = UserRepository.findUser(name, "bh1996");
-        if (user.isAdmin())
+    public static List<Viewed> getViewedHouse() throws SQLException, IOException, JSONException {
+        logger.info("-- App: return viewed house");
+        List<Viewed> result;
+        Individual user = (Individual) currUser;
+        if (user.getIsAdmin() == 1) {
+            logger.info("Admin :D");
             result = ViewedRepository.findAll();
+        }
         else
-            result = ViewedRepository.findByName(name);
+            result = ViewedRepository.findByName(currUser.getName());
         return result;
     }
 
-    public static User getLoginUser(String username, String password) throws SQLException {
+    public static void setLoginUser(Individual user) throws SQLException {
+        logger.info("-- App : Set Login User");
+        currUser = user;
+    }
+
+    public static User getRequestedUser(String username, String password) throws SQLException {
         return UserRepository.findUser(username, password);
     }
 }

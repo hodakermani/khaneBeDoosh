@@ -2,10 +2,6 @@ package khaneBeDoosh.domain;
 
 import java.util.List;
 
-/**
- * Created by nafise on 02/05/2018.
- */
-
 public class ViewedResult {
     private final long id;
     private boolean success;
