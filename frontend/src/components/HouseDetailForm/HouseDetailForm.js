@@ -37,9 +37,9 @@ class HouseDetailForm extends Component {
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
-                if(response.status == 401) {
+                if(response.status == 403) {
                     // TODO : redirect to login page
-                    console.log("sorry! olease login :P");
+                    console.log("sorry! please login :P");
                 }
                 else {
                     this.setState({

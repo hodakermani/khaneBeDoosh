@@ -1,12 +1,12 @@
 package khaneBeDoosh.security;
 
 import khaneBeDoosh.domain.Individual;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class TokenHelper {
 
-    private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
+    public static String generateToken(String username) {
+        return Jwts.builder()
+                .setIssuer( "khaneBeDoosh" )
+                .setSubject(username)
+                .claim("roles", "user")
+                .setIssuedAt(new Date())
+                .signWith( SignatureAlgorithm.HS256, "mozi-amoo" )
+                .compact();
+    }
 
     public String getUsernameFromToken(String token) {
         String username;
@@ -41,43 +49,6 @@ public class TokenHelper {
         return issueAt;
     }
 
-    public Date getExpirationDateFromToken(String token) {
-        Date expiresAt;
-        try {
-            final Claims claims = this.getAllClaimsFromToken(token);
-            expiresAt = claims.getExpiration();
-        } catch (Exception e) {
-            expiresAt = null;
-        }
-        return expiresAt;
-    }
-
-//    public String refreshToken(String token) {
-//        String refreshedToken;
-//        try {
-//            final Claims claims = this.getAllClaimsFromToken(token);
-//            claims.setIssuedAt(new Date());
-//            refreshedToken = Jwts.builder()
-//                .setClaims(claims)
-//                .setExpiration(generateExpirationDate())
-//                .signWith( SIGNATURE_ALGORITHM, SECRET )
-//                .compact();
-//        } catch (Exception e) {
-//            refreshedToken = null;
-//        }
-//        return refreshedToken;
-//    }
-
-    public static String generateToken(String username) {
-        return Jwts.builder()
-                .setIssuer( "khaneBeDoosh" )
-                .setSubject(username)
-                .claim("roles", "user")
-                .setIssuedAt(new Date())
-                .signWith( SignatureAlgorithm.HS256, "mozi-amoo" )
-                .compact();
-    }
-
     private Claims getAllClaimsFromToken(String token) {
         Claims claims;
         try {
@@ -91,37 +62,20 @@ public class TokenHelper {
         return claims;
     }
 
-    private Date generateExpirationDate() {
-        long expiresIn = 10000; //TODO:change me
-        return new Date(new Date().getTime() + expiresIn * 1000);
-    }
-
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        Individual user = (Individual) userDetails;
+    public boolean validateToken(String token, Individual user) {
         final String username = getUsernameFromToken(token);
-        final Date created = getIssuedAtDateFromToken(token);
-        return (
-                username != null &&
-                username.equals(userDetails.getUsername())
-        );
-    }
-
-    private Boolean isTokenNotExpired(String token) {
-        Date expirationDate = getExpirationDateFromToken(token);
-        Date currentTime = new Date();
-        return currentTime.before(expirationDate);
+        final Date createdDate = getIssuedAtDateFromToken(token);
+        Date currentDate = new Date();
+        return (username != null && username.equals(user.getUsername()) && currentDate.after(createdDate));
     }
 
     public String getToken( HttpServletRequest request ) {
-        String authHeader = getAuthHeaderFromHeader( request );
-        if ( authHeader != null && authHeader.startsWith("Bearer ")) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null)
+            return null;
+        else if (authHeader.startsWith("Bearer ")) {
             return authHeader.substring(7);
         }
         return null;
     }
-
-    public String getAuthHeaderFromHeader( HttpServletRequest request ) {
-        return request.getHeader("Authorization");
-    }
-
 }

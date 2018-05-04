@@ -1,14 +1,18 @@
 package khaneBeDoosh.security.auth;
 
+import khaneBeDoosh.data.UserRepository;
+import khaneBeDoosh.domain.Individual;
 import khaneBeDoosh.security.TokenHelper;
 
 import org.apache.log4j.Logger;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,12 +47,20 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             username = tokenHelper.getUsernameFromToken(authToken);
             if (username != null) {
                 // get user
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                if (tokenHelper.validateToken(authToken, userDetails)) {
-                    // create authentication
-                    TokenBasedAuthentication authentication = new TokenBasedAuthentication(userDetails);
-                    authentication.setToken(authToken);
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                try {
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                    Individual user = UserRepository.findUserByUsername(username);
+                    if (tokenHelper.validateToken(authToken, user)) {
+                        // create authentication
+                        TokenBasedAuthentication authentication = new TokenBasedAuthentication(userDetails);
+                        authentication.setToken(authToken);
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
+//                    else {
+//                        throw new AccessDeniedException("token problem.");
+//                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }

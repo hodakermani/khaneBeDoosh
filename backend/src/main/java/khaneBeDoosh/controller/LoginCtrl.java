@@ -7,6 +7,7 @@ import khaneBeDoosh.domain.*;
 import khaneBeDoosh.security.TokenHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,7 +44,7 @@ public class LoginCtrl {
             success = true;
         }
         else {
-            msg = "please enter correct username or password.";
+            msg = "wrong username or password.";
         }
         return new Message(counter.incrementAndGet(), success, msg);
     }
