@@ -24,14 +24,25 @@ class LoginForm extends Component {
     }
 
     handleClick = async () =>{
-        this.props.loginCallBack(true);
-        // try {
-        //   let response = await API.getToken(this.state.username, this.state.password);
-        //   cookies.set("loginToken", response.access, { path: "/" });
-        //   this.props.loginCallBack(true);
-        // } catch (error){
-        //   this.props.loginCallBack(false);
-        // }
+        let url = '/auth/login';
+        var obj = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Origin': '',
+            },
+            body: JSON.stringify({
+                'username': this.state.username,
+                'password': this.state.password,
+            })
+        };
+        fetch(url, obj)
+            .then(response => response.json()).then((response) => {
+            console.log(response);
+            this.props.loginCallBack(response.success);
+            localStorage.setItem("loginToken", response.msg);
+        });
     };
 
     render() {

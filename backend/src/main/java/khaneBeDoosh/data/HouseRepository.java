@@ -42,7 +42,7 @@ public class HouseRepository {
     }
 
     public static void addHouse(House newHouse) throws SQLException {
-        logger.info("Add House");
+//        logger.info("Add House");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 

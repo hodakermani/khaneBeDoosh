@@ -1,9 +1,15 @@
 package khaneBeDoosh.data;
 
+import khaneBeDoosh.domain.House;
+import khaneBeDoosh.domain.Price;
 import khaneBeDoosh.domain.Viewed;
 import org.apache.log4j.Logger;
+import org.json.JSONException;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nafise on 16/04/2018.
@@ -69,5 +75,53 @@ public class ViewedRepository {
         logger.info("Viewed " + HouseID + " Not Found");
         con.close();
         return false;
+    }
+
+    public static List<Viewed> findAll() throws SQLException, IOException, JSONException {
+        logger.info("Get all viewed houses");
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * from Viewed;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Viewed> v = new ArrayList<Viewed>();
+
+        while (resultSet.next()) {
+            String _id = resultSet.getString("HouseID");
+            String _parentID = resultSet.getString("ParentID");
+            String _individualID = resultSet.getString("IndividualID");
+            Viewed viewed = new Viewed(_individualID, _id, _parentID);
+            v.add(viewed);
+        }
+
+        statement.close();
+        con.close();
+        return v;
+    }
+
+    public static List<Viewed> findByName(String name) throws SQLException {
+        logger.info("Get all viewed houses");
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * from Viewed WHERE IndividualID = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, name);
+
+        ResultSet resultSet = statement.executeQuery();
+        List<Viewed> v = new ArrayList<Viewed>();
+
+        while (resultSet.next()) {
+            Viewed viewed = new Viewed(resultSet.getString("IndividualID"), resultSet.getString("HouseID"), resultSet.getString("ParentID"));
+            v.add(viewed);
+        }
+
+        statement.close();
+        con.close();
+        return v;
     }
 }

@@ -48,7 +48,7 @@ public class HouseDetailCtrl {
         return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, "دریافت شماره مالک/مشاور");
     }
 
-    @RequestMapping("/api/houseDetailsGetPhone")
+    @RequestMapping("/secure/api/houseDetailsGetPhone")
     public HouseDetail getPhone(@RequestParam(value="id", defaultValue="") String id,
                                 @RequestParam(value="parentName", defaultValue="http://139.59.151.5:6664/khaneBeDoosh/v2/house") String parentName) {
 

@@ -26,8 +26,18 @@ class Header extends Component {
     }
 
     getBalance() {
-        let url = '/api/getBalance';
-        fetch(url)
+        let url = '/secure/api/getBalance';
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
 
@@ -39,8 +49,18 @@ class Header extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/getBalance';
-        fetch(url)
+        let url = '/secure/api/getBalance';
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
 
@@ -54,7 +74,7 @@ class Header extends Component {
     render() {
 
         if (this.props.isBalanceUpdated === true) {
-            console.log("im updating balance here");
+            console.log("im updating balance here. new balance:" + this.state.balance );
             this.getBalance();
         }
 

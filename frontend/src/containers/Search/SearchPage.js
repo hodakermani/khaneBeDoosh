@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap-grid.css';
 export default class SearchPage extends Component {
 
     componentDidMount() {
-        console.log(this.props.params);
+        console.log(this.props.match.params);
 
     }
 
@@ -28,10 +28,10 @@ export default class SearchPage extends Component {
                     <div className="col-xl-2 col-sm-12" />
                     <div className="col-xl-8 col-sm-12">
                         <SearchResult
-                            minArea={this.props.params.minArea}
-                            buildingType={this.props.params.buildingType}
-                            dealType={this.props.params.dealType}
-                            maxPrice={this.props.params.maxPrice} />
+                            minArea={this.props.match.params.minArea}
+                            buildingType={this.props.match.params.buildingType}
+                            dealType={this.props.match.params.dealType}
+                            maxPrice={this.props.match.params.maxPrice} />
                         <div className="search-info">
                             <span>جستجوی مجدد</span>
                         </div>

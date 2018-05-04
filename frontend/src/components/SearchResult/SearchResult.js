@@ -21,6 +21,7 @@ class SearchResult extends Component {
             '&buildingType=' + this.props.buildingType +
             '&dealType=' + this.props.dealType +
             '&maxPrice=' + this.props.maxPrice;
+
         fetch(url)
             .then((response) => response.json()).then((response) => {
             console.log(response);

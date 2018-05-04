@@ -97,20 +97,29 @@ class AddHouseForm extends Component {
 
         let url = '';
         if(this.state.dealType === 'خرید') {
-            url = '/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
+            url = '/secure/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
                 +this.state.dealType +'&basePrice='+this.state.basePrice+'&rentPrice=0&address='
                 +this.state.address+'&phone='+this.state.phone+'&description='
                 +this.state.description;
         }
         else {
-            url = '/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
+            url = '/secure/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
                 +this.state.dealType +'&basePrice='+this.state.basePrice+'&rentPrice='+this.state.rentPrice+
                 '&address='+this.state.address+'&phone='+this.state.phone+'&description='
                 +this.state.description;
         }
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
 
-
-        fetch(url)
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
             if(response.success)

@@ -23,7 +23,8 @@ export default class HouseDetailPage extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/houseDetails?id=' + this.props.params.id + '&parentName=' + this.props.params.parentName;
+        let url = '/api/houseDetails?id=' + this.props.match.params.id + '&parentName=' + this.props.match.params.parentName;
+
         fetch(url)
         .then((response) => response.json()).then((response) => {
             console.log(response);
@@ -56,7 +57,7 @@ export default class HouseDetailPage extends Component {
                             house={this.state.house}
                             price={this.state.price}
                             btnMsg={this.state.btnMsg}
-                            parentName={this.props.params.parentName} />
+                            parentName={this.props.match.params.parentName} />
                     </div>
                     <div className="col-xl-1 col-sm-12" />
                 </div>

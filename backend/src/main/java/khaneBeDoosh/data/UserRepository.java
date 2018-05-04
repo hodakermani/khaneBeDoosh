@@ -1,10 +1,11 @@
 package khaneBeDoosh.data;
 
-import khaneBeDoosh.domain.App;
 import khaneBeDoosh.domain.Individual;
+import khaneBeDoosh.domain.User;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -100,6 +101,52 @@ public class UserRepository {
         con.close();
     }
 
+    public static Individual findUserByUsername(String username) throws SQLException {
+        logger.info("find User with username " + username);
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM Individual WHERE Username = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, username);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            Individual newUser = new Individual(resultSet.getString("Name"), resultSet.getString("Username"),
+                                                resultSet.getString("Password"), resultSet.getInt("Balance"));
+            con.close();
+            return newUser;
+        }
+
+        logger.info("User with username " + username + " Not Found");
+        con.close();
+        return null;
+    }
+
+    public static List<Individual> findAll() throws SQLException {
+        logger.info("find All User with username ");
+        List<Individual> result = null;
+
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM Individual;";
+        PreparedStatement statement = con.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            String _name = resultSet.getString("Name");
+            String _username = resultSet.getString("Username");
+            String _password = resultSet.getString("Password");
+            int _balance = resultSet.getInt("Balance");
+            Individual newUser = new Individual(_name, _username, _password, _balance);
+            result.add(newUser);
+        }
+        con.close();
+        return result;
+    }
+
     public static Individual findUser(String username, String password) throws SQLException {
         logger.info("find User with username " + username);
 
@@ -109,7 +156,7 @@ public class UserRepository {
         PreparedStatement statement = con.prepareStatement(sql);
 
         statement.setString(1, username);
-        statement.setString(2,password);
+        statement.setString(2, password);
 
         ResultSet resultSet = statement.executeQuery();
 

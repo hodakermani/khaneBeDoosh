@@ -24,9 +24,19 @@ class Navbar extends Component {
         })
     }
 
-    componentDidMount() {
-        let url = '/api/getBalance';
-        fetch(url)
+    componentWillMount() {
+        let url = '/secure/api/getBalance';
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
 

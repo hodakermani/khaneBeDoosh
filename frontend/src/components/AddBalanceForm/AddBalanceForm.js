@@ -32,11 +32,20 @@ class AddBalanceForm extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/addBalance';
-        fetch(url)
+        let url = '/secure/api/getBalance';
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
-
             this.setState({
                 balance: response.currentBalance,
             });
@@ -61,7 +70,17 @@ class AddBalanceForm extends Component {
         if (validation === false)
             return;
 
-        let url = '/api/addBalance?balance=' + this.state.requsetedBalance;
+        let url = '/secure/api/addBalance?balance=' + this.state.requsetedBalance;
+        let header = 'Bearer ' + localStorage.getItem("loginToken");
+        console.log("=============================");
+        console.log(header);
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': header,
+            }
+        };
         fetch(url)
             .then(response => response.json()).then((response) => {
             console.log(response);

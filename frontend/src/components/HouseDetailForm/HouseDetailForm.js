@@ -26,15 +26,29 @@ class HouseDetailForm extends Component {
     }
 
     handleClick = () =>{
-        let url = '/api/houseDetailsGetPhone?id=' + this.props.house.id + '&parentName=' + this.props.parentName;
-        fetch(url)
+        let url = '/secure/api/houseDetailsGetPhone?id=' + this.props.house.id + '&parentName=' + this.props.parentName;
+
+        var obj = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': (localStorage.getItem('loginToken')) ? 'Bearer ' + localStorage.getItem('loginToken'): null,
+            }
+        };
+        fetch(url, obj)
             .then(response => response.json()).then((response) => {
-            this.setState({
-                btnMsg: response.btnMsg,
-                phoneVisibility: response.success,
-                currUsername: response.username
-            });
-            this.props.updateBalance();
+                if(response.status == 401) {
+                    // TODO : redirect to login page
+                    console.log("sorry! olease login :P");
+                }
+                else {
+                    this.setState({
+                        btnMsg: response.btnMsg,
+                        phoneVisibility: response.success,
+                        currUsername: response.username
+                    });
+                    this.props.updateBalance();
+                }
         });
     };
 

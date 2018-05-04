@@ -141,4 +141,8 @@ public class App {
             result = ViewedRepository.findByName(name);
         return result;
     }
+
+    public static User getLoginUser(String username, String password) throws SQLException {
+        return UserRepository.findUser(username, password);
+    }
 }
