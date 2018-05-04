@@ -31,7 +31,6 @@ public class LoginCtrl {
 
     @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
     public Message addHouse (@RequestBody Individual user) throws SQLException {
-
         Boolean success = false;
         String msg = "";
         String jwtToken = "";
@@ -40,45 +39,12 @@ public class LoginCtrl {
         if (userRequested != null)
         {
             jwtToken = TokenHelper.generateToken(user.getUsername());
-//                    Jwts.builder().setSubject(userRequested.getName()).claim("roles", "user").setIssuedAt(new Date())
-//                    .setIssuer("khaneBeDoosh").signWith(SignatureAlgorithm.HS256, "mozi-amoo").compact();
             msg = jwtToken;
             success = true;
         }
         else {
             msg = "please enter correct username or password.";
         }
-
         return new Message(counter.incrementAndGet(), success, msg);
     }
 }
-
-//    TokenHelper tokenHelper;
-//
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
-//
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public ResponseEntity<?> createAuthenticationToken(
-//            @RequestBody JwtAuthenticationRequest authenticationRequest,
-//            HttpServletResponse response,
-//            Device device
-//    ) throws AuthenticationException, IOException {
-//
-//        // Perform the security
-//        final Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        authenticationRequest.getUsername(),
-//                        authenticationRequest.getPassword()
-//                )
-//        );
-//
-//        // Inject into security context
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//
-//        // token creation
-//        User user = (User)authentication.getPrincipal();
-//        String jws = tokenHelper.generateToken(user.getUsername());
-//        // Return the token
-//        return ResponseEntity.ok(jws);
-//    }

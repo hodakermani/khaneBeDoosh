@@ -51,47 +51,6 @@ public class App {
         logger.info("-- App : Search House");
         int _dealType = Utility.stringToDealType(dealType);
         return HouseRepository.find(buildingType, minArea, _dealType, maxPrice);
-
-//        return filterResult(allHouses, buildingType, minArea, dealType, maxPrice);
-    }
-
-    private static List<House> filterResult(List<House> all, String buildingType, Integer _minArea, String dealType, Integer _maxPrice) {
-        List<House> result = new ArrayList<House>();
-        House.BuildingType bt  = Utility.stringToBuildingType(buildingType);
-
-        logger.info("----------------------- SEARCHING FOR MATCHES -----------------------");
-
-        int _dealType = Utility.stringToDealType(dealType);
-
-        for (House house: all) {
-            if (_minArea <= house.getArea() && (bt == house.getBuildingType() || bt == Utility.stringToBuildingType("هیچی"))) {
-
-                if (_dealType == 0 && _dealType == house.getDealType()) {
-                    if (_maxPrice >= house.getPrice().getSellPrice()) {
-                        logger.info(result.size() + " : " + house.getId());
-                        result.add(house);
-                    }
-                }
-
-                else if (_dealType == 1 && _dealType == house.getDealType()) {
-                    if (_maxPrice >= house.getPrice().getRentPrice()) {
-                        logger.info(result.size() + " : " + house.getId());
-                        result.add(house);
-                    }
-                }
-
-                else if (_dealType == 2) {
-                    if ((house.getDealType() == 0 && _maxPrice >= house.getPrice().getSellPrice()) ||
-                            ( house.getDealType() == 1 && _maxPrice >= house.getPrice().getRentPrice())) {
-                        logger.info(result.size() + " : " + house.getId());
-                        result.add(house);
-                    }
-                }
-
-            }
-        }
-        logger.info("----------------------- RESULTS FOUND -----------------------");
-        return result;
     }
 
     public static House getHouseDetails(String id, String parentName) throws IOException, JSONException, SQLException {
@@ -132,10 +91,9 @@ public class App {
         return false;
     }
 
-    public static List<Viewed> getViewedHouse(String name) throws SQLException, IOException, JSONException {
+    public static List<Viewed> getViewedHouse(boolean isAdmin, String name) throws SQLException, IOException, JSONException {
         List<Viewed> result = new ArrayList<Viewed>();
-        User user = UserRepository.findUser(name, "bh1996");
-        if (user.isAdmin())
+        if (isAdmin)
             result = ViewedRepository.findAll();
         else
             result = ViewedRepository.findByName(name);
