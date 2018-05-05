@@ -110,7 +110,6 @@ public class ViewedRepository {
         PreparedStatement statement = con.prepareStatement(sql);
 
         String username = UserRepository.findUserByName(name);
-        // TODO = in username e na name => convert!! :D
         statement.setString(1, username);
 
         ResultSet resultSet = statement.executeQuery();
