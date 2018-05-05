@@ -23,6 +23,10 @@ public class HouseDetailCtrl {
         String msg = "";
         House house = null;
         User user = App.getUser();
+        String username = (user != null)? user.getName() : null;
+
+        id = Utility.convertToSafeString(id);
+        parentName = Utility.convertToSafeString(parentName);
 
         try {
             house = App.getHouseDetails(id, parentName);
@@ -41,7 +45,7 @@ public class HouseDetailCtrl {
             e.printStackTrace();
         }
 
-        return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, "دریافت شماره مالک/مشاور");
+        return new HouseDetail(counter.incrementAndGet(), success, msg, username, house, "دریافت شماره مالک/مشاور");
     }
 
     @RequestMapping("/secure/api/houseDetailsGetPhone")
@@ -53,6 +57,7 @@ public class HouseDetailCtrl {
         String btnMsg = "";
         House house = null;
         User user = App.getUser();
+        String username = (user != null)? user.getName() : null;
 
         try {
             house = App.getHouseDetails(id, parentName);
@@ -73,6 +78,6 @@ public class HouseDetailCtrl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new HouseDetail(counter.incrementAndGet(), success, msg, user.getName(), house, btnMsg);
+        return new HouseDetail(counter.incrementAndGet(), success, msg, username, house, btnMsg);
     }
 }

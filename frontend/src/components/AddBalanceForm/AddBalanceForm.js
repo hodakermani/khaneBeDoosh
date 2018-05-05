@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import './AddBalanceForm.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -11,6 +12,7 @@ class AddBalanceForm extends Component {
             balance: '',
             requsetedBalance: '',
             formErrors: '',
+            redirect: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -46,9 +48,17 @@ class AddBalanceForm extends Component {
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
             console.log(response);
-            this.setState({
-                balance: response.currentBalance,
-            });
+
+            if(response.status === 403) {
+                this.setState({ redirect: true });
+            }
+
+            else {
+                this.setState({
+                    redirect: false,
+                    balance: response.currentBalance });
+            }
+
         });
     }
 
@@ -85,9 +95,8 @@ class AddBalanceForm extends Component {
             .then(response => response.json()).then((response) => {
             console.log(response);
 
-            if (response.success === true) {
+            if (response.success) {
                 alert(response.msg);
-
                 // send to the parent that this was successful
                 this.props.updateBalance();
             }
@@ -101,6 +110,9 @@ class AddBalanceForm extends Component {
     render() {
         return (
             <div className="addBalanceForm">
+
+                {this.state.redirect && <Redirect to="/login" />}
+
                 <div className="row">
                     <div className="col-xl-6">
                         <div className="row">

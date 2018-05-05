@@ -276,11 +276,16 @@ public class UserRepository {
 
         ResultSet resultSet = statement.executeQuery();
 
+        String username = null;
+
         while (resultSet.next()) {
-            con.close();
-            return resultSet.getString("Username");
+            username = resultSet.getString("Username");
         }
+
+
+        logger.info("babaaaaa ------- usernmae:" + username);
+
         con.close();
-        return null;
+        return username;
     }
 }

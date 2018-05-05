@@ -17,10 +17,13 @@ public class LoginCtrl {
         String msg = "";
         String jwtToken = "";
 
-        User userRequested = App.getRequestedUser(user.getUsername(), user.getPassword());
+        String username = Utility.convertToSafeString(user.getUsername());
+        String password = Utility.convertToSafeString(user.getPassword());
+
+        User userRequested = App.getRequestedUser(username, password);
         if (userRequested != null)
         {
-            jwtToken = TokenHelper.generateToken(user.getUsername());
+            jwtToken = TokenHelper.generateToken(username);
             msg = jwtToken;
             success = true;
         }

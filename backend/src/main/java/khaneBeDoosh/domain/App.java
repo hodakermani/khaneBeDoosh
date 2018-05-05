@@ -87,16 +87,16 @@ public class App {
         return false;
     }
 
-    public static List<Viewed> getViewedHouse() throws SQLException, IOException, JSONException {
+    public static List<Viewed> getViewedHouse(int page, int size) throws SQLException, IOException, JSONException {
         logger.info("-- App: return viewed house");
         List<Viewed> result;
         Individual user = (Individual) currUser;
         if (user.getIsAdmin() == 1) {
             logger.info("Admin :D");
-            result = ViewedRepository.findAll();
+            result = ViewedRepository.findAll(page, size);
         }
         else
-            result = ViewedRepository.findByName(currUser.getName());
+            result = ViewedRepository.findByName(currUser.getName(), page, size);
         return result;
     }
 

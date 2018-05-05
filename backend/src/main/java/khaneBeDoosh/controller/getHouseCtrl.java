@@ -3,6 +3,7 @@ package khaneBeDoosh.controller;
 import khaneBeDoosh.domain.*;
 import org.json.JSONException;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -15,9 +16,13 @@ public class getHouseCtrl {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/secure/api/houses")
-    public ViewedResult getHouse() throws SQLException, IOException, JSONException {
+    public ViewedResult getHouse(@RequestParam(value="size", defaultValue="") String size,
+                                 @RequestParam(value="page", defaultValue="") String page) throws SQLException, IOException, JSONException {
         Boolean success = true;
         String msg = "";
-        return new ViewedResult(counter.incrementAndGet(), success, msg, App.getViewedHouse());
+        int _size = Integer.parseInt(size);
+        int _page = Integer.parseInt(page);
+
+        return new ViewedResult(counter.incrementAndGet(), success, msg, App.getViewedHouse(_page, _size));
     }
 }

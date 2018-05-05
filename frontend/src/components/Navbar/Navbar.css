@@ -1,32 +1,40 @@
-.nav-bar {
+.navBar {
     margin-bottom: 50px;
 }
 
-.nav-bar div.row {
+.doNotDisplay {
+    visibility: hidden;
+}
+
+.doDisplay {
+    visibility: visible;
+}
+
+.navBar div.row {
     padding-top: 20px;
 }
 
-.nav-bar .logo > img {
+.navBar .logo > img {
     display: block;
     margin: auto;
     width: 130px;
 }
 
-.nav-bar .logo > p {
+.navBar .logo > p {
     text-align: center;
     font-size: 30px;
     font-weight: 500;
     color: white;
 }
 
-.nav-bar div.user-btn-home {
+.navBar div.user-btn-home {
     position: relative;
     left: 50%;
     margin-left: -91px;
     padding: 10px;
 }
 
-.nav-bar a#user-btn-home {
+.navBar a#user-btn-home {
     text-align: center;
     color: white;
     border: 2px solid white;
@@ -40,7 +48,7 @@
     width: fit-content;
 }
 
-.nav-bar a#user-btn-home > i {
+.navBar a#user-btn-home > i {
     font-size: 22px;
     position: relative;
     top: 2px;
@@ -48,44 +56,44 @@
 }
 
 @media screen and (max-width: 1199px) {
-    .nav-bar .logo {
+    .navBar .logo {
         padding-top: 100px;
     }
 
-    .nav-bar .logo > img {
+    .navBar .logo > img {
         width: 100px;
     }
 
-    .nav-bar .logo > p {
+    .navBar .logo > p {
         font-size: 25px;
     }
 
-    .nav-bar .desktop-header {
+    .navBar .desktop-header {
         display: none;
     }
 
-    .nav-bar .mobile-header {
+    .navBar .mobile-header {
         position: absolute;
         top: 15px;
         width: 100%;
     }
 
-    .nav-bar .mobile-header .username,
-    .nav-bar .mobile-header .balance {
+    .navBar .mobile-header .username,
+    .navBar .mobile-header .balance {
         display: inline-block;
     }
 
-    .nav-bar .mobile-header span {
+    .navBar .mobile-header span {
         color: white;
     }
 
-    .nav-bar .mobile-header .username {
+    .navBar .mobile-header .username {
         float: right;
         margin-right: 30px;
         padding: 5px 8px;
     }
 
-    .nav-bar .mobile-header .balance {
+    .navBar .mobile-header .balance {
         background-color: #F2505E;
         padding: 5px 8px;
         border-radius: 5px;
@@ -94,7 +102,7 @@
 }
 
 @media screen and (min-width: 1199px) {
-    .nav-bar .mobile-header {
+    .navBar .mobile-header {
         display: none;
     }
 }

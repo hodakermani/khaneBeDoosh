@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AddHouseForm.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
+import {Redirect} from 'react-router-dom';
 
 class AddHouseForm extends Component {
 
@@ -22,6 +23,7 @@ class AddHouseForm extends Component {
             addressValidator: "",
             phoneValidator: "",
             descriptionValidator: "",
+            redirect: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -91,10 +93,6 @@ class AddHouseForm extends Component {
         if (formValidation === false)
             return;
 
-        let newPhone = String(this.state.phone.split(/''/));
-        let formattedPhone = newPhone.substring(0, 3)+'-'+newPhone.substring(3,5)+'-'+newPhone.substring(5);
-        this.setState({phone: formattedPhone});
-
         let url = '';
         if(this.state.dealType === 'خرید') {
             url = '/secure/api/addHouse?buildingType='+this.state.buildingType+'&area='+this.state.area+'&dealType='
@@ -121,15 +119,29 @@ class AddHouseForm extends Component {
 
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
+
             console.log(response);
-            if(response.success)
-                alert(response.msg);
+
+            console.log("this is user status: " + response.status);
+
+            // user is unauthorized
+            if (response.status === 403) {
+                this.setState({ redirect: true });
+            }
+
+            else {
+                this.setState({ redirect: false });
+                if(response.success)
+                    alert(response.msg);
+            }
         });
     };
 
     render() {
         return (
             <div className="addHouseForm">
+
+                {this.state.redirect && <Redirect to="/login" />}
 
                 <div className="row">
                     <div className="deal-type col-xl-6">

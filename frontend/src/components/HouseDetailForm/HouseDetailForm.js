@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Redirect} from 'react-router-dom';
 import './HouseDetailForm.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -14,6 +14,7 @@ class HouseDetailForm extends Component {
         this.state = {
             btnMsg: 'دریافت شماره مالک/مشاور',
             phoneVisibility : false,
+            redirect: false,
         };
         this.handleChange = this.handleChange.bind(this);
         this.translateNum =  this.translateNum.bind(this);
@@ -37,17 +38,18 @@ class HouseDetailForm extends Component {
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
-                if(response.status == 403) {
-                    // TODO : redirect to login page
-                    console.log("sorry! please login :P");
+                if(response.status === 403) {
+                    this.setState({ redirect: true });
                 }
                 else {
                     this.setState({
                         btnMsg: response.btnMsg,
                         phoneVisibility: response.success,
-                        currUsername: response.username
+                        currUsername: response.username,
+                        redirect: false,
                     });
                     this.props.updateBalance();
+                    console.log("this is the phone visibility:" + this.state.phoneVisibility);
                 }
         });
     };
@@ -69,6 +71,8 @@ class HouseDetailForm extends Component {
 
         return (
             <div className="houseDetailForm row">
+
+                {this.state.redirect && <Redirect to="/login" />}
 
                 <div className="col-xl-4 col-sm-12 house-info">
                     <div className="buildingType">
@@ -93,7 +97,7 @@ class HouseDetailForm extends Component {
                                 </span>
                             ) : (
                                 <span>
-                                    {this.translateNum(String(this.props.house.phone))}
+                                    {String(this.props.house.phone)}
                                 </span>
                             )}
 

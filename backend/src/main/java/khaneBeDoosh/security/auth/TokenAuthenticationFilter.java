@@ -40,6 +40,9 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         if (authToken != null) {
             // get username from token
             username = tokenHelper.getUsernameFromToken(authToken);
+
+            logger.info("-------- ******* this is the username: " + username);
+
             if (username != null) {
                 // get user
                 try {
@@ -51,6 +54,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                         authentication.setToken(authToken);
                         SecurityContextHolder.getContext().setAuthentication(authentication);
                         App.setLoginUser(user);
+                    } else {
+                        App.setLoginUser(null);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

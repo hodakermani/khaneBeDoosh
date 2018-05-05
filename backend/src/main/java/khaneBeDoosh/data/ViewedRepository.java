@@ -73,7 +73,7 @@ public class ViewedRepository {
         return false;
     }
 
-    public static List<Viewed> findAll() throws SQLException, IOException, JSONException {
+    public static List<Viewed> findAll(int page, int size) throws SQLException, IOException, JSONException {
         logger.info("Get all viewed houses");
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
@@ -83,14 +83,27 @@ public class ViewedRepository {
 
         ResultSet resultSet = statement.executeQuery();
 
+        int startIndex = (page - 1) * size ;
+        int endIndex = startIndex + size -1;
+        int i = 0;
         List<Viewed> v = new ArrayList<Viewed>();
 
+        logger.info("this is the table size:" + startIndex);
+        logger.info("this is the table size:" + endIndex);
+
         while (resultSet.next()) {
+            if (i < startIndex) {
+                i++;
+                continue;
+            }
+            else if (i > endIndex)
+                break;
             String _id = resultSet.getString("HouseID");
             String _parentID = resultSet.getString("ParentID");
             String _individualID = resultSet.getString("IndividualID");
             Viewed viewed = new Viewed(_individualID, _id, _parentID);
             v.add(viewed);
+            i++;
         }
 
         statement.close();
@@ -98,24 +111,48 @@ public class ViewedRepository {
         return v;
     }
 
-    public static List<Viewed> findByName(String name) throws SQLException {
+    public static List<Viewed> findByName(String name, int page, int size) throws SQLException {
         logger.info("Get all viewed houses");
+
+//        String username = UserRepository.findUserByName(name);
 
         Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
 
         String sql = "SELECT * from Viewed WHERE IndividualID = ?;";
         PreparedStatement statement = con.prepareStatement(sql);
 
-        String username = UserRepository.findUserByName(name);
-        statement.setString(1, username);
+        statement.setString(1, name);
+
+        logger.info("this is username" + name);
 
         ResultSet resultSet = statement.executeQuery();
+
+        int startIndex = (page - 1) * size ;
+        int endIndex = startIndex + size -1;
+        int i = 0;
         List<Viewed> v = new ArrayList<Viewed>();
 
+        logger.info("this is the table size:" + startIndex);
+        logger.info("this is the table size:" + endIndex);
+
         while (resultSet.next()) {
+            if (i < startIndex) {
+                i++;
+                continue;
+            }
+            else if (i > endIndex)
+                break;
             Viewed viewed = new Viewed(resultSet.getString("IndividualID"), resultSet.getString("HouseID"), resultSet.getString("ParentID"));
             v.add(viewed);
+            i++;
         }
+
+
+
+//        while (resultSet.next()) {
+//            Viewed viewed = new Viewed(resultSet.getString("IndividualID"), resultSet.getString("HouseID"), resultSet.getString("ParentID"));
+//            v.add(viewed);
+//        }
 
         statement.close();
         con.close();
