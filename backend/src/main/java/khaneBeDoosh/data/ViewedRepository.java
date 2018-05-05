@@ -1,10 +1,13 @@
 package khaneBeDoosh.data;
 
+import khaneBeDoosh.domain.Individual;
+import khaneBeDoosh.domain.User;
 import khaneBeDoosh.domain.Viewed;
 
 import org.json.JSONException;
 import org.apache.log4j.Logger;
 
+import javax.jws.soap.SOAPBinding;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -106,8 +109,9 @@ public class ViewedRepository {
         String sql = "SELECT * from Viewed WHERE IndividualID = ?;";
         PreparedStatement statement = con.prepareStatement(sql);
 
+        String username = UserRepository.findUserByName(name);
         // TODO = in username e na name => convert!! :D
-        statement.setString(1, name);
+        statement.setString(1, username);
 
         ResultSet resultSet = statement.executeQuery();
         List<Viewed> v = new ArrayList<Viewed>();

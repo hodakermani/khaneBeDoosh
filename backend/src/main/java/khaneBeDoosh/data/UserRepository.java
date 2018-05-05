@@ -264,4 +264,23 @@ public class UserRepository {
         con.close();
         return response;
     }
+
+    public static String findUserByName(String name) throws SQLException {
+        logger.info("find user with name " + name);
+        Connection con = DriverManager.getConnection("jdbc:sqlite:khaneBeDoosh.db");
+
+        String sql = "SELECT * FROM Individual WHERE Name = ?;";
+        PreparedStatement statement = con.prepareStatement(sql);
+
+        statement.setString(1, name);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            con.close();
+            return resultSet.getString("Username");
+        }
+        con.close();
+        return null;
+    }
 }
