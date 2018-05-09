@@ -20,4 +20,16 @@ public class Utility {
         else
             return 2;
     }
+
+    public static String convertToSafeString(String input) {
+        return input.replace("<", "-")
+                    .replace(">", "-")
+                    .replace("&", "-")
+                    .replace("'", "-")
+                    .replace("\"", "-");
+    }
+
+    public static String addDashesToPhone(String phone) {
+        return phone.substring(0, 3) + "-" + phone.substring(3, 6) + "-" + phone.substring(6);
+    }
 }

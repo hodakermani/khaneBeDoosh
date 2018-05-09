@@ -26,7 +26,11 @@ public class addHouseCtrl {
 
         Boolean success = false;
         String msg = "";
-        House house = null;
+
+        buildingType = Utility.convertToSafeString(buildingType);
+        address = Utility.convertToSafeString(address);
+        phone = Utility.addDashesToPhone(Utility.convertToSafeString(phone));
+        description = Utility.convertToSafeString(description);
 
         int _area = 0;
         int _basePrice = 0;

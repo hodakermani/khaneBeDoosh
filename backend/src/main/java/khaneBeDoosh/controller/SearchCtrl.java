@@ -29,6 +29,9 @@ public class SearchCtrl {
         String msg = "";
         List<House> result = new ArrayList<House>();
 
+        buildingType = Utility.convertToSafeString(buildingType);
+        dealType = Utility.convertToSafeString(dealType);
+
         int _minArea;
         int _maxPrice = Integer.MAX_VALUE;
 
