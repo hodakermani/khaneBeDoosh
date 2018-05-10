@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 import './LoginForm.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
-
-// const cookies = new Cookies();
 
 class LoginForm extends Component {
 
@@ -44,6 +41,10 @@ class LoginForm extends Component {
             localStorage.setItem("loginToken", response.msg);
         });
     };
+
+    componentDidMount() {
+        localStorage.removeItem("loginToken");
+    }
 
     render() {
         return (

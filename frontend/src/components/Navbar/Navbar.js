@@ -25,7 +25,7 @@ class Navbar extends Component {
         })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let url = '/secure/api/getBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
@@ -43,13 +43,13 @@ class Navbar extends Component {
 
             if (response.status === 403)
                 this.setState({ userLoggedIn: false });
-            else
-                this.setState({ userLoggedIn: true });
-
-            this.setState({
-                balance: response.currentBalance,
-                name: response.name
-            });
+            else {
+                this.setState({
+                    userLoggedIn: true,
+                    balance: response.currentBalance,
+                    name: response.name
+                });
+            }
         });
     }
 
