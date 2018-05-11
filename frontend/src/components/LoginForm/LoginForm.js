@@ -20,7 +20,7 @@ class LoginForm extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleClick = async () =>{
+    handleClick() {
         let url = '/auth/login';
         var obj = {
             method: 'POST',
@@ -36,9 +36,9 @@ class LoginForm extends Component {
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
+            localStorage.setItem("loginToken", response.msg);
             console.log(response);
             this.props.loginCallBack(response.success);
-            localStorage.setItem("loginToken", response.msg);
         });
     };
 
