@@ -27,25 +27,27 @@ class HouseDetailForm extends Component {
     }
 
     handleClick = () =>{
-        let url = '/secure/api/houseDetailsGetPhone?id=' + this.props.house.id + '&parentName=' + this.props.parentName;
+        let url = '/secure/api/houseDetailsGetPhone';
 
         var obj = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': (localStorage.getItem('loginToken')) ? 'Bearer ' + localStorage.getItem('loginToken'): null,
+            },
+            body: {
+                'houseId': this.props.house.id,
             }
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
-                if(response.status === 403) {
+                if(response.status === 401) {
                     this.setState({ redirect: true });
                 }
                 else {
                     this.setState({
                         btnMsg: response.btnMsg,
                         phoneVisibility: response.success,
-                        currUsername: response.username,
                         redirect: false,
                     });
                     this.props.updateBalance();
@@ -67,7 +69,6 @@ class HouseDetailForm extends Component {
         const content = this.props.house.phone;
         const notRequested = 'دریافت شماره مالک/مشاور';
         const notEnoughBalance = 'اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست';
-        const isCurrUser = this.props.parentName === this.state.currUsername;
 
         return (
             <div className="houseDetailForm row">
@@ -176,8 +177,8 @@ class HouseDetailForm extends Component {
                 <div className="col-xl-8 col-sm-12">
                     <img src={this.props.house.imageURL} id="house-img" alt="House" />
                     <a id="get-house-phone"
-                       className={(this.state.btnMsg === notRequested && !isCurrUser ? 'balance-not-requested' :
-                            this.state.btnMsg === notEnoughBalance && !isCurrUser ? 'balance-not-enough' :
+                       className={(this.state.btnMsg === notRequested ? 'balance-not-requested' :
+                            this.state.btnMsg === notEnoughBalance ? 'balance-not-enough' :
                            'balance-was-enough' )}
                        onClick={this.handleClick}>
                         {this.state.btnMsg}

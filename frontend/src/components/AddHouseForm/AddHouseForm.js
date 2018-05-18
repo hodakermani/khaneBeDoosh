@@ -125,7 +125,7 @@ class AddHouseForm extends Component {
             console.log("this is user status: " + response.status);
 
             // user is unauthorized
-            if (response.status === 403) {
+            if (response.status === 401) {
                 this.setState({ redirect: true });
             }
 

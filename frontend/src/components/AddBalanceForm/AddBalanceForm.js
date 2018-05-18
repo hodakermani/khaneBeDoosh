@@ -49,7 +49,7 @@ class AddBalanceForm extends Component {
             .then(response => response.json()).then((response) => {
             console.log(response);
 
-            if(response.status === 403) {
+            if(response.status === 401) {
                 this.setState({ redirect: true });
             }
 
@@ -80,15 +80,18 @@ class AddBalanceForm extends Component {
         if (validation === false)
             return;
 
-        let url = '/secure/api/addBalance?balance=' + this.state.requsetedBalance;
+        let url = '/secure/api/addBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);
         var obj = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': header,
+            },
+            body: {
+                'balance': this.state.requsetedBalance,
             }
         };
         fetch(url, obj)

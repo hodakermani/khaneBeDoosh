@@ -17,12 +17,22 @@ class SearchResult extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/search?minArea=' + this.props.minArea +
-            '&buildingType=' + this.props.buildingType +
-            '&dealType=' + this.props.dealType +
-            '&maxPrice=' + this.props.maxPrice;
+        let url = '/api/search';
 
-        fetch(url)
+        var obj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                'minArea': this.props.minArea,
+                'maxPrice': this.props.maxPrice,
+                'buildingType': this.props.buildingType,
+                'dealType': this.props.dealType,
+            }
+        };
+
+        fetch(url, obj)
             .then((response) => response.json()).then((response) => {
             console.log(response);
             this.setState({

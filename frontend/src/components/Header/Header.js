@@ -65,7 +65,7 @@ class Header extends Component {
             .then(response => response.json()).then((response) => {
             console.log(response);
 
-            if (response.status === 403)
+            if (response.status === 401)
                 this.setState({ userLoggedIn: false });
 
             else {

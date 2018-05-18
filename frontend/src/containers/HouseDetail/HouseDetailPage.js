@@ -23,15 +23,13 @@ export default class HouseDetailPage extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/houseDetails?id=' + this.props.match.params.id + '&parentName=' + this.props.match.params.parentName;
-
+        let url = '/api/houseDetails/' + this.props.match.params.id;
         fetch(url)
         .then((response) => response.json()).then((response) => {
             console.log(response);
             this.setState({
                 house: response.data,
                 price: response.data.price,
-                btnMsg: response.btnMsg,
             });
         });
     }
@@ -56,7 +54,6 @@ export default class HouseDetailPage extends Component {
                             updateBalance={this.updateBalance}
                             house={this.state.house}
                             price={this.state.price}
-                            btnMsg={this.state.btnMsg}
                             parentName={this.props.match.params.parentName} />
                     </div>
                     <div className="col-xl-1 col-sm-12" />
