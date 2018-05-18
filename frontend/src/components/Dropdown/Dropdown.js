@@ -16,7 +16,7 @@ class Dropdown extends Component {
     }
 
     componentDidMount() {
-        let url = '/secure/api/getBalance';
+        let url = 'http://172.30.48.190:4000/secure/api/getBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);
@@ -32,8 +32,8 @@ class Dropdown extends Component {
             console.log(response);
 
             this.setState({
-                balance: response.currentBalance,
-                name: response.name
+                balance: response.Balance,
+                name: response.Name
             });
         });
     }

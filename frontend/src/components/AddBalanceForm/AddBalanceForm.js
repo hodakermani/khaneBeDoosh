@@ -34,7 +34,7 @@ class AddBalanceForm extends Component {
     }
 
     componentDidMount() {
-        let url = '/secure/api/getBalance';
+        let url = 'http://172.30.48.190:4000/secure/api/getBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);
@@ -56,7 +56,7 @@ class AddBalanceForm extends Component {
             else {
                 this.setState({
                     redirect: false,
-                    balance: response.currentBalance });
+                    balance: response.Balance });
             }
 
         });
@@ -80,7 +80,7 @@ class AddBalanceForm extends Component {
         if (validation === false)
             return;
 
-        let url = '/secure/api/addBalance';
+        let url = 'http://172.30.48.190:4000/secure/api/addBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);
@@ -90,9 +90,9 @@ class AddBalanceForm extends Component {
                 'Content-Type': 'application/json',
                 'Authorization': header,
             },
-            body: {
+            body: JSON.stringify({
                 'balance': this.state.requsetedBalance,
-            }
+            })
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
@@ -105,7 +105,7 @@ class AddBalanceForm extends Component {
             }
 
             this.setState({
-                balance: response.currentBalance,
+                balance: response.balance,
             })
         });
     };

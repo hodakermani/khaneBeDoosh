@@ -31,12 +31,12 @@ class SearchResultItem extends Component {
 
     render() {
         return (
-            <Link to={"/houseDetail/" + this.state.house.id + "/" + this.state.house.parentName}>
+            <Link to={"/houseDetail/" + this.state.house.ID + "/" + this.state.house.ParentName}>
                 <div className="searchResultItem">
                     <div className="image-container">
-                        <img src={this.props.house.imageURL} alt="خانه" />
+                        <img src={this.props.house.ImageURL} alt="خانه" />
 
-                        { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
+                        { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
                             <div className="image-label background-purple">
                                 <span>فروش</span>
                             </div>
@@ -50,28 +50,28 @@ class SearchResultItem extends Component {
                     <div className="info-container">
                         <div className="row">
                             <div className="col-6 text-align-right">
-                                <span>{this.translateNum(String(this.props.house.area))}</span><span>&nbsp;</span><span>متر مربع</span>
+                                <span>{this.translateNum(String(this.props.house.Area))}</span><span>&nbsp;</span><span>متر مربع</span>
                             </div>
                             <div className="col-6 text-align-center">
                                 <i className="fa fa-map-marker text-pink" />
-                                <span className="location">{this.props.house.address}</span>
+                                <span className="location">{this.props.house.Address}</span>
                             </div>
                         </div>
 
-                        { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
+                        { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
                             <div className="row text-align-right">
                                 <div className="col-6">
-                                    <span className="contract-type">قیمت</span><span>{this.translateNum(String(this.props.house.price.sellPrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
+                                    <span className="contract-type">قیمت</span><span>{this.translateNum(String(this.props.house.SellPrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
                                 </div>
                                 <div className="col-6 text-align-center" />
                             </div>
                         ) : (
                             <div className="row text-align-right">
                                 <div className="col-6">
-                                    <span className="contract-type">رهن</span><span>{this.translateNum(String(this.props.house.price.basePrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
+                                    <span className="contract-type">رهن</span><span>{this.translateNum(String(this.props.house.BasePrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
                                 </div>
                                 <div className="col-6 text-align-center">
-                                    <span className="contract-type">اجاره</span><span>{this.translateNum(String(this.props.house.price.rentPrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
+                                    <span className="contract-type">اجاره</span><span>{this.translateNum(String(this.props.house.RentPrice))}</span><span>&nbsp;</span>‌<span className="toman">تومان</span>
                                 </div>
                             </div>
                         )}

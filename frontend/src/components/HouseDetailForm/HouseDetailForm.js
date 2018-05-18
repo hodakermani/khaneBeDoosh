@@ -27,7 +27,7 @@ class HouseDetailForm extends Component {
     }
 
     handleClick = () =>{
-        let url = '/secure/api/houseDetailsGetPhone';
+        let url = 'http://172.30.48.190:4000/secure/api/houseDetailsGetPhone';
 
         var obj = {
             method: 'POST',
@@ -35,9 +35,9 @@ class HouseDetailForm extends Component {
                 'Content-Type': 'application/json',
                 'authorization': (localStorage.getItem('loginToken')) ? 'Bearer ' + localStorage.getItem('loginToken'): null,
             },
-            body: {
+            body: JSON.stringify({
                 'houseId': this.props.house.id,
-            }
+            })
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
@@ -76,8 +76,8 @@ class HouseDetailForm extends Component {
                 {this.state.redirect && <Redirect to="/login" />}
 
                 <div className="col-xl-4 col-sm-12 house-info">
-                    <div className="buildingType">
-                        { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
+                    <div className="BuildingType">
+                        { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
                             <span className="background-purple">فروش</span>
 
                         ) : (
@@ -98,7 +98,7 @@ class HouseDetailForm extends Component {
                                 </span>
                             ) : (
                                 <span>
-                                    {String(this.props.house.phone)}
+                                    {String(this.props.house.Phone)}
                                 </span>
                             )}
 
@@ -110,17 +110,17 @@ class HouseDetailForm extends Component {
                             <span>نوع ساختمان</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.buildingType}</span>
+                            <span>{this.props.house.BuildingType}</span>
                         </div>
                     </div>
 
-                    { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
+                    { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
                         <div className="row">
                             <div className="col-xl-5 col-sm-6">
                                 <span>قیمت</span>
                             </div>
                             <div className="col-xl-7 col-sm-6">
-                                <span>{this.translateNum(String(this.props.price.sellPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                <span>{this.translateNum(String(this.props.house.SellPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                             </div>
                         </div>
                     ) : (
@@ -130,7 +130,7 @@ class HouseDetailForm extends Component {
                                     <span>رهن</span>
                                 </div>
                                 <div className="col-xl-7 col-sm-6">
-                                    <span>{this.translateNum(String(this.props.price.basePrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                    <span>{this.translateNum(String(this.props.house.BasePrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                                 </div>
                             </div>
                             <div className="price row">
@@ -138,7 +138,7 @@ class HouseDetailForm extends Component {
                                     <span>اجاره</span>
                                 </div>
                                 <div className="col-xl-7 col-sm-6">
-                                    <span>{this.translateNum(String(this.props.price.rentPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                    <span>{this.translateNum(String(this.props.house.RentPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@ class HouseDetailForm extends Component {
                             <span>آدرس</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.address}</span>
+                            <span>{this.props.house.Address}</span>
                         </div>
                     </div>
 
@@ -158,7 +158,7 @@ class HouseDetailForm extends Component {
                             <span>متراژ</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.translateNum(String(this.props.house.area))}</span>
+                            <span>{this.translateNum(String(this.props.house.Area))}</span>
                             <span>&nbsp;</span>
                             <span>متر مربع</span>
                         </div>
@@ -169,13 +169,13 @@ class HouseDetailForm extends Component {
                             <span>توضیحات</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.description}</span>
+                            <span>{this.props.house.Description}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="col-xl-8 col-sm-12">
-                    <img src={this.props.house.imageURL} id="house-img" alt="House" />
+                    <img src={this.props.house.ImageURL} id="house-img" alt="House" />
                     <a id="get-house-phone"
                        className={(this.state.btnMsg === notRequested ? 'balance-not-requested' :
                             this.state.btnMsg === notEnoughBalance ? 'balance-not-enough' :

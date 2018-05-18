@@ -23,7 +23,7 @@ export default class HouseDetailPage extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/houseDetails/' + this.props.match.params.id;
+        let url = 'http://172.30.48.190/api/houseDetails/' + this.props.match.params.id;
         fetch(url)
         .then((response) => response.json()).then((response) => {
             console.log(response);

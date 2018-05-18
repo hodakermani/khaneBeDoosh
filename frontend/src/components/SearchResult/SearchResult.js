@@ -17,19 +17,19 @@ class SearchResult extends Component {
     }
 
     componentDidMount() {
-        let url = '/api/search';
+        let url = 'http://172.30.48.190:4000/api/search';
 
         var obj = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: {
+            body: JSON.stringify({
                 'minArea': this.props.minArea,
                 'maxPrice': this.props.maxPrice,
                 'buildingType': this.props.buildingType,
                 'dealType': this.props.dealType,
-            }
+            })
         };
 
         fetch(url, obj)

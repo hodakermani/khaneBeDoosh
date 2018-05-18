@@ -21,7 +21,7 @@ class LoginForm extends Component {
     }
 
     handleClick() {
-        let url = '/auth/login';
+        let url = 'http://172.30.48.190:4000/auth/login';
         var obj = {
             method: 'POST',
             headers: {
@@ -36,7 +36,7 @@ class LoginForm extends Component {
         };
         fetch(url, obj)
             .then(response => response.json()).then((response) => {
-            localStorage.setItem("loginToken", response.msg);
+            localStorage.setItem("loginToken", response.token);
             console.log(response);
             this.props.loginCallBack(response.success);
         });
