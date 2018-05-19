@@ -34,7 +34,7 @@ class AddBalanceForm extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://172.30.48.190:4000/secure/api/getBalance';
+        let url = 'http://172.20.10.4:4000/secure/api/getBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);
@@ -80,7 +80,7 @@ class AddBalanceForm extends Component {
         if (validation === false)
             return;
 
-        let url = 'http://172.30.48.190:4000/secure/api/addBalance';
+        let url = 'http://172.20.10.4:4000/secure/api/addBalance';
         let header = 'Bearer ' + localStorage.getItem("loginToken");
         console.log("=============================");
         console.log(header);

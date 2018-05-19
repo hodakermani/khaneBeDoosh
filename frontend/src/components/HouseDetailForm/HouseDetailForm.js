@@ -27,7 +27,7 @@ class HouseDetailForm extends Component {
     }
 
     handleClick = () =>{
-        let url = 'http://172.30.48.190:4000/secure/api/houseDetailsGetPhone';
+        let url = 'http://172.20.10.4:4000/secure/api/houseDetailsGetPhone';
 
         var obj = {
             method: 'POST',
@@ -36,7 +36,7 @@ class HouseDetailForm extends Component {
                 'authorization': (localStorage.getItem('loginToken')) ? 'Bearer ' + localStorage.getItem('loginToken'): null,
             },
             body: JSON.stringify({
-                'houseId': this.props.house.id,
+                'houseId': this.props.house.ID,
             })
         };
         fetch(url, obj)
@@ -50,6 +50,7 @@ class HouseDetailForm extends Component {
                         phoneVisibility: response.success,
                         redirect: false,
                     });
+                    console.log("response " + response);
                     this.props.updateBalance();
                     console.log("this is the phone visibility:" + this.state.phoneVisibility);
                 }
@@ -66,9 +67,9 @@ class HouseDetailForm extends Component {
     }
 
     render() {
-        const content = this.props.house.phone;
+        const content = this.props.house.Phone;
         const notRequested = 'دریافت شماره مالک/مشاور';
-        const notEnoughBalance = 'اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست';
+        const notEnoughBalance = 'اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست.';
 
         return (
             <div className="houseDetailForm row">
@@ -76,7 +77,7 @@ class HouseDetailForm extends Component {
                 {this.state.redirect && <Redirect to="/login" />}
 
                 <div className="col-xl-4 col-sm-12 house-info">
-                    <div className="BuildingType">
+                    <div className="buildingType">
                         { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
                             <span className="background-purple">فروش</span>
 

@@ -19,7 +19,7 @@ class App extends Component {
                 <div className="maxHeight">
                     <Route path="/addBalance" component={AddBalance} />
                     <Route path="/addHouse" component={AddHouse} />
-                    <Route path="/houseDetail/:id/:parentName" component={HouseDetail} />
+                    <Route path="/houseDetail/:id" component={HouseDetail} />
                     <Route path="/search/:maxPrice/:minArea/:buildingType/:dealType" component={Search} />
                     <Route path="/home" component={Home} />
                     <Route path="/login" component={Login} />

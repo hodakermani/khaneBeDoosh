@@ -17,7 +17,7 @@ class SearchResult extends Component {
     }
 
     componentDidMount() {
-        let url = 'http://172.30.48.190:4000/api/search';
+        let url = 'http://172.20.10.4:4000/api/search';
 
         var obj = {
             method: 'POST',
