@@ -14,7 +14,8 @@ export default class HouseDetailPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            house : [],
+            house : {},
+            price : {},
             isBalanceUpdated: false,
         };
         this.updateBalance = this.updateBalance.bind(this);
@@ -23,7 +24,7 @@ export default class HouseDetailPage extends Component {
     componentDidMount() {
         console.log("id = " + this.props.match.params.id);
 
-        let url = 'http://172.20.10.4:4000/api/houseDetails/'+ this.props.match.params.id;
+        let url = 'http://172.30.48.139:4000/api/houseDetails/'+ this.props.match.params.id;
         console.log(url);
 
         var obj = {
@@ -38,6 +39,7 @@ export default class HouseDetailPage extends Component {
             console.log(response.data);
             this.setState({
                 house: response.data,
+                price: response.data.price,
             });
         });
     }
@@ -61,7 +63,8 @@ export default class HouseDetailPage extends Component {
                         <HouseDetailForm
                             updateBalance={this.updateBalance}
                             house={this.state.house}
-                            parentName={this.props.match.params.parentName} />
+                            price={this.state.price}
+                        />
                     </div>
                     <div className="col-xl-1 col-sm-12" />
                 </div>

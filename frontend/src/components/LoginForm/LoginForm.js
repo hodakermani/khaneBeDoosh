@@ -21,7 +21,7 @@ class LoginForm extends Component {
     }
 
     handleClick() {
-        let url = 'http://172.20.10.4:4000/auth/login';
+        let url = 'http://172.30.48.139:4000/auth/login';
         var obj = {
             method: 'POST',
             headers: {

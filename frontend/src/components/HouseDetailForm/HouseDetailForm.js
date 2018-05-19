@@ -27,7 +27,7 @@ class HouseDetailForm extends Component {
     }
 
     handleClick = () =>{
-        let url = 'http://172.20.10.4:4000/secure/api/houseDetailsGetPhone';
+        let url = 'http://172.30.48.139:4000/secure/api/houseDetailsGetPhone';
 
         var obj = {
             method: 'POST',
@@ -36,7 +36,7 @@ class HouseDetailForm extends Component {
                 'authorization': (localStorage.getItem('loginToken')) ? 'Bearer ' + localStorage.getItem('loginToken'): null,
             },
             body: JSON.stringify({
-                'houseId': this.props.house.ID,
+                'houseId': this.props.house.id,
             })
         };
         fetch(url, obj)
@@ -67,7 +67,7 @@ class HouseDetailForm extends Component {
     }
 
     render() {
-        const content = this.props.house.Phone;
+        const content = this.props.house.phone;
         const notRequested = 'دریافت شماره مالک/مشاور';
         const notEnoughBalance = 'اعتبار شما برای دریافت شماره مالک/مشاور کافی نیست.';
 
@@ -78,7 +78,7 @@ class HouseDetailForm extends Component {
 
                 <div className="col-xl-4 col-sm-12 house-info">
                     <div className="buildingType">
-                        { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
+                        { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
                             <span className="background-purple">فروش</span>
 
                         ) : (
@@ -93,13 +93,13 @@ class HouseDetailForm extends Component {
                         <div className="col-xl-7 col-sm-6 phone">
                             { (this.state.phoneVisibility === false) ? (
                                 <span>
-                                    {reactStringReplace(content, /(-.*-)/g, (match, i) => (
+                                    {reactStringReplace(content, /(-.*-)/g || /dd*d/g, (match, i) => (
                                         <span key={i}>**</span>
                                     ))}
                                 </span>
                             ) : (
                                 <span>
-                                    {String(this.props.house.Phone)}
+                                    {String(this.props.house.phone)}
                                 </span>
                             )}
 
@@ -111,17 +111,17 @@ class HouseDetailForm extends Component {
                             <span>نوع ساختمان</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.BuildingType}</span>
+                            <span>{this.props.house.buildingType}</span>
                         </div>
                     </div>
 
-                    { (this.props.house.DealType === "خرید" || this.props.house.DealType === 0) ? (
+                    { (this.props.house.dealType === "خرید" || this.props.house.dealType === 0) ? (
                         <div className="row">
                             <div className="col-xl-5 col-sm-6">
                                 <span>قیمت</span>
                             </div>
                             <div className="col-xl-7 col-sm-6">
-                                <span>{this.translateNum(String(this.props.house.SellPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                <span>{this.translateNum(String(this.props.price.sellPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                             </div>
                         </div>
                     ) : (
@@ -131,7 +131,7 @@ class HouseDetailForm extends Component {
                                     <span>رهن</span>
                                 </div>
                                 <div className="col-xl-7 col-sm-6">
-                                    <span>{this.translateNum(String(this.props.house.BasePrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                    <span>{this.translateNum(String(this.props.price.basePrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                                 </div>
                             </div>
                             <div className="price row">
@@ -139,7 +139,7 @@ class HouseDetailForm extends Component {
                                     <span>اجاره</span>
                                 </div>
                                 <div className="col-xl-7 col-sm-6">
-                                    <span>{this.translateNum(String(this.props.house.RentPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
+                                    <span>{this.translateNum(String(this.props.price.rentPrice))}</span><span>&nbsp;</span>‌<span>تومان</span>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ class HouseDetailForm extends Component {
                             <span>آدرس</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.Address}</span>
+                            <span>{this.props.house.address}</span>
                         </div>
                     </div>
 
@@ -159,7 +159,7 @@ class HouseDetailForm extends Component {
                             <span>متراژ</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.translateNum(String(this.props.house.Area))}</span>
+                            <span>{this.translateNum(String(this.props.house.area))}</span>
                             <span>&nbsp;</span>
                             <span>متر مربع</span>
                         </div>
@@ -170,13 +170,13 @@ class HouseDetailForm extends Component {
                             <span>توضیحات</span>
                         </div>
                         <div className="col-xl-7 col-sm-6">
-                            <span>{this.props.house.Description}</span>
+                            <span>{this.props.house.description}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="col-xl-8 col-sm-12">
-                    <img src={this.props.house.ImageURL} id="house-img" alt="House" />
+                    <img src={this.props.house.imageURL} id="house-img" alt="House" />
                     <a id="get-house-phone"
                        className={(this.state.btnMsg === notRequested ? 'balance-not-requested' :
                             this.state.btnMsg === notEnoughBalance ? 'balance-not-enough' :
