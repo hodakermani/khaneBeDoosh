@@ -12,7 +12,7 @@
     "react-persian": "^1.1.1",
     "react-router": "^3.2.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
+    "react-scripts": "5.0.1",
     "react-string-replace": "^0.4.1",
     "react-watcher": "0.0.1",
     "universal-cookie": "^2.1.2"
